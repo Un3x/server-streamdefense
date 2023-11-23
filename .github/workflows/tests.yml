@@ -1,0 +1,48 @@
+env:
+  CI: true
+  COVERAGE: true
+
+name: Tests 
+on: [push]
+jobs:
+  test:
+    name: Tests (RSpec)
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: streamdefense
+          POSTGRES_PASSWORD: streamdefense
+          POSTGRES_DB: streamdefense
+          POSTGRES_PORT: 5432
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - name: Dump Github context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+          cache-version: 321
+
+      - name: Install postgres client #and imagemagick
+        run: sudo apt-get install libpq-dev #imagemagick
+
+      - name: Create database
+        run: bundle exec rails db:create db:schema:load RAILS_ENV=test
+
+      - name: Run tests
+        run: bundle exec rspec

@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @idle_player_structure %>
+
+<div>
+  <%= link_to "Edit this idle player structure", edit_idle_player_structure_path(@idle_player_structure) %> |
+  <%= link_to "Back to idle player structures", idle_player_structures_path %>
+
+  <%= button_to "Destroy this idle player structure", @idle_player_structure, method: :delete %>
+</div>

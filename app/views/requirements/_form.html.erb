@@ -1,0 +1,27 @@
+<%= form_with(model: requirement) do |form| %>
+  <% if requirement.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(requirement.errors.count, "error") %> prohibited this requirement from being saved:</h2>
+
+      <ul>
+        <% requirement.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :structures_id, style: "display: block" %>
+    <%= form.text_field :structures_id %>
+  </div>
+
+  <div>
+    <%= form.label :required_level, style: "display: block" %>
+    <%= form.number_field :required_level %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Idle player resources</h1>
+
+<div id="idle_player_resources">
+  <% @idle_player_resources.each do |idle_player_resource| %>
+    <%= render idle_player_resource %>
+    <p>
+      <%= link_to "Show this idle player resource", idle_player_resource %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New idle player resource", new_idle_player_resource_path %>

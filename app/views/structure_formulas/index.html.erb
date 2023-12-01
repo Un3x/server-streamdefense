@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Structure formulas</h1>
+
+<div id="structure_formulas">
+  <% @structure_formulas.each do |structure_formula| %>
+    <%= render structure_formula %>
+    <p>
+      <%= link_to "Show this structure formula", structure_formula %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New structure formula", new_structure_formula_path %>

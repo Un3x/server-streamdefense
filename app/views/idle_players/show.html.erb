@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @idle_player %>
+
+<div>
+  <%= link_to "Edit this idle player", edit_idle_player_path(@idle_player) %> |
+  <%= link_to "Back to idle players", idle_players_path %>
+
+  <%= button_to "Destroy this idle player", @idle_player, method: :delete %>
+</div>

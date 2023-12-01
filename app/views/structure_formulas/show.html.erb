@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @structure_formula %>
+
+<div>
+  <%= link_to "Edit this structure formula", edit_structure_formula_path(@structure_formula) %> |
+  <%= link_to "Back to structure formulas", structure_formulas_path %>
+
+  <%= button_to "Destroy this structure formula", @structure_formula, method: :delete %>
+</div>

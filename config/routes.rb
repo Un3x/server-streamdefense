@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :idle_player_structures
+  resources :structure_formulas
+  resources :requirements
+  resources :structures
+  resources :idle_player_resources
+  resources :resources
+  resources :idle_players
+  resources :channels
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

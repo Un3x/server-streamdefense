@@ -1,0 +1,32 @@
+<%= form_with(model: idle_player_resource) do |form| %>
+  <% if idle_player_resource.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(idle_player_resource.errors.count, "error") %> prohibited this idle_player_resource from being saved:</h2>
+
+      <ul>
+        <% idle_player_resource.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :idle_players_id, style: "display: block" %>
+    <%= form.text_field :idle_players_id %>
+  </div>
+
+  <div>
+    <%= form.label :resources_id, style: "display: block" %>
+    <%= form.text_field :resources_id %>
+  </div>
+
+  <div>
+    <%= form.label :quantity, style: "display: block" %>
+    <%= form.number_field :quantity %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

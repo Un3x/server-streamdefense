@@ -1,0 +1,2 @@
+module IdlePlayersHelper
+end

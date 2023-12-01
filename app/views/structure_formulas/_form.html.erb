@@ -1,0 +1,32 @@
+<%= form_with(model: structure_formula) do |form| %>
+  <% if structure_formula.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(structure_formula.errors.count, "error") %> prohibited this structure_formula from being saved:</h2>
+
+      <ul>
+        <% structure_formula.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :structures_id, style: "display: block" %>
+    <%= form.text_field :structures_id %>
+  </div>
+
+  <div>
+    <%= form.label :type, style: "display: block" %>
+    <%= form.text_field :type %>
+  </div>
+
+  <div>
+    <%= form.label :formula, style: "display: block" %>
+    <%= form.text_field :formula %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

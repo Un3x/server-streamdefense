@@ -1,0 +1,2 @@
+module StructureFormulasHelper
+end

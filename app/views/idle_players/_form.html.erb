@@ -1,0 +1,27 @@
+<%= form_with(model: idle_player) do |form| %>
+  <% if idle_player.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(idle_player.errors.count, "error") %> prohibited this idle_player from being saved:</h2>
+
+      <ul>
+        <% idle_player.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :channel_id, style: "display: block" %>
+    <%= form.text_field :channel_id %>
+  </div>
+
+  <div>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

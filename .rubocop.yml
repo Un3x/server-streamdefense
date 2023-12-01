@@ -16,5 +16,11 @@ Style/Documentation:
 Metrics/BlockLength:
   Exclude:
     - config/**/*.rb
+    - Guardfile
+
+Metrics/LineLength:
+  Exclude:
+    - config/**/*.rb
+    - Guardfile
 
 

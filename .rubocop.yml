@@ -1,5 +1,7 @@
 AllCops:
   NewCops: enable
+  Exclude: 
+    - bin/*
 
 Metrics/MethodLength:
   Max: 30
@@ -17,8 +19,10 @@ Metrics/BlockLength:
   Exclude:
     - config/**/*.rb
     - Guardfile
+    - db/*.rb
 
-Metrics/LineLength:
+Layout/LineLength:
+  Max: 300
   Exclude:
     - config/**/*.rb
     - Guardfile

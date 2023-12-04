@@ -2,6 +2,7 @@ AllCops:
   NewCops: enable
   Exclude: 
     - bin/*
+    - vendor/**/*
 
 Metrics/MethodLength:
   Max: 30

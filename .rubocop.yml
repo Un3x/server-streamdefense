@@ -20,6 +20,7 @@ Metrics/BlockLength:
     - config/**/*.rb
     - Guardfile
     - db/*.rb
+    - spec/**/*.rb
 
 Layout/LineLength:
   Max: 300

@@ -16,23 +16,29 @@ gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[windows jruby]
 
 group :development, :test do
-  gem 'debug', platforms: %i[mri windows]
   gem 'rubocop', require: false
 
+  gem 'factory_bot_rails', '~> 6.4'
   gem 'guard'
   gem 'guard-rspec', require: false
+
+  gem 'pry'
+  gem 'pry-byebug'
 end
 
 group :development do
-  gem 'rubocop-rspec', require: false
   gem 'web-console'
+
+  gem 'rubocop-checkstyle_formatter', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
 end
 
 group :test do
   gem 'capybara'
-  gem 'selenium-webdriver'
-
+  gem 'rails-controller-testing'
   gem 'rspec-rails'
+  gem 'selenium-webdriver'
 end
 
 gem 'devise', '~> 4.9'

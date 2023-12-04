@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AdminUserController < AuthenticatedUserController
+class AdminUsersController < AuthenticatedUsersController
   before_action :admin?
 
   def admin?

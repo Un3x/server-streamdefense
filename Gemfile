@@ -16,11 +16,13 @@ gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[windows jruby]
 
 group :development, :test do
-  gem 'rubocop', require: false
-
   gem 'factory_bot_rails', '~> 6.4'
+  gem 'ffaker'
   gem 'guard'
   gem 'guard-rspec', require: false
+  gem 'rails-controller-testing'
+  gem 'rspec-rails'
+  gem 'rubocop', require: false
 
   gem 'pry'
   gem 'pry-byebug'
@@ -36,8 +38,6 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'rails-controller-testing'
-  gem 'rspec-rails'
   gem 'selenium-webdriver'
 end
 

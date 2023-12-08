@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_08_160701) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_08_161547) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,6 +18,16 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_08_160701) do
     t.string "twitch_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "idle_game_resources", force: :cascade do |t|
+    t.bigint "idle_game_id", null: false
+    t.bigint "resource_id", null: false
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["idle_game_id"], name: "index_idle_game_resources_on_idle_game_id"
+    t.index ["resource_id"], name: "index_idle_game_resources_on_resource_id"
   end
 
   create_table "idle_games", force: :cascade do |t|
@@ -45,6 +55,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_08_160701) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "idle_game_resources", "idle_games"
+  add_foreign_key "idle_game_resources", "resources"
   add_foreign_key "idle_games", "channels"
   add_foreign_key "idle_games", "users"
 end

@@ -1,0 +1,16 @@
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl">Idle game resources</h1>
+    <%= link_to "New idle game resource", new_admin_idle_game_resource_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  </div>
+
+  <div id="idle_game_resources" class="min-w-full">
+    <% @idle_game_resources.each do |idle_game_resource| %>
+      <%= render partial: 'admin/idle_game_resources/idle_game_resource', locals: { idle_game_resource: } %>
+    <% end %>
+  </div>
+</div>

@@ -2,6 +2,7 @@
 
 Rails.application.routes.draw do
   namespace :admin do
+    resources :idle_game_resources
     resources :resources
     resources :idle_games
     resources :channels

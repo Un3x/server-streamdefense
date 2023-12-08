@@ -2,6 +2,7 @@
 
 Rails.application.routes.draw do
   namespace :admin do
+    resources :channels
     resources :users
     get '/', to: 'home#index', as: :root
   end

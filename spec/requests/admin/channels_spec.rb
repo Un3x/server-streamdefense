@@ -14,9 +14,9 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe '/users', type: :request do
+RSpec.describe '/channels', type: :request do
   # This should return the minimal set of attributes required to create a valid
-  # User. As you add validations to User, be sure to
+  # Channel. As you add validations to Channel, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
     skip('Add a hash of attributes valid for your model')
@@ -34,58 +34,58 @@ RSpec.describe '/users', type: :request do
 
   describe 'GET /index' do
     it 'renders a successful response' do
-      User.create! valid_attributes
-      get admin_users_url
+      Channel.create! valid_attributes
+      get admin_channels_url
       expect(response).to be_successful
     end
   end
 
   describe 'GET /show' do
     it 'renders a successful response' do
-      user = User.create! valid_attributes
-      get admin_user_url(user)
+      channel = Channel.create! valid_attributes
+      get admin_channel_url(channel)
       expect(response).to be_successful
     end
   end
 
   describe 'GET /new' do
     it 'renders a successful response' do
-      get new_admin_user_url
+      get new_admin_channel_url
       expect(response).to be_successful
     end
   end
 
   describe 'GET /edit' do
     it 'renders a successful response' do
-      user = User.create! valid_attributes
-      get edit_admin_user_url(user)
+      channel = Channel.create! valid_attributes
+      get edit_admin_channel_url(channel)
       expect(response).to be_successful
     end
   end
 
   describe 'POST /create' do
     context 'with valid parameters' do
-      it 'creates a new User' do
+      it 'creates a new Channel' do
         expect do
-          post admin_users_url, params: { user: valid_attributes }
-        end.to change(User, :count).by(1)
+          post admin_channels_url, params: { channel: valid_attributes }
+        end.to change(Channel, :count).by(1)
       end
 
-      it 'redirects to the created user' do
-        post admin_users_url, params: { user: valid_attributes }
-        expect(response).to redirect_to(admin_user_url(User.last))
+      it 'redirects to the created channel' do
+        post admin_channels_url, params: { channel: valid_attributes }
+        expect(response).to redirect_to(admin_channel_url(Channel.last))
       end
     end
 
     context 'with invalid parameters' do
-      it 'does not create a new User' do
+      it 'does not create a new Channel' do
         expect do
-          post admin_users_url, params: { user: invalid_attributes }
-        end.to change(User, :count).by(0)
+          post admin_channels_url, params: { channel: invalid_attributes }
+        end.to change(Channel, :count).by(0)
       end
 
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
-        post admin_users_url, params: { user: invalid_attributes }
+        post admin_channels_url, params: { channel: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
@@ -97,42 +97,42 @@ RSpec.describe '/users', type: :request do
         skip('Add a hash of attributes valid for your model')
       end
 
-      it 'updates the requested user' do
-        user = User.create! valid_attributes
-        patch admin_user_url(user), params: { user: new_attributes }
-        user.reload
+      it 'updates the requested channel' do
+        channel = Channel.create! valid_attributes
+        patch admin_channel_url(channel), params: { channel: new_attributes }
+        channel.reload
         skip('Add assertions for updated state')
       end
 
-      it 'redirects to the user' do
-        user = User.create! valid_attributes
-        patch admin_user_url(user), params: { user: new_attributes }
-        user.reload
-        expect(response).to redirect_to(user_url(user))
+      it 'redirects to the channel' do
+        channel = Channel.create! valid_attributes
+        patch admin_channel_url(channel), params: { channel: new_attributes }
+        channel.reload
+        expect(response).to redirect_to(channel_url(channel))
       end
     end
 
     context 'with invalid parameters' do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-        user = User.create! valid_attributes
-        patch admin_user_url(user), params: { user: invalid_attributes }
+        channel = Channel.create! valid_attributes
+        patch admin_channel_url(channel), params: { channel: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
 
   describe 'DELETE /destroy' do
-    it 'destroys the requested user' do
-      user = User.create! valid_attributes
+    it 'destroys the requested channel' do
+      channel = Channel.create! valid_attributes
       expect do
-        delete admin_user_url(user)
-      end.to change(User, :count).by(-1)
+        delete admin_channel_url(channel)
+      end.to change(Channel, :count).by(-1)
     end
 
-    it 'redirects to the users list' do
-      user = User.create! valid_attributes
-      delete admin_user_url(user)
-      expect(response).to redirect_to(admin_users_url)
+    it 'redirects to the channels list' do
+      channel = Channel.create! valid_attributes
+      delete admin_channel_url(channel)
+      expect(response).to redirect_to(admin_channels_url)
     end
   end
 end

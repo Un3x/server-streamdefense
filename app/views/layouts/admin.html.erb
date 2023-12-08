@@ -22,10 +22,10 @@
       </div>
     <% end %>
 
-    <% if content_for(:header) %>
-      <%= yield(:header) %>
-    <% end %>
+    <%= render "layouts/admin_header" %>
 
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>

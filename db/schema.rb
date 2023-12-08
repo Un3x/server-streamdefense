@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,53 +12,60 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_08_161547) do
+ActiveRecord::Schema[7.1].define(version: 20_231_208_163_003) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "channels", force: :cascade do |t|
-    t.string "twitch_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'channels', force: :cascade do |t|
+    t.string 'twitch_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "idle_game_resources", force: :cascade do |t|
-    t.bigint "idle_game_id", null: false
-    t.bigint "resource_id", null: false
-    t.integer "quantity"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["idle_game_id"], name: "index_idle_game_resources_on_idle_game_id"
-    t.index ["resource_id"], name: "index_idle_game_resources_on_resource_id"
+  create_table 'idle_game_resources', force: :cascade do |t|
+    t.bigint 'idle_game_id', null: false
+    t.bigint 'resource_id', null: false
+    t.integer 'quantity'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['idle_game_id'], name: 'index_idle_game_resources_on_idle_game_id'
+    t.index ['resource_id'], name: 'index_idle_game_resources_on_resource_id'
   end
 
-  create_table "idle_games", force: :cascade do |t|
-    t.bigint "channel_id", null: false
-    t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["channel_id"], name: "index_idle_games_on_channel_id"
-    t.index ["user_id"], name: "index_idle_games_on_user_id"
+  create_table 'idle_games', force: :cascade do |t|
+    t.bigint 'channel_id', null: false
+    t.bigint 'user_id', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['channel_id'], name: 'index_idle_games_on_channel_id'
+    t.index ['user_id'], name: 'index_idle_games_on_user_id'
   end
 
-  create_table "resources", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'resources', force: :cascade do |t|
+    t.string 'name'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.datetime "remember_created_at"
-    t.string "twitch_id"
-    t.string "nickname"
-    t.string "role", default: "USER", null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
+  create_table 'structures', force: :cascade do |t|
+    t.string 'name'
+    t.string 'description'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  add_foreign_key "idle_game_resources", "idle_games"
-  add_foreign_key "idle_game_resources", "resources"
-  add_foreign_key "idle_games", "channels"
-  add_foreign_key "idle_games", "users"
+  create_table 'users', force: :cascade do |t|
+    t.string 'email', default: '', null: false
+    t.string 'encrypted_password', default: '', null: false
+    t.datetime 'remember_created_at'
+    t.string 'twitch_id'
+    t.string 'nickname'
+    t.string 'role', default: 'USER', null: false
+    t.index ['email'], name: 'index_users_on_email', unique: true
+  end
+
+  add_foreign_key 'idle_game_resources', 'idle_games'
+  add_foreign_key 'idle_game_resources', 'resources'
+  add_foreign_key 'idle_games', 'channels'
+  add_foreign_key 'idle_games', 'users'
 end

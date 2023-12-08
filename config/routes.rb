@@ -2,7 +2,8 @@
 
 Rails.application.routes.draw do
   namespace :admin do
-    get '/', to: 'home#index'
+    resources :users
+    get '/', to: 'home#index', as: :root
   end
 
   devise_for :users

@@ -1,0 +1,8 @@
+<div class="mx-auto md:w-2/3 w-full">
+  <h1 class="font-bold text-4xl">Editing idle player structure</h1>
+
+  <%= render partial: "admin/idle_game_structures/form", locals: { idle_game_structure: @idle_game_structure } %>
+
+  <%= link_to "Show this idle player structure", admin_idle_game_structure_path(@idle_game_structure), class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <%= link_to "Back to idle player structures", admin_idle_game_structures_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+</div>

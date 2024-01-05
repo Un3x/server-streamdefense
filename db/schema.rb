@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 20_231_208_163_003) do
+ActiveRecord::Schema[7.1].define(version: 20_240_105_142_255) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -30,6 +30,16 @@ ActiveRecord::Schema[7.1].define(version: 20_231_208_163_003) do
     t.datetime 'updated_at', null: false
     t.index ['idle_game_id'], name: 'index_idle_game_resources_on_idle_game_id'
     t.index ['resource_id'], name: 'index_idle_game_resources_on_resource_id'
+  end
+
+  create_table 'idle_game_structures', force: :cascade do |t|
+    t.bigint 'structure_id', null: false
+    t.bigint 'idle_game_id', null: false
+    t.integer 'level'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['idle_game_id'], name: 'index_idle_game_structures_on_idle_game_id'
+    t.index ['structure_id'], name: 'index_idle_game_structures_on_structure_id'
   end
 
   create_table 'idle_games', force: :cascade do |t|
@@ -66,6 +76,8 @@ ActiveRecord::Schema[7.1].define(version: 20_231_208_163_003) do
 
   add_foreign_key 'idle_game_resources', 'idle_games'
   add_foreign_key 'idle_game_resources', 'resources'
+  add_foreign_key 'idle_game_structures', 'idle_games'
+  add_foreign_key 'idle_game_structures', 'structures'
   add_foreign_key 'idle_games', 'channels'
   add_foreign_key 'idle_games', 'users'
 end

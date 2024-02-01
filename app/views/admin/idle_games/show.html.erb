@@ -1,15 +1,25 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
+<div class="mx-auto w-full">
+  <h1 class="font-bold text-4xl">
+    <%= t('.title') %>
+  </h1>
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
 
+  <div class="grid grid-cols-2 gap-4">
     <%= render partial: 'admin/idle_games/idle_game', locals: { idle_game: @idle_game } %>
-
-    <%= link_to "Edit this idle_game", edit_admin_idle_game_path(@idle_game), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to "Destroy this idle_game", admin_idle_game_path(@idle_game), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+    <div class="mx-auto w-full flex flex-row-reverse gap-4">
+      <div>
+        <%= link_to "Edit this idle_game", edit_admin_idle_game_path(@idle_game), class: "mt-2 rounded-lg py-3 px-5 bg-orange-300 inline-block font-medium" %>
+      </div>
+      <div>
+        <%= button_to "Destroy this idle_game", admin_idle_game_path(@idle_game), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-red-300 font-medium" %>
+      </div>
+      <div>
+        <%= link_to "Back to idle_games", admin_idle_games_path, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      </div>
     </div>
-    <%= link_to "Back to idle_games", admin_idle_games_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= render partial: 'admin/idle_games/resources', locals: { idle_game_resources: @idle_game.idle_game_resources } %>
+    <%= render partial: 'admin/idle_games/structures', locals: { idle_game_structures: @idle_game.idle_game_structures } %>
   </div>
 </div>

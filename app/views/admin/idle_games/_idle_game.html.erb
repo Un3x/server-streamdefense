@@ -1,17 +1,11 @@
 <div id="<%= dom_id idle_game %>">
+  <h2 class="font-bold text-2xl">
+    <%= t('.title') %>
+  </h2>
   <p class="my-5">
-    <strong class="block font-medium mb-1">Channel:</strong>
-    <%= idle_game.channel_id %>
+    <%= t('.channel', channel: idle_game.channel.twitch_id).html_safe %>
   </p>
-
   <p class="my-5">
-    <strong class="block font-medium mb-1">User:</strong>
-    <%= idle_game.user_id %>
+    <%= t('.user', user: idle_game.user.nickname).html_safe %>
   </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this idle game", admin_idle_game_path(idle_game), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Edit this idle game", edit_admin_idle_game_path(idle_game), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
 </div>

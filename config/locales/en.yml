@@ -32,6 +32,8 @@ en:
     users:
       idle_games:
         title: Games
+        channel: Channel
+        action: Action
       user:
         title: Detail
         email: <strong class="font-medium mb-1">Email :</strong> %{email}
@@ -50,6 +52,14 @@ en:
       index:
         twitch_id: Twitch
         action: Action
+      show:
+        title: Channel
+      idle_games:
+        title: Games
+        user: User
+        action: Action
+      channel:
+        twitch: <strong class="font-medium mb-1">Twitch :</strong> %{twitch_id}
     idle_games:
       index:
         channel: Channel

@@ -5,7 +5,7 @@
   <table class="border-collapse w-full border border-slate-500 bg-slate-800 text-sm shadow-sm">
     <thead>
       <tr>
-        <% %w[channel action].each do |column| %>
+        <% %w[user action].each do |column| %>
           <th class="w-1/2 border border-slate-600 font-semibold p-4 text-slate-200 text-left">
             <%= t(".#{column}") %>
           </th>
@@ -16,7 +16,7 @@
     <% idle_games.each do |idle_game| %>
       <tr>
           <td class="border border-slate-700 p-4 text-slate-400">
-            <%= idle_game.channel.twitch_id %>
+            <%= idle_game.user.nickname %>
           </td>
           <td class="border border-slate-700 p-4 text-slate-400 flex">
             <%= link_to "Show", admin_idle_game_path(idle_game), class: "rounded-lg py-1 px-2 inline-block font-medium" %>

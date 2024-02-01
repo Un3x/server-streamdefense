@@ -1,12 +1,8 @@
 <div id="<%= dom_id channel %>">
+  <h2 class="font-bold text-2xl">
+    <%= t('.title') %>
+  </h2>
   <p class="my-5">
-    <strong class="block font-medium mb-1">Twitch:</strong>
-    <%= channel.twitch_id %>
+    <%= t('.twitch', twitch_id: channel.twitch_id).html_safe %>
   </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this channel", admin_channel_path(channel), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Edit this channel", edit_admin_channel_path(channel), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
 </div>

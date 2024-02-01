@@ -41,3 +41,8 @@ en:
       index:
         twitch_id: Twitch
         action: Action
+    idle_games:
+      index:
+        channel: Channel
+        user: Player
+        action: Action

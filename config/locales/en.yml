@@ -29,3 +29,11 @@
 
 en:
   hello: "Hello world"
+  admin:
+    users:
+      index:
+        email: Email
+        nickname: Nickname
+        twitch_id: Twitch
+        role: Role
+        action: Action

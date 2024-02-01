@@ -5,18 +5,17 @@ require 'rails_helper'
 RSpec.describe 'admin/structure_requirements/new', type: :view do
   before(:each) do
     assign(:structure_requirement,
-      StructureRequirement.new(
-        structure: Structure.create!(
-          name: 'Name',
-          description: 'Description'
-        ),
-        required_structure: Structure.create!(
-          name: 'Name',
-          description: 'Description'
-        ),
-        required_level: 1
-      )
-    )
+           StructureRequirement.new(
+             structure: Structure.create!(
+               name: 'Name',
+               description: 'Description'
+             ),
+             required_structure: Structure.create!(
+               name: 'Name',
+               description: 'Description'
+             ),
+             required_level: 1
+           ))
   end
 
   it 'renders new structure_requirement form' do

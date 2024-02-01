@@ -22,10 +22,10 @@ RSpec.describe 'admin/users/index', type: :view do
 
   it 'renders a list of admin/users' do
     render
-    cell_selector = Rails::VERSION::STRING >= '7' ? 'div>p' : 'tr>td'
-    assert_select cell_selector, text: Regexp.new('Email'.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new('Twitch'.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new('Nickname'.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new('Role'.to_s), count: 2
+    cell_selector = 'tr>th'
+    assert_select cell_selector, text: Regexp.new('Email'.to_s), count: 1
+    assert_select cell_selector, text: Regexp.new('Twitch'.to_s), count: 1
+    assert_select cell_selector, text: Regexp.new('Nickname'.to_s), count: 1
+    assert_select cell_selector, text: Regexp.new('Role'.to_s), count: 1
   end
 end

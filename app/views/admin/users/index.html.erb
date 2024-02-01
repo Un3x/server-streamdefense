@@ -8,9 +8,39 @@
     <%= link_to "New user", new_admin_user_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
-  <div id="users" class="min-w-full">
-    <% @users.each do |user| %>
-      <%= render partial: 'admin/users/user', locals: { user: } %>
-    <% end %>
+  <div id="users" class="min-w-full pt-4">
+    <table class="border-collapse w-full border border-slate-500 bg-slate-800 text-sm shadow-sm">
+      <thead>
+        <tr>
+          <% %w[email nickname twitch_id role action].each do |column| %>
+            <th class="w-1/2 border border-slate-600 font-semibold p-4 text-slate-200 text-left">
+              <%= t(".#{column}") %>
+            </th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+      <% @users.each do |user| %>
+        <tr>
+            <td class="border border-slate-700 p-4 text-slate-400">
+              <%= user.email %>
+            </td>
+            <td class="border border-slate-700 p-4 text-slate-400">
+              <%= user.nickname %>
+            </td>
+            <td class="border border-slate-700 p-4 text-slate-400">
+              <%= user.twitch_id %>
+            </td>
+            <td class="border border-slate-700 p-4 text-slate-400">
+              <%= user.role %>
+            </td>
+            <td class="border border-slate-700 p-4 text-slate-400 flex">
+              <%= link_to "Show", admin_user_path(user), class: "rounded-lg py-1 px-2 inline-block font-medium" %>
+              <%= link_to "Edit", edit_admin_user_path(user), class: "rounded-lg py-1 ml-2 px-2 inline-block font-medium" %>
+            </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
   </div>
 </div>

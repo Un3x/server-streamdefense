@@ -4,12 +4,11 @@ require 'rails_helper'
 
 RSpec.describe 'admin/structures/show', type: :view do
   before(:each) do
-    assign(:structure, 
-      Structure.create!(
-        name: 'Name',
-        description: 'Description'
-      )
-    )
+    assign(:structure,
+           Structure.create!(
+             name: 'Name',
+             description: 'Description'
+           ))
   end
 
   it 'renders attributes in <p>' do

@@ -37,3 +37,7 @@ en:
         twitch_id: Twitch
         role: Role
         action: Action
+    channels:
+      index:
+        twitch_id: Twitch
+        action: Action

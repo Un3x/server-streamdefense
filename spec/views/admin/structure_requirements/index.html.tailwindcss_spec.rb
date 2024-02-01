@@ -32,7 +32,10 @@ RSpec.describe 'admin/structure_requirements/index', type: :view do
 
   it 'renders a list of admin/structure_requirements' do
     render
-    cell_selector = Rails::VERSION::STRING >= '7' ? 'div>p' : 'tr>td'
-    assert_select cell_selector, text: Regexp.new(nil.to_s), count: 6
+    cell_selector = 'tr>th'
+    assert_select cell_selector, text: Regexp.new('^Structure'.to_s), count: 1
+    assert_select cell_selector, text: Regexp.new('Required Structure'.to_s), count: 1
+    assert_select cell_selector, text: Regexp.new('Level'.to_s), count: 1
+    assert_select cell_selector, text: Regexp.new('Action'.to_s), count: 1
   end
 end

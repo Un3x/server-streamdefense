@@ -8,9 +8,38 @@
     <%= link_to "New idle game resource", new_admin_idle_game_resource_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
-  <div id="idle_game_resources" class="min-w-full">
-    <% @idle_game_resources.each do |idle_game_resource| %>
-      <%= render partial: 'admin/idle_game_resources/idle_game_resource', locals: { idle_game_resource: } %>
-    <% end %>
+  <div id="idle_game_resources" class="min-w-full pt-4">
+    <table class="border-collapse w-full border border-slate-500 bg-slate-800 text-sm shadow-sm">
+      <thead>
+        <tr>
+          <% %w[idle_game resource quantity action].each do |column| %>
+            <th class="w-1/2 border border-slate-600 font-semibold p-4 text-slate-200 text-left">
+              <%= t(".#{column}") %>
+            </th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+      <% @idle_game_resources.each do |idle_game_resource| %>
+        <tr>
+            <td class="border border-slate-700 p-4 text-slate-400">
+              <%= idle_game_resource.idle_game.channel.twitch_id %>
+              -
+              <%= idle_game_resource.idle_game.user.nickname %>
+            </td>
+            <td class="border border-slate-700 p-4 text-slate-400">
+              <%= idle_game_resource.resource.name %>
+            </td>
+            <td class="border border-slate-700 p-4 text-slate-400">
+              <%= idle_game_resource.quantity %>
+            </td>
+            <td class="border border-slate-700 p-4 text-slate-400 flex">
+              <%= link_to "Show", admin_idle_game_resource_path(idle_game_resource), class: "rounded-lg py-1 px-2 inline-block font-medium" %>
+              <%= link_to "Edit", edit_admin_idle_game_resource_path(idle_game_resource), class: "rounded-lg py-1 ml-2 px-2 inline-block font-medium" %>
+            </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
   </div>
 </div>

@@ -28,7 +28,6 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
   admin:
     users:
       index:
@@ -45,4 +44,31 @@ en:
       index:
         channel: Channel
         user: Player
+        action: Action
+    resources:
+      index:
+        name: Name
+        action: Action
+    idle_game_resources:
+      index:
+        idle_game: Idle Game
+        user: Player
+        quantity: Quantity
+        action: Action
+    structures:
+      index:
+        name: Name
+        description: Description
+        action: Action
+    idle_game_structures:
+      index:
+        idle_game: Idle Game
+        structure: Structure
+        level: Level
+        action: Action
+    structure_requirements:
+      index:
+        structure: Structure
+        required_structure: Required Structure
+        level: Level
         action: Action

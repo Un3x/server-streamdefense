@@ -1,27 +1,20 @@
 <div id="<%= dom_id user %>">
+  <h2 class="font-bold text-2xl">
+    <%= t('.title') %>
+  </h2>
   <p class="my-5">
-    <strong class="block font-medium mb-1">Email:</strong>
-    <%= user.email %>
+    <%= t('.email', email: user.email).html_safe %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Twitch:</strong>
-    <%= user.twitch_id %>
+    <%= t('.twitch', twitch_id: user.twitch_id).html_safe %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Nickname:</strong>
-    <%= user.nickname %>
+    <%= t('.nickname', nickname: user.nickname).html_safe %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Role:</strong>
-    <%= user.role %>
+    <%= t('.role', role: user.role).html_safe %>
   </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this user", admin_user_path(user), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Edit this user", edit_admin_user_path(user), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
 </div>

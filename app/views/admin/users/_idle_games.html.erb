@@ -1,0 +1,29 @@
+<div id="idle_games" class="min-w-full pt-4">
+  <h2 class="font-bold text-2xl">
+    <%= t('.title') %>
+  </h2>
+  <table class="border-collapse w-full border border-slate-500 bg-slate-800 text-sm shadow-sm">
+    <thead>
+      <tr>
+        <% %w[user action].each do |column| %>
+          <th class="w-1/2 border border-slate-600 font-semibold p-4 text-slate-200 text-left">
+            <%= t(".#{column}") %>
+          </th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+    <% idle_games.each do |idle_game| %>
+      <tr>
+          <td class="border border-slate-700 p-4 text-slate-400">
+            <%= idle_game.channel.twitch_id %>
+          </td>
+          <td class="border border-slate-700 p-4 text-slate-400 flex">
+            <%= link_to "Show", admin_idle_game_path(idle_game), class: "rounded-lg py-1 px-2 inline-block font-medium" %>
+            <%= link_to "Edit", edit_admin_idle_game_path(idle_game), class: "rounded-lg py-1 ml-2 px-2 inline-block font-medium" %>
+          </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

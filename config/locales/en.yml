@@ -30,6 +30,16 @@
 en:
   admin:
     users:
+      idle_games:
+        title: Games
+      user:
+        title: Detail
+        email: <strong class="font-medium mb-1">Email :</strong> %{email}
+        twitch: <strong class="font-medium mb-1">Twitch :</strong> %{twitch_id}
+        nickname: <strong class="font-medium mb-1">Nickname :</strong> %{nickname}
+        role: <strong class="font-medium mb-1">Role :</strong> %{role}
+      show:
+        title: User
       index:
         email: Email
         nickname: Nickname

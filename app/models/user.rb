@@ -3,6 +3,8 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :rememberable
 
+  has_many :idle_games
+
   ROLE_ADMIN = 'ADMIN'
   ROLE_USER = 'USER'
 

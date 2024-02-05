@@ -91,17 +91,17 @@ unex = Channel.create(
 
 # Games
 
-game_1 = IdleGame.create(
+game1 = IdleGame.create(
   channel: unex,
   user: reallord
 )
 
-game_2 = IdleGame.create(
+game2 = IdleGame.create(
   channel: unex,
   user: lavomancien
 )
 
-game_3 = IdleGame.create(
+game3 = IdleGame.create(
   channel: unex,
   user: orbital
 )
@@ -109,55 +109,55 @@ game_3 = IdleGame.create(
 # Games Ressources
 
 IdleGameResource.create(
-  idle_game: game_1,
+  idle_game: game1,
   resource: bois,
   quantity: 100
 )
 
 IdleGameResource.create(
-  idle_game: game_1,
+  idle_game: game1,
   resource: nourriture,
   quantity: 1000
 )
 
 IdleGameResource.create(
-  idle_game: game_1,
+  idle_game: game1,
   resource: fer,
   quantity: 2000
 )
 
 IdleGameResource.create(
-  idle_game: game_2,
+  idle_game: game2,
   resource: bois,
   quantity: 3000
 )
 
 IdleGameResource.create(
-  idle_game: game_2,
+  idle_game: game2,
   resource: nourriture,
   quantity: 69
 )
 
 IdleGameResource.create(
-  idle_game: game_2,
+  idle_game: game2,
   resource: fer,
   quantity: 70
 )
 
 IdleGameResource.create(
-  idle_game: game_3,
+  idle_game: game3,
   resource: bois,
   quantity: 0
 )
 
 IdleGameResource.create(
-  idle_game: game_3,
+  idle_game: game3,
   resource: nourriture,
   quantity: 0
 )
 
 IdleGameResource.create(
-  idle_game: game_3,
+  idle_game: game3,
   resource: fer,
   quantity: 0
 )
@@ -165,73 +165,73 @@ IdleGameResource.create(
 # Games Structures
 
 IdleGameStructure.create(
-  idle_game: game_1,
+  idle_game: game1,
   structure: hotel_de_ville,
   level: 3
 )
 
 IdleGameStructure.create(
-  idle_game: game_1,
+  idle_game: game1,
   structure: ferme,
   level: 2
 )
 
 IdleGameStructure.create(
-  idle_game: game_1,
+  idle_game: game1,
   structure: scierie,
   level: 2
 )
 
 IdleGameStructure.create(
-  idle_game: game_1,
+  idle_game: game1,
   structure: camp_militaire,
   level: 1
 )
 
 IdleGameStructure.create(
-  idle_game: game_2,
+  idle_game: game2,
   structure: hotel_de_ville,
   level: 2
 )
 
 IdleGameStructure.create(
-  idle_game: game_2,
+  idle_game: game2,
   structure: ferme,
   level: 1
 )
 
 IdleGameStructure.create(
-  idle_game: game_2,
+  idle_game: game2,
   structure: scierie,
   level: 2
 )
 
 IdleGameStructure.create(
-  idle_game: game_2,
+  idle_game: game2,
   structure: camp_militaire,
   level: 0
 )
 
 IdleGameStructure.create(
-  idle_game: game_3,
+  idle_game: game3,
   structure: hotel_de_ville,
   level: 1
 )
 
 IdleGameStructure.create(
-  idle_game: game_3,
+  idle_game: game3,
   structure: ferme,
   level: 0
 )
 
 IdleGameStructure.create(
-  idle_game: game_3,
+  idle_game: game3,
   structure: scierie,
   level: 0
 )
 
 IdleGameStructure.create(
-  idle_game: game_3,
+  idle_game: game3,
   structure: camp_militaire,
   level: 0
 )

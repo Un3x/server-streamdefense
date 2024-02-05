@@ -44,5 +44,8 @@ jobs:
       - name: Create database
         run: bundle exec rails db:create db:schema:load RAILS_ENV=test
 
+      - name: Compiling assets
+        run: bundle exec rails assets:precompile 
+
       - name: Run tests
         run: bundle exec rspec

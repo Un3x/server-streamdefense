@@ -79,6 +79,11 @@ en:
       index:
         name: Name
         action: Action
+      show:
+        title: Resource
+      resource:
+        title: Detail
+        name: <strong class="font-medium mb-1">Name :</strong> %{name}
     idle_game_resources:
       index:
         idle_game: Idle Game

@@ -1,12 +1,8 @@
 <div id="<%= dom_id resource %>">
+  <h2 class="font-bold text-2xl">
+    <%= t('.title') %>
+  </h2>
   <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
-    <%= resource.name %>
+    <%= t('.name', name: resource.name).html_safe %>
   </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this resource", admin_resource_path(resource), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Edit this resource", edit_admin_resource_path(resource), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
 </div>

@@ -14,9 +14,9 @@ RSpec.describe 'admin/idle_games/new', type: :view do
     render
 
     assert_select 'form[action=?][method=?]', admin_idle_games_path, 'post' do
-      assert_select 'input[name=?]', 'idle_game[channel_id]'
+      assert_select 'select[name=?]', 'idle_game[channel_id]'
 
-      assert_select 'input[name=?]', 'idle_game[user_id]'
+      assert_select 'select[name=?]', 'idle_game[user_id]'
     end
   end
 end

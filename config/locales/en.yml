@@ -90,6 +90,16 @@ en:
         name: Name
         description: Description
         action: Action
+      show:
+        title: Structure
+      structure:
+        title: Detail
+        name: <strong class="font-medium mb-1">Name :</strong> %{name}
+        description: <strong class="font-medium mb-1">Description :</strong> %{description}
+      structure_requirements:
+        required_structure: Required Structure 
+        required_level: Required Level
+        action: Action
     idle_game_structures:
       index:
         idle_game: Idle Game

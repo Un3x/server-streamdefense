@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :channel, class: 'Channel' do
-    twitch_id { 'MyString' }
+    twitch_id { '142350971345' }
   end
 end

@@ -4,12 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'admin/users/show', type: :view do
   before(:each) do
-    assign(:user, User.create!(
-                    email: 'Email',
-                    twitch_id: 'Twitch',
-                    nickname: 'Nickname',
-                    role: 'Role'
-                  ))
+    assign(:user, create(:user))
   end
 
   it 'renders attributes in <p>' do

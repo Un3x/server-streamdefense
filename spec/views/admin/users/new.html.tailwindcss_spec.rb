@@ -4,12 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'admin/users/new', type: :view do
   before(:each) do
-    assign(:user, User.new(
-                    email: 'MyString',
-                    twitch_id: 'MyString',
-                    nickname: 'MyString',
-                    role: 'MyString'
-                  ))
+    assign(:user, build(:user))
   end
 
   it 'renders new admin_user form' do

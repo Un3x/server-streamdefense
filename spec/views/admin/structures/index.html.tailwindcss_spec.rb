@@ -4,16 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'admin/structures/index', type: :view do
   before(:each) do
-    assign(:structures, [
-             Structure.create!(
-               name: 'Name',
-               description: 'Description'
-             ),
-             Structure.create!(
-               name: 'Name',
-               description: 'Description'
-             )
-           ])
+    assign(:structures, [create(:structure), create(:structure)])
   end
 
   it 'renders a list of admin/structures' do

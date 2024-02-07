@@ -4,10 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'admin/idle_games/show', type: :view do
   before(:each) do
-    assign(:idle_game, IdleGame.create!(
-                         channel: Channel.create!(twitch_id: 'MyString'),
-                         user: create(:user)
-                       ))
+    assign(:idle_game, create(:idle_game))
   end
 
   it 'renders attributes in <p>' do

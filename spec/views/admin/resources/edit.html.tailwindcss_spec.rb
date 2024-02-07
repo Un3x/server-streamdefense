@@ -4,9 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'admin/resources/edit', type: :view do
   let(:resource) do
-    Resource.create!(
-      name: 'MyString'
-    )
+    create(:resource)
   end
 
   before(:each) do

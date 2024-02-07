@@ -4,9 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'admin/channels/edit', type: :view do
   let(:channel) do
-    Channel.create!(
-      twitch_id: 'MyString'
-    )
+    create(:channel)
   end
 
   before(:each) do

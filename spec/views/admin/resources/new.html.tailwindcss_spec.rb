@@ -4,9 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'admin/resources/new', type: :view do
   before(:each) do
-    assign(:resource, Resource.new(
-                        name: 'MyString'
-                      ))
+    assign(:resource, build(:resource))
   end
 
   it 'renders new admin_resource form' do

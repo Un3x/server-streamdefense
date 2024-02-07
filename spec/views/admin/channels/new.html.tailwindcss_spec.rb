@@ -4,9 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'admin/channels/new', type: :view do
   before(:each) do
-    assign(:channel, Channel.new(
-                       twitch_id: 'MyString'
-                     ))
+    assign(:channel, build(:channel))
   end
 
   it 'renders new admin_channel form' do

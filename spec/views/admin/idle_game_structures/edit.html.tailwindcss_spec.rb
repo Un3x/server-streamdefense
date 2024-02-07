@@ -4,17 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'admin/idle_game_structures/edit', type: :view do
   let(:idle_game_structure) do
-    IdleGameStructure.create!(
-      structure: Structure.create!(
-        name: 'MyString',
-        description: 'MyString'
-      ),
-      idle_game: IdleGame.create!(
-        channel: Channel.create!(twitch_id: 'MyString'),
-        user: create(:user)
-      ),
-      level: 1
-    )
+    create(:idle_game_structure)
   end
 
   before(:each) do

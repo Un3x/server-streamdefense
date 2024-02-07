@@ -5,6 +5,11 @@ class User < ApplicationRecord
 
   has_many :idle_games
 
+  validates :email,
+            presence: true,
+            uniqueness: { case_sensitive: false },
+            format: { with: /#{EMAIL_FORMAT_REGEX}/ }
+
   ROLE_ADMIN = 'ADMIN'
   ROLE_USER = 'USER'
 

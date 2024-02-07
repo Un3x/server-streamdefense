@@ -19,14 +19,24 @@ RSpec.describe '/structure_requirements', type: :request do
   # StructureRequirement. As you add validations to StructureRequirement, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    skip('Add a hash of attributes valid for your model')
+    {
+      structure_id: structure.id,
+      required_structure_id: required_structure.id,
+      required_level: 1
+    }
   end
 
   let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
+    {
+      structure_id: nil,
+      required_structure: nil,
+      required_level: nil
+    }
   end
 
   let!(:user) { create(:user, role: 'ADMIN') }
+  let!(:structure) { create(:structure) }
+  let!(:required_structure) { create(:structure) }
 
   before do
     sign_in user
@@ -94,21 +104,23 @@ RSpec.describe '/structure_requirements', type: :request do
   describe 'PATCH /update' do
     context 'with valid parameters' do
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        {
+          required_level: 2
+        }
       end
 
       it 'updates the requested structure_requirement' do
         structure_requirement = StructureRequirement.create! valid_attributes
         patch admin_structure_requirement_url(structure_requirement), params: { structure_requirement: new_attributes }
         structure_requirement.reload
-        skip('Add assertions for updated state')
+        expect(structure_requirement.required_level).to eq(2)
       end
 
       it 'redirects to the structure_requirement' do
         structure_requirement = StructureRequirement.create! valid_attributes
         patch admin_structure_requirement_url(structure_requirement), params: { structure_requirement: new_attributes }
         structure_requirement.reload
-        expect(response).to redirect_to(structure_requirement_url(structure_requirement))
+        expect(response).to redirect_to(admin_structure_requirement_url(structure_requirement))
       end
     end
 

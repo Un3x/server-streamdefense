@@ -4,10 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'admin/structures/edit', type: :view do
   let(:structure) do
-    Structure.create!(
-      name: 'MyString',
-      description: 'MyString'
-    )
+    create(:structure)
   end
 
   before(:each) do

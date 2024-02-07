@@ -19,14 +19,22 @@ RSpec.describe '/idle_game_structures', type: :request do
   # IdleGameStructure. As you add validations to IdleGameStructure, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    skip('Add a hash of attributes valid for your model')
+    {
+      idle_game_id: idle_game.id,
+      structure_id: structure.id
+    }
   end
 
   let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
+    {
+      idle_game_id: nil,
+      structure_id: nil
+    }
   end
 
   let!(:user) { create(:user, role: 'ADMIN') }
+  let!(:idle_game) { create(:idle_game) }
+  let!(:structure) { create(:structure) }
 
   before do
     sign_in user
@@ -93,22 +101,25 @@ RSpec.describe '/idle_game_structures', type: :request do
 
   describe 'PATCH /update' do
     context 'with valid parameters' do
+      let!(:idle_game2) { create(:idle_game) }
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        {
+          idle_game_id: idle_game2.id
+        }
       end
 
       it 'updates the requested idle_game_structure' do
         idle_game_structure = IdleGameStructure.create! valid_attributes
         patch admin_idle_game_structure_url(idle_game_structure), params: { idle_game_structure: new_attributes }
         idle_game_structure.reload
-        skip('Add assertions for updated state')
+        expect(idle_game_structure.idle_game_id).to eq(idle_game2.id)
       end
 
       it 'redirects to the idle_game_structure' do
         idle_game_structure = IdleGameStructure.create! valid_attributes
         patch admin_idle_game_structure_url(idle_game_structure), params: { idle_game_structure: new_attributes }
         idle_game_structure.reload
-        expect(response).to redirect_to(idle_game_structure_url(idle_game_structure))
+        expect(response).to redirect_to(admin_idle_game_structure_url(idle_game_structure))
       end
     end
 

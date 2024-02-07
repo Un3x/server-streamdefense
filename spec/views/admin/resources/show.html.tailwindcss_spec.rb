@@ -4,9 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'admin/resources/show', type: :view do
   before(:each) do
-    assign(:resource, Resource.create!(
-                        name: 'Name'
-                      ))
+    assign(:resource, create(:resource))
   end
 
   it 'renders attributes in <p>' do

@@ -4,10 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'admin/structures/new', type: :view do
   before(:each) do
-    assign(:structure, Structure.new(
-                         name: 'MyString',
-                         description: 'MyString'
-                       ))
+    assign(:structure, build(:structure))
   end
 
   it 'renders new structure form' do

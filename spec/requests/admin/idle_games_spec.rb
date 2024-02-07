@@ -19,14 +19,21 @@ RSpec.describe '/idle_games', type: :request do
   # IdleGame. As you add validations to IdleGame, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    skip('Add a hash of attributes valid for your model')
+    {
+      user_id: user.id,
+      channel_id: channel.id
+    }
   end
 
   let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
+    {
+      user_id: nil,
+      channel: nil
+    }
   end
 
   let!(:user) { create(:user, role: 'ADMIN') }
+  let!(:channel) { create(:channel) }
 
   before do
     sign_in user
@@ -93,22 +100,26 @@ RSpec.describe '/idle_games', type: :request do
 
   describe 'PATCH /update' do
     context 'with valid parameters' do
+      let(:user2) { create(:user) }
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        {
+          user_id: user.id,
+          channel_id: channel.id
+        }
       end
 
       it 'updates the requested idle_game' do
         idle_game = IdleGame.create! valid_attributes
         patch admin_idle_game_url(idle_game), params: { idle_game: new_attributes }
         idle_game.reload
-        skip('Add assertions for updated state')
+        idle_game.user_id = user2.id
       end
 
       it 'redirects to the idle_game' do
         idle_game = IdleGame.create! valid_attributes
         patch admin_idle_game_url(idle_game), params: { idle_game: new_attributes }
         idle_game.reload
-        expect(response).to redirect_to(idle_game_url(idle_game))
+        expect(response).to redirect_to(admin_idle_game_url(idle_game))
       end
     end
 

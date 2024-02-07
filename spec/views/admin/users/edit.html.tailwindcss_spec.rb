@@ -4,12 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'admin/users/edit', type: :view do
   let(:user) do
-    User.create!(
-      email: 'MyString',
-      twitch_id: 'MyString',
-      nickname: 'MyString',
-      role: 'MyString'
-    )
+    create(:user)
   end
 
   before(:each) do

@@ -6,4 +6,7 @@ class IdleGame < ApplicationRecord
 
   has_many :idle_game_resources
   has_many :idle_game_structures
+
+  validates :channel, presence: true
+  validates :user, presence: true
 end

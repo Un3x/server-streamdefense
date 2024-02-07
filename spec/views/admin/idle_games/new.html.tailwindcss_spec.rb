@@ -4,10 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'admin/idle_games/new', type: :view do
   before(:each) do
-    assign(:idle_game, IdleGame.new(
-                         channel: nil,
-                         user: nil
-                       ))
+    assign(:idle_game, build(:idle_game))
   end
 
   it 'renders new admin_idle_game form' do

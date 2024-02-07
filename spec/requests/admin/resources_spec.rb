@@ -19,11 +19,15 @@ RSpec.describe '/resources', type: :request do
   # Resource. As you add validations to Resource, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    skip('Add a hash of attributes valid for your model')
+    {
+      name: 'MyString'
+    }
   end
 
   let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
+    {
+      name: nil
+    }
   end
 
   let!(:user) { create(:user, role: 'ADMIN') }
@@ -94,21 +98,23 @@ RSpec.describe '/resources', type: :request do
   describe 'PATCH /update' do
     context 'with valid parameters' do
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        {
+          name: 'New Name'
+        }
       end
 
       it 'updates the requested resource' do
         resource = Resource.create! valid_attributes
         patch admin_resource_url(resource), params: { resource: new_attributes }
         resource.reload
-        skip('Add assertions for updated state')
+        expect(resource.name).to eq('New Name')
       end
 
       it 'redirects to the resource' do
         resource = Resource.create! valid_attributes
         patch admin_resource_url(resource), params: { resource: new_attributes }
         resource.reload
-        expect(response).to redirect_to(resource_url(resource))
+        expect(response).to redirect_to(admin_resource_url(resource))
       end
     end
 

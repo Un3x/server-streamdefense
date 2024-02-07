@@ -19,11 +19,15 @@ RSpec.describe '/structures', type: :request do
   # Structure. As you add validations to Structure, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    skip('Add a hash of attributes valid for your model')
+    {
+      name: 'MyString'
+    }
   end
 
   let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
+    {
+      name: nil
+    }
   end
 
   let!(:user) { create(:user, role: 'ADMIN') }
@@ -94,21 +98,23 @@ RSpec.describe '/structures', type: :request do
   describe 'PATCH /update' do
     context 'with valid parameters' do
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        {
+          name: 'NewName'
+        }
       end
 
       it 'updates the requested structure' do
         structure = Structure.create! valid_attributes
         patch admin_structure_url(structure), params: { structure: new_attributes }
         structure.reload
-        skip('Add assertions for updated state')
+        expect(structure.name).to eq('NewName')
       end
 
       it 'redirects to the structure' do
         structure = Structure.create! valid_attributes
         patch admin_structure_url(structure), params: { structure: new_attributes }
         structure.reload
-        expect(response).to redirect_to(structure_url(structure))
+        expect(response).to redirect_to(admin_structure_url(structure))
       end
     end
 

@@ -4,20 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'admin/users/index', type: :view do
   before(:each) do
-    assign(:users, [
-             User.create!(
-               email: 'Email',
-               twitch_id: 'Twitch',
-               nickname: 'Nickname',
-               role: 'Role'
-             ),
-             User.create!(
-               email: 'Email2',
-               twitch_id: 'Twitch',
-               nickname: 'Nickname',
-               role: 'Role'
-             )
-           ])
+    assign(:users, [create(:user), create(:user)])
   end
 
   it 'renders a list of admin/users' do

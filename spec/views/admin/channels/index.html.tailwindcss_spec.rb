@@ -4,14 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'admin/channels/index', type: :view do
   before(:each) do
-    assign(:channels, [
-             Channel.create!(
-               twitch_id: 'Twitch'
-             ),
-             Channel.create!(
-               twitch_id: 'Twitch'
-             )
-           ])
+    assign(:channels, [create(:channel), create(:channel)])
   end
 
   it 'renders a list of admin/channels' do

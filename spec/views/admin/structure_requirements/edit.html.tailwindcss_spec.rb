@@ -4,17 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'admin/structure_requirements/edit', type: :view do
   let(:structure_requirement) do
-    StructureRequirement.create!(
-      structure: Structure.create!(
-        name: 'Name',
-        description: 'Description'
-      ),
-      required_structure: Structure.create!(
-        name: 'Name',
-        description: 'Description'
-      ),
-      required_level: 1
-    )
+    create(:structure_requirement)
   end
 
   before(:each) do

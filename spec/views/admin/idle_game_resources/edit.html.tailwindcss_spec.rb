@@ -4,16 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'admin/idle_game_resources/edit', type: :view do
   let(:idle_game_resource) do
-    IdleGameResource.create!(
-      idle_game: IdleGame.create!(
-        channel: Channel.create!(twitch_id: 'MyString'),
-        user: create(:user)
-      ),
-      resource: Resource.create!(
-        name: 'MyString'
-      ),
-      quantity: 1
-    )
+    create(:idle_game_resource)
   end
 
   before(:each) do

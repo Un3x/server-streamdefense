@@ -4,14 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'admin/resources/index', type: :view do
   before(:each) do
-    assign(:resources, [
-             Resource.create!(
-               name: 'Name'
-             ),
-             Resource.create!(
-               name: 'Name'
-             )
-           ])
+    assign(:resources, [create(:resource), create(:resource)])
   end
 
   it 'renders a list of admin/resources' do

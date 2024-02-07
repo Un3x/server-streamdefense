@@ -1,22 +1,14 @@
 <div id="<%= dom_id structure_requirement %>">
+  <h2 class="font-bold text-2xl">
+    <%= t('.title') %>
+  </h2>
   <p class="my-5">
-    <strong class="block font-medium mb-1">Structure:</strong>
-    <%= structure_requirement.structure_id %>
+    <%= t('.structure', structure: structure_requirement.structure.name).html_safe %>
   </p>
-
   <p class="my-5">
-    <strong class="block font-medium mb-1">Required structure:</strong>
-    <%= structure_requirement.required_structure_id %>
+    <%= t('.required_structure', required_structure: structure_requirement.required_structure.name).html_safe %>
   </p>
-
   <p class="my-5">
-    <strong class="block font-medium mb-1">Required level:</strong>
-    <%= structure_requirement.required_level %>
+    <%= t('.required_level', required_level: structure_requirement.required_level).html_safe %>
   </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this structure requirement", admin_structure_requirement_path(structure_requirement), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Edit this structure requirement", edit_admin_structure_requirement_path(structure_requirement), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
 </div>

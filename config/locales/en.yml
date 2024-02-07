@@ -112,3 +112,11 @@ en:
         required_structure: Required Structure
         level: Level
         action: Action
+      show:
+        title: Structure Requirement
+      structure_requirement:
+        title: Detail
+        structure: <strong class="font-medium mb-1">Structure :</strong> %{structure}
+        required_structure: <strong class="font-medium mb-1">Required Structure :</strong> %{required_structure}
+        required_level: <strong class="font-medium mb-1">Required Level :</strong> %{required_level}
+

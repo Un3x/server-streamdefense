@@ -3,5 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe StructureRequirement, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'has a valid factory' do
+    it { expect(build(:structure_requirement)).to be_valid }
+  end
 end

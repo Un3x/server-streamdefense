@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :admin_idle_game, class: 'Admin::IdleGame' do
-    channel { nil }
-    user { nil }
+  factory :idle_game, class: 'IdleGame' do
+    channel { build(:channel) }
+    user { build(:user) }
   end
 end

@@ -3,5 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Channel, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'has a valid factory' do
+    it { expect(build(:channel)).to be_valid }
+  end
 end

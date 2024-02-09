@@ -3,7 +3,7 @@
   <table class="border-collapse w-full border border-slate-500 bg-slate-800 text-sm shadow-sm">
     <thead>
       <tr>
-        <% %w[category resource formula arguments simulation].each do |column| %>
+        <% %w[category resource formula arguments simulation action].each do |column| %>
           <th class="w-1/2 border border-slate-600 font-semibold p-4 text-slate-200 text-left">
             <%= t(".#{column}") %>
           </th>
@@ -33,6 +33,10 @@
           <%= structure_formula.perform(10) %>
           -
           <%= structure_formula.perform(20) %>
+        </td>
+        <td class="border border-slate-700 p-4 text-slate-400 flex h-full">
+          <%= link_to "Show", admin_structure_formula_path(structure_formula), class: "rounded-lg py-1 px-2 inline-block font-medium" %>
+          <%= link_to "Edit", edit_admin_structure_formula_path(structure_formula), class: "rounded-lg py-1 ml-2 px-2 inline-block font-medium" %>
         </td>
       </tr>
     <% end %>

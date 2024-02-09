@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 20_240_105_153_407) do
+ActiveRecord::Schema[7.1].define(version: 20_240_209_141_238) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -57,6 +57,18 @@ ActiveRecord::Schema[7.1].define(version: 20_240_105_153_407) do
     t.datetime 'updated_at', null: false
   end
 
+  create_table 'structure_formulas', force: :cascade do |t|
+    t.bigint 'structure_id', null: false
+    t.bigint 'resource_id'
+    t.string 'category', null: false
+    t.string 'formula', null: false
+    t.jsonb 'arguments', default: {}, null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['resource_id'], name: 'index_structure_formulas_on_resource_id'
+    t.index ['structure_id'], name: 'index_structure_formulas_on_structure_id'
+  end
+
   create_table 'structure_requirements', force: :cascade do |t|
     t.bigint 'structure_id', null: false
     t.bigint 'required_structure_id', null: false
@@ -90,6 +102,8 @@ ActiveRecord::Schema[7.1].define(version: 20_240_105_153_407) do
   add_foreign_key 'idle_game_structures', 'structures'
   add_foreign_key 'idle_games', 'channels'
   add_foreign_key 'idle_games', 'users'
+  add_foreign_key 'structure_formulas', 'resources'
+  add_foreign_key 'structure_formulas', 'structures'
   add_foreign_key 'structure_requirements', 'structures'
   add_foreign_key 'structure_requirements', 'structures', column: 'required_structure_id'
 end

@@ -235,3 +235,67 @@ IdleGameStructure.create(
   structure: camp_militaire,
   level: 0
 )
+
+# Structures Formulas
+
+Linear.create(
+  structure: hotel_de_ville,
+  resource: bois,
+  category: 'production',
+  arguments: { slope: 1, intercept: 0 }
+)
+
+Linear.create(
+  structure: hotel_de_ville,
+  resource: nourriture,
+  category: 'production',
+  arguments: { slope: 2, intercept: 0 }
+)
+
+Linear.create(
+  structure: hotel_de_ville,
+  resource: fer,
+  category: 'production',
+  arguments: { slope: 3, intercept: 0 }
+)
+
+Exponential.create(
+  structure: hotel_de_ville,
+  resource: nourriture,
+  category: 'cost',
+  arguments: { base: 2, multiplier: 1, default: 0 }
+)
+
+Exponential.create(
+  structure: hotel_de_ville,
+  resource: bois,
+  category: 'cost',
+  arguments: { base: 2, multiplier: 1, default: 0 }
+)
+
+Exponential.create(
+  structure: hotel_de_ville,
+  resource: bois,
+  category: 'storage',
+  arguments: { base: 2, multiplier: 1, default: 100 }
+)
+
+Exponential.create(
+  structure: hotel_de_ville,
+  resource: nourriture,
+  category: 'storage',
+  arguments: { base: 2, multiplier: 1, default: 100 }
+)
+
+Exponential.create(
+  structure: hotel_de_ville,
+  resource: fer,
+  category: 'storage',
+  arguments: { base: 2, multiplier: 1, default: 100 }
+)
+
+Exponential.create(
+  structure: hotel_de_ville,
+  category: 'duration',
+  arguments: { base: 3, multiplier: 1, default: 5 }
+)

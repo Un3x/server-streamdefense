@@ -111,6 +111,23 @@ en:
         structure: Structure
         level: Level
         action: Action
+    structure_formulas:
+      index:
+        category: Category
+        resource: Resource
+        formula: Formula
+        arguments: Arguments
+        action: Action
+      show:
+        title: Structure Formula
+      structure_formula:
+        title: Detail
+        structure: <strong class="font-medium mb-1">Structure :</strong> %{structure}
+        resource: <strong class="font-medium mb-1">Resource :</strong> %{resource}
+        category: <strong class="font-medium mb-1">Category :</strong> %{category}
+        formula: <strong class="font-medium mb-1">Formula :</strong> %{formula}
+        arguments: <strong class="font-medium mb-1">Arguments :</strong> %{arguments}
+
     structure_requirements:
       index:
         structure: Structure

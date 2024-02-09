@@ -1,0 +1,20 @@
+<div id="<%= dom_id structure_formula %>">
+  <h2 class="font-bold text-2xl">
+    <%= t('.title') %>
+  </h2>
+  <p class="my-5">
+    <%= t('.structure', structure: structure_formula.structure.name).html_safe %>
+  </p>
+  <p class="my-5">
+    <%= t('.resource', resource: structure_formula.resource.name).html_safe  if structure_formula.resource.present? %>
+  </p>
+  <p class="my-5">
+    <%= t('.category', category: structure_formula.category).html_safe %>
+  </p>
+  <p class="my-5">
+    <%= t('.formula', formula: structure_formula.formula).html_safe %>
+  </p>
+  <p class="my-5">
+    <%= t('.arguments', arguments: structure_formula.arguments).html_safe %>
+  </p>
+</div>

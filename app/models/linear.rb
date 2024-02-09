@@ -2,6 +2,6 @@
 
 class Linear < StructureFormula
   def perform(level)
-    (arguments['slope'] * level) + arguments['intercept']
+    (slope * level) + intercept
   end
 end

@@ -28,7 +28,7 @@
 
   <div class="my-5">
     <%= form.label :formula %>
-    <%= form.select :formula, %w[Linear Exponential] , { include_blank: "select a category" }, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.select :formula, %w[Linear Exponential LinearPercentage] , { include_blank: "select a category" }, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <p>
@@ -38,6 +38,9 @@
     <br />
     <code>
       Exponential function is of the form base * multiplier^x + default
+    </code>
+    <code>
+      Linear Percentage function is of the form before threshold intercept + slope * x, after threshold (until_treshold * multiplier) x times
     </code>
   </p>
 
@@ -60,6 +63,10 @@
   <div class="my-5">
     <%= form.label :default %>
     <%= form.number_field :default, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+  <div class="my-5">
+    <%= form.label :treshold %>
+    <%= form.number_field :treshold, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="inline">

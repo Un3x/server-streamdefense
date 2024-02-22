@@ -6,4 +6,6 @@ class IdleGameStructure < ApplicationRecord
 
   validates :structure, presence: true
   validates :idle_game, presence: true
+
+  scope :for_idle_game, ->(idle_game) { where(idle_game:) }
 end

@@ -299,3 +299,84 @@ Exponential.create(
   category: 'duration',
   arguments: { base: 3, multiplier: 1, default: 5 }
 )
+
+Linear.create(
+  structure: ferme,
+  resource: nourriture,
+  category: 'production',
+  arguments: { slope: 2, intercept: 0 }
+)
+
+Exponential.create(
+  structure: ferme,
+  resource: nourriture,
+  category: 'cost',
+  arguments: { base: 2, multiplier: 1, default: 0 }
+)
+
+Exponential.create(
+  structure: ferme,
+  resource: bois,
+  category: 'cost',
+  arguments: { base: 2, multiplier: 1, default: 0 }
+)
+
+Exponential.create(
+  structure: ferme,
+  category: 'duration',
+  arguments: { base: 3, multiplier: 1, default: 5 }
+)
+
+Linear.create(
+  structure: scierie,
+  resource: bois,
+  category: 'production',
+  arguments: { slope: 2, intercept: 0 }
+)
+
+Exponential.create(
+  structure: scierie,
+  resource: nourriture,
+  category: 'cost',
+  arguments: { base: 2, multiplier: 1, default: 0 }
+)
+
+Exponential.create(
+  structure: scierie,
+  resource: bois,
+  category: 'cost',
+  arguments: { base: 2, multiplier: 1, default: 0 }
+)
+
+Exponential.create(
+  structure: scierie,
+  category: 'duration',
+  arguments: { base: 3, multiplier: 1, default: 5 }
+)
+
+Linear.create(
+  structure: camp_militaire,
+  resource: bois,
+  category: 'production',
+  arguments: { slope: 2, intercept: 0 }
+)
+
+Exponential.create(
+  structure: camp_militaire,
+  resource: nourriture,
+  category: 'cost',
+  arguments: { base: 2, multiplier: 1, default: 0 }
+)
+
+Exponential.create(
+  structure: camp_militaire,
+  resource: bois,
+  category: 'cost',
+  arguments: { base: 2, multiplier: 1, default: 0 }
+)
+
+Exponential.create(
+  structure: camp_militaire,
+  category: 'duration',
+  arguments: { base: 3, multiplier: 1, default: 5 }
+)

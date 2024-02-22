@@ -93,7 +93,6 @@ ActiveRecord::Schema[7.1].define(version: 20_240_209_141_238) do
     t.string 'twitch_id'
     t.string 'nickname'
     t.string 'role', default: 'USER', null: false
-    t.index ['email'], name: 'index_users_on_email', unique: true
   end
 
   add_foreign_key 'idle_game_resources', 'idle_games'

@@ -14,7 +14,5 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.1]
       t.string :nickname, null: true, default: nil
       t.string :role, null: false, default: 'USER'
     end
-
-    add_index :users, :email, unique: true
   end
 end

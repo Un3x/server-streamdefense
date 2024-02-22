@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'idle/game-state', to: 'idle#game_state', as: 'idle_game_state'
+
   namespace :admin do
     resources :structure_formulas
     resources :structure_requirements

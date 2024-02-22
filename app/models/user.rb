@@ -7,8 +7,7 @@ class User < ApplicationRecord
 
   validates :email,
             presence: true,
-            uniqueness: { case_sensitive: false },
-            format: { with: /#{EMAIL_FORMAT_REGEX}/ }
+            format: { with: /#{EMAIL_FORMAT_REGEX}/ }, if: :email?
 
   ROLE_ADMIN = 'ADMIN'
   ROLE_USER = 'USER'

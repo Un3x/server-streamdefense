@@ -6,4 +6,6 @@ class IdleGameResource < ApplicationRecord
 
   validates :idle_game, presence: true
   validates :resource, presence: true
+
+  scope :for_idle_game, ->(idle_game) { where(idle_game:) }
 end

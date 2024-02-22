@@ -10,12 +10,6 @@
     <%= render partial: 'admin/channels/channel', locals: { channel: @channel } %>
     <div class="mx-auto w-full flex flex-row-reverse gap-4">
       <div>
-        <%= link_to "Edit this channel", edit_admin_channel_path(@channel), class: "mt-2 rounded-lg py-3 px-5 bg-orange-300 inline-block font-medium" %>
-      </div>
-      <div>
-        <%= button_to "Destroy this channel", admin_channel_path(@channel), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-red-300 font-medium" %>
-      </div>
-      <div>
         <%= link_to "Back to channels", admin_channels_path, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
       </div>
     </div>

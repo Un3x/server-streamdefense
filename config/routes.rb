@@ -10,9 +10,9 @@ Rails.application.routes.draw do
     resources :structures
     resources :idle_game_resources
     resources :resources
-    resources :idle_games
-    resources :channels
-    resources :users
+    resources :idle_games, only: %i[index show]
+    resources :channels, only: %i[index show]
+    resources :users, only: %i[index show]
     get '/', to: 'home#index', as: :root
   end
 

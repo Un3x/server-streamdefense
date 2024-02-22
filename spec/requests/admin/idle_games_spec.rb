@@ -25,13 +25,6 @@ RSpec.describe '/idle_games', type: :request do
     }
   end
 
-  let(:invalid_attributes) do
-    {
-      user_id: nil,
-      channel: nil
-    }
-  end
-
   let!(:user) { create(:user, role: 'ADMIN') }
   let!(:channel) { create(:channel) }
 
@@ -52,98 +45,6 @@ RSpec.describe '/idle_games', type: :request do
       idle_game = IdleGame.create! valid_attributes
       get admin_idle_game_url(idle_game)
       expect(response).to be_successful
-    end
-  end
-
-  describe 'GET /new' do
-    it 'renders a successful response' do
-      get new_admin_idle_game_url
-      expect(response).to be_successful
-    end
-  end
-
-  describe 'GET /edit' do
-    it 'renders a successful response' do
-      idle_game = IdleGame.create! valid_attributes
-      get edit_admin_idle_game_url(idle_game)
-      expect(response).to be_successful
-    end
-  end
-
-  describe 'POST /create' do
-    context 'with valid parameters' do
-      it 'creates a new IdleGame' do
-        expect do
-          post admin_idle_games_url, params: { idle_game: valid_attributes }
-        end.to change(IdleGame, :count).by(1)
-      end
-
-      it 'redirects to the created idle_game' do
-        post admin_idle_games_url, params: { idle_game: valid_attributes }
-        expect(response).to redirect_to(admin_idle_game_url(IdleGame.last))
-      end
-    end
-
-    context 'with invalid parameters' do
-      it 'does not create a new IdleGame' do
-        expect do
-          post admin_idle_games_url, params: { idle_game: invalid_attributes }
-        end.to change(IdleGame, :count).by(0)
-      end
-
-      it "renders a response with 422 status (i.e. to display the 'new' template)" do
-        post admin_idle_games_url, params: { idle_game: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
-      end
-    end
-  end
-
-  describe 'PATCH /update' do
-    context 'with valid parameters' do
-      let(:user2) { create(:user) }
-      let(:new_attributes) do
-        {
-          user_id: user.id,
-          channel_id: channel.id
-        }
-      end
-
-      it 'updates the requested idle_game' do
-        idle_game = IdleGame.create! valid_attributes
-        patch admin_idle_game_url(idle_game), params: { idle_game: new_attributes }
-        idle_game.reload
-        idle_game.user_id = user2.id
-      end
-
-      it 'redirects to the idle_game' do
-        idle_game = IdleGame.create! valid_attributes
-        patch admin_idle_game_url(idle_game), params: { idle_game: new_attributes }
-        idle_game.reload
-        expect(response).to redirect_to(admin_idle_game_url(idle_game))
-      end
-    end
-
-    context 'with invalid parameters' do
-      it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-        idle_game = IdleGame.create! valid_attributes
-        patch admin_idle_game_url(idle_game), params: { idle_game: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
-      end
-    end
-  end
-
-  describe 'DELETE /destroy' do
-    it 'destroys the requested idle_game' do
-      idle_game = IdleGame.create! valid_attributes
-      expect do
-        delete admin_idle_game_url(idle_game)
-      end.to change(IdleGame, :count).by(-1)
-    end
-
-    it 'redirects to the idle_games list' do
-      idle_game = IdleGame.create! valid_attributes
-      delete admin_idle_game_url(idle_game)
-      expect(response).to redirect_to(admin_idle_games_url)
     end
   end
 end

@@ -10,12 +10,6 @@
     <%= render partial: 'admin/users/user', locals: { user: @user } %>
     <div class="mx-auto w-full flex flex-row-reverse gap-4">
       <div>
-        <%= link_to "Edit this user", edit_admin_user_path(@user), class: "mt-2 rounded-lg py-3 px-5 bg-orange-300 inline-block font-medium" %>
-      </div>
-      <div>
-        <%= button_to "Destroy this user", admin_user_path(@user), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-red-300 font-medium" %>
-      </div>
-      <div>
         <%= link_to "Back to users", admin_users_path, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
       </div>
     </div>

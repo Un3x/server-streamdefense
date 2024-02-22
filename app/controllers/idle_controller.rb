@@ -33,6 +33,6 @@ class IdleController < ApplicationController
 
   def fetch_idle_game
     @idle_game = IdleGame.find_by(user: @user, channel: @channel)
-    @idle_game = NewIdleGame.new(@user, @channel).perform if @idle_game.nil?
+    @idle_game = IdleGameFactory.new(@user, @channel).perform if @idle_game.nil?
   end
 end

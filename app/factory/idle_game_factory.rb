@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class NewIdleGame
+class IdleGameFactory
   attr_reader :user, :channel, :idle_game
 
   def initialize(user, channel)

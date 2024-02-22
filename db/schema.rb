@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 20_240_209_141_238) do
+ActiveRecord::Schema[7.1].define(version: 20_240_222_202_008) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -47,6 +47,7 @@ ActiveRecord::Schema[7.1].define(version: 20_240_209_141_238) do
     t.bigint 'user_id', null: false
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+    t.datetime 'last_sync', precision: nil
     t.index ['channel_id'], name: 'index_idle_games_on_channel_id'
     t.index ['user_id'], name: 'index_idle_games_on_user_id'
   end

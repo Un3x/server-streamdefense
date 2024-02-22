@@ -2,7 +2,8 @@
 
 FactoryBot.define do
   factory :idle_game, class: 'IdleGame' do
-    channel { build(:channel) }
-    user { build(:user) }
+    channel { association(:channel) }
+    user { association(:user) }
+    last_sync { Time.now }
   end
 end

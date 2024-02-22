@@ -64,6 +64,7 @@ en:
       index:
         channel: Channel
         user: Player
+        last_sync: Last Sync
         action: Action
       idle_game:
         title: Detail

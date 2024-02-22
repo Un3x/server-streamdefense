@@ -9,7 +9,7 @@ class IdleGameFactory
   end
 
   def perform
-    @idle_game = IdleGame.create!(user:, channel:)
+    @idle_game = IdleGame.create!(user:, channel:, last_sync: Time.now)
     create_idle_game_resources
     create_idle_game_structures
     @idle_game

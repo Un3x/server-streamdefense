@@ -24,6 +24,7 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'rspec-rails'
   gem 'rubocop', require: false
+  gem 'timecop'
 
   gem 'pry'
   gem 'pry-byebug'

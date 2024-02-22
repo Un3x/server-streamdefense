@@ -5,7 +5,19 @@ require 'rails_helper'
 RSpec.describe 'Idle controller', type: :request do
   subject { get idle_game_state_path, params: }
 
+  before do
+    Timecop.freeze(Time.local(1990))
+  end
+
+  after do
+    Timecop.return
+  end
+
   describe 'GET idle_game_state_path' do
+    let!(:user) { create(:user, nickname: 'test', twitch_id: '1234321') }
+    let!(:channel) { create(:channel, twitch_id: '4321234') }
+    let!(:idle_game) { IdleGameFactory.new(user, channel).perform }
+
     describe 'when there are missing parameters' do
       describe 'when there are no parameters' do
         let(:params) { {} }
@@ -53,7 +65,7 @@ RSpec.describe 'Idle controller', type: :request do
       end
 
       describe 'when the user and the channel already exist' do
-        let(:params) { { channel_id: 1, viewer_id: 1, viewer_display_name: 'test' } }
+        let(:params) { { channel_id: '4321234', viewer_id: '1234321', viewer_display_name: user.nickname } }
 
         it 'returns http success' do
           subject
@@ -62,11 +74,15 @@ RSpec.describe 'Idle controller', type: :request do
         end
 
         it 'returns the game state' do
+          Timecop.freeze(Time.now + 5.seconds)
           subject
 
           expect(response).to have_http_status(:success)
 
           expect(response.body).to include('status')
+
+          expect(JSON.parse(response.body)['data']['time_since_last_sync']).to eq(5)
+
           expect(JSON.parse(response.body)['data']['resources']).to eq(
             JSON.parse(
               '{

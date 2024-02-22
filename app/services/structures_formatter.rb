@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class StructureManager
+class StructuresFormatter
   def format_structures_for_idle_game(idle_game)
     IdleGameStructure.for_idle_game(idle_game).each_with_object({}) do |idle_game_structure, hash|
       hash[idle_game_structure.structure.name] = format_structure(idle_game_structure)

@@ -26,21 +26,21 @@
           <%= structure_formula.arguments.to_s %>
         </td>
         <td class="border border-slate-700 p-4 text-slate-400">
-          <%= structure_formula.perform(0) %>
+          <%= structure_formula.calculate(0) %>
           -
-          <%= structure_formula.perform(5) %>
+          <%= structure_formula.calculate(5) %>
           -
-          <%= structure_formula.perform(10) %>
+          <%= structure_formula.calculate(10) %>
           -
-          <%= structure_formula.perform(11) %>
+          <%= structure_formula.calculate(11) %>
           -
-          <%= structure_formula.perform(12) %>
+          <%= structure_formula.calculate(12) %>
           -
-          <%= structure_formula.perform(13) %>
+          <%= structure_formula.calculate(13) %>
           -
-          <%= structure_formula.perform(14) %>
+          <%= structure_formula.calculate(14) %>
           -
-          <%= structure_formula.perform(15) %>
+          <%= structure_formula.calculate(15) %>
         </td>
         <td class="border border-slate-700 p-4 text-slate-400 flex h-full">
           <%= link_to "Show", admin_structure_formula_path(structure_formula), class: "rounded-lg py-1 px-2 inline-block font-medium" %>

@@ -9,7 +9,7 @@ class IdleController < ApplicationController
   def game_state
     last_sync = @idle_game.last_sync
 
-    IdleSynchronizor.new.perform(@idle_game)
+    IdleSynchronizor.new(@idle_game).perform
 
     render json: {
       status: 200,

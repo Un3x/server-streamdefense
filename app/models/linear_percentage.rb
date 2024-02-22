@@ -8,7 +8,7 @@ class LinearPercentage < StructureFormula
   validates :slope, presence: true, numericality: { only_integer: true }
   validates :multiplier, presence: true, numericality: { only_integer: true }
 
-  def perform(level)
+  def calculate(level)
     result = 0
 
     return result if level < 1

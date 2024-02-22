@@ -32,26 +32,26 @@ class StructuresFormatter
 
   def format_level_up_for_structure(idle_game_structure)
     {
-      duration: idle_game_structure.structure.structure_formulas.for_category('duration').first.perform(idle_game_structure.level),
+      duration: idle_game_structure.structure.structure_formulas.for_category('duration').first.calculate(idle_game_structure.level),
       costs: format_costs_for_structure(idle_game_structure)
     }
   end
 
   def format_costs_for_structure(idle_game_structure)
     idle_game_structure.structure.structure_formulas.for_category('cost').each_with_object({}) do |formula, hash|
-      hash[formula.resource.name] = formula.perform(idle_game_structure.level)
+      hash[formula.resource.name] = formula.calculate(idle_game_structure.level)
     end
   end
 
   def format_production_for_structure(idle_game_structure)
     idle_game_structure.structure.structure_formulas.for_category('production').each_with_object({}) do |formula, hash|
-      hash[formula.resource.name] = formula.perform(idle_game_structure.level)
+      hash[formula.resource.name] = formula.calculate(idle_game_structure.level)
     end
   end
 
   def format_storage_for_structure(idle_game_structure)
     idle_game_structure.structure.structure_formulas.for_category('storage').each_with_object({}) do |formula, hash|
-      hash[formula.resource.name] = formula.perform(idle_game_structure.level)
+      hash[formula.resource.name] = formula.calculate(idle_game_structure.level)
     end
   end
 end

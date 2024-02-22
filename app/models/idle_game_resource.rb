@@ -8,4 +8,22 @@ class IdleGameResource < ApplicationRecord
   validates :resource, presence: true
 
   scope :for_idle_game, ->(idle_game) { where(idle_game:) }
+
+  def per_second
+    result = 0
+    idle_game.idle_game_structures.each do |idle_game_structure|
+      formula = idle_game_structure.structure.structure_formulas.for_resource(resource).for_category('production').first
+      result += formula.calculate(idle_game_structure.level) if formula.present?
+    end
+    result
+  end
+
+  def storage
+    result = 0
+    idle_game.idle_game_structures.each do |idle_game_structure|
+      formula = idle_game_structure.structure.structure_formulas.for_resource(resource).for_category('storage').first
+      result += formula.calculate(idle_game_structure.level) if formula.present?
+    end
+    result
+  end
 end

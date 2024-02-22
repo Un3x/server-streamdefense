@@ -6,7 +6,7 @@ class Linear < StructureFormula
   validates :slope, presence: true, numericality: { only_integer: true }
   validates :intercept, presence: true, numericality: { only_integer: true }
 
-  def perform(level)
+  def calculate(level)
     (slope * level) + intercept
   end
 end

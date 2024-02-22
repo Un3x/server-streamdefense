@@ -87,13 +87,19 @@ RSpec.describe 'Idle controller', type: :request do
             JSON.parse(
               '{
                 "Bois":{
-                    "amount":0
+                    "amount":0,
+                    "perSecond": 0,
+                    "storage": 101
                 },
                 "Nourriture":{
-                    "amount":0
+                    "amount":0,
+                    "perSecond": 0,
+                    "storage": 101
                 },
                 "Fer":{
-                    "amount":0
+                    "amount":0,
+                    "perSecond": 0,
+                    "storage": 101
                 }
               }'
             )

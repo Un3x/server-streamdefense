@@ -9,8 +9,9 @@ class StructureFormula < ApplicationRecord
   validates :category, presence: true
 
   scope :for_category, ->(category) { where(category:) }
+  scope :for_resource, ->(resource) { where(resource:) }
 
-  def perform(level)
+  def calculate(level)
     raise NotImplementedError
   end
 end

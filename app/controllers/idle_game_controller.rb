@@ -1,23 +1,19 @@
 # frozen_string_literal: true
 
-class IdleController < ApplicationController
+class IdleGameController < ApplicationController
   before_action :validate_params
   before_action :identity_channel
   before_action :identify_user
   before_action :fetch_idle_game
 
-  def game_state
+  def state
     last_sync = @idle_game.last_sync
 
     IdleSynchronizor.new(@idle_game).perform
 
     render json: {
       status: 200,
-      data: {
-        time_since_last_sync: (@idle_game.last_sync - last_sync).floor,
-        resources: ResourcesFormatter.new.format_resources_for_idle_game(@idle_game),
-        structures: StructuresFormatter.new.format_structures_for_idle_game(@idle_game)
-      }
+      data: IdleGameFormatter.new(@idle_game, last_sync).format_idle_game
     }
   end
 

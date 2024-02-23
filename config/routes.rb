@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'idle/game-state', to: 'idle#game_state', as: 'idle_game_state'
+  get 'idle-game/state', to: 'idle_game#state', as: 'idle_game_state'
+  get 'idle-game-structure/level-up', to: 'idle_game_structure#level_up', as: 'idle_game_structure_level_up'
+  get 'idle-game-structure/cancel', to: 'idle_game_structure#cancel', as: 'idle_game_structure_cancel'
 
   namespace :admin do
     resources :structure_formulas

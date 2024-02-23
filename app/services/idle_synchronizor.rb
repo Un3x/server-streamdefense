@@ -9,7 +9,7 @@ class IdleSynchronizor
 
   def perform
     update_sync_date
-    update_resources
+    update_resources if time_elapsed.present?
   end
 
   private
@@ -24,6 +24,6 @@ class IdleSynchronizor
     last_sync = idle_game.last_sync
     idle_game.update!(last_sync: Time.now)
 
-    @time_elapsed = (idle_game.last_sync - last_sync).floor
+    @time_elapsed = (idle_game.last_sync - last_sync).floor if last_sync.present?
   end
 end

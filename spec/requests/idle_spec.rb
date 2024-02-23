@@ -88,17 +88,17 @@ RSpec.describe 'Idle controller', type: :request do
               '{
                 "Bois":{
                     "amount":0,
-                    "perSecond": 0,
+                    "rate": 0,
                     "storage": 101
                 },
                 "Nourriture":{
                     "amount":0,
-                    "perSecond": 0,
+                    "rate": 0,
                     "storage": 101
                 },
                 "Fer":{
                     "amount":0,
-                    "perSecond": 0,
+                    "rate": 0,
                     "storage": 101
                 }
               }'

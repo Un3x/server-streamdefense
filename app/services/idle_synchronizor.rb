@@ -16,7 +16,7 @@ class IdleSynchronizor
 
   def update_resources
     idle_game.idle_game_resources.each do |idle_game_resource|
-      idle_game_resource.update!(quantity: [idle_game_resource.quantity + (idle_game_resource.per_second * time_elapsed), idle_game_resource.storage].min)
+      idle_game_resource.update!(quantity: [idle_game_resource.quantity + (idle_game_resource.rate * time_elapsed), idle_game_resource.storage].min)
     end
   end
 

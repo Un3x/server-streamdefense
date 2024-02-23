@@ -9,7 +9,7 @@ class IdleGameResource < ApplicationRecord
 
   scope :for_idle_game, ->(idle_game) { where(idle_game:) }
 
-  def per_second
+  def rate
     result = 0
     idle_game.idle_game_structures.each do |idle_game_structure|
       formula = idle_game_structure.structure.structure_formulas.for_resource(resource).for_category('production').first

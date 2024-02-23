@@ -8,22 +8,42 @@ class IdleGameStructureLevelUp
   end
 
   def prepare_level_up
+    return unless idle_game_structure.leveling_job_id.nil?
     return unless check_resources?
 
     pay_for_level_up
-    level_up
+
+    job = trigger_leveling_job
+
+    idle_game_structure.update!(leveling_job_id: job.job_id)
   end
 
   def cancel
+    return unless idle_game_structure.leveling_job_id.present?
+
+    cancel_leveling_job
     refund_for_level_down
-    idle_game_structure.update!(level: idle_game_structure.level - 1)
+    idle_game_structure.update!(level: idle_game_structure.level - 1, leveling_job_id: nil)
   end
 
   def level_up
-    idle_game_structure.update!(level: idle_game_structure.level + 1)
+    idle_game_structure.update!(level: idle_game_structure.level + 1, leveling_job_id: nil)
   end
 
   private
+
+  def cancel_leveling_job
+    job = retrieve_active_leveling_job
+    job.delete
+  end
+
+  def retrieve_active_leveling_job
+    SolidQueue::Job.find_by(active_job_id: idle_game_structure.leveling_job_id)
+  end
+
+  def trigger_leveling_job
+    StructureLevelUp.set(wait: idle_game_structure.structure.structure_formulas.for_category('duration').first.calculate(idle_game_structure.level)).perform_later idle_game_structure
+  end
 
   def check_resources?
     costs.each do |formula|

@@ -5,7 +5,7 @@
   <table class="border-collapse w-full border border-slate-500 bg-slate-800 text-sm shadow-sm">
     <thead>
       <tr>
-        <% %w[name level].each do |column| %>
+        <% %w[name level leveling?].each do |column| %>
           <th class="w-1/2 border border-slate-600 font-semibold p-4 text-slate-200 text-left">
             <%= t(".#{column}") %>
           </th>
@@ -20,6 +20,13 @@
           </td>
           <td class="border border-slate-700 p-4 text-slate-400">
             <%= idle_game_structure.level %>
+          </td>
+          <td class="border border-slate-700 p-4 text-slate-400">
+            <% if idle_game_structure.leveling_job_id.present? %>
+              OUI
+            <% else %>
+              NON
+            <% end %>
           </td>
       </tr>
     <% end %>

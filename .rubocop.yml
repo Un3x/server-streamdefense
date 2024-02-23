@@ -3,6 +3,7 @@ AllCops:
   Exclude: 
     - bin/*
     - vendor/**/*
+    - db/**/*.rb
 
 Metrics/MethodLength:
   Max: 30
@@ -20,7 +21,6 @@ Metrics/BlockLength:
   Exclude:
     - config/**/*.rb
     - Guardfile
-    - db/*.rb
     - spec/**/*.rb
 
 Layout/LineLength:

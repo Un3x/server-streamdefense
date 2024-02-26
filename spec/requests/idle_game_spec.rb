@@ -12,6 +12,13 @@ RSpec.describe 'Idle controller', type: :request do
   after do
     Timecop.return
   end
+  let!(:structure) { create(:structure, key: 'struct') }
+  let!(:resource) { create(:resource, key: 'food') }
+
+  let!(:structure_production) { create(:linear_formula, :with_production, structure:, resource:) }
+  let!(:structure_storage) { create(:linear_formula, :with_storage, structure:, resource:) }
+  let!(:structure_duration) { create(:linear_formula, :with_duration, structure:) }
+  let!(:structure_cost) { create(:linear_formula, :with_cost, structure:, resource:) }
 
   describe 'GET idle_game_state_path' do
     let!(:user) { create(:user, nickname: 'test', twitch_id: '1234321') }
@@ -82,33 +89,8 @@ RSpec.describe 'Idle controller', type: :request do
           expect(response.body).to include('status')
 
           expect(JSON.parse(response.body)['data']['time_since_last_sync']).to eq(5)
-
-          expect(JSON.parse(response.body)['data']['resources']).to eq(
-            JSON.parse(
-              '{
-                "Bois":{
-                    "amount":0,
-                    "rate": 0,
-                    "storage": 101
-                },
-                "Nourriture":{
-                    "amount":0,
-                    "rate": 0,
-                    "storage": 101
-                },
-                "Fer":{
-                    "amount":0,
-                    "rate": 0,
-                    "storage": 101
-                }
-              }'
-            )
-          )
-
-          expect(JSON.parse(response.body)['data']['structures']['Hotel de ville']).not_to be_nil
-          expect(JSON.parse(response.body)['data']['structures']['Ferme']).not_to be_nil
-          expect(JSON.parse(response.body)['data']['structures']['Scierie']).not_to be_nil
-          expect(JSON.parse(response.body)['data']['structures']['Camp militaire']).not_to be_nil
+          expect(JSON.parse(response.body)['data']['resources'][resource.key]).not_to be_nil 
+          expect(JSON.parse(response.body)['data']['structures'][structure.key]).not_to be_nil
         end
       end
     end

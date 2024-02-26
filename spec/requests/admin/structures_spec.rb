@@ -20,6 +20,7 @@ RSpec.describe '/structures', type: :request do
   # adjust the attributes here as well.
   let(:valid_attributes) do
     {
+      key: 'my-string',
       name: 'MyString'
     }
   end

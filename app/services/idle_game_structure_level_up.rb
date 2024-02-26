@@ -15,7 +15,7 @@ class IdleGameStructureLevelUp
 
     job = trigger_leveling_job
 
-    idle_game_structure.update!(leveling_job_id: job.job_id)
+    idle_game_structure.update!(leveling_job_id: job.job_id, leveling_at: Time.now + calculate_leveling_duration)
   end
 
   def cancel
@@ -23,11 +23,12 @@ class IdleGameStructureLevelUp
 
     cancel_leveling_job
     refund_for_level_down
-    idle_game_structure.update!(level: idle_game_structure.level - 1, leveling_job_id: nil)
+    idle_game_structure.update!(leveling_job_id: nil, leveling_at: nil)
   end
 
   def level_up
-    idle_game_structure.update!(level: idle_game_structure.level + 1, leveling_job_id: nil)
+    IdleSynchronizor.new(idle_game_structure.idle_game).perform
+    idle_game_structure.update!(level: idle_game_structure.level + 1, leveling_job_id: nil, leveling_at: nil)
   end
 
   private
@@ -41,8 +42,12 @@ class IdleGameStructureLevelUp
     SolidQueue::Job.find_by(active_job_id: idle_game_structure.leveling_job_id)
   end
 
+  def calculate_leveling_duration
+    idle_game_structure.structure.structure_formulas.for_category('duration').first.calculate(idle_game_structure.level)
+  end
+
   def trigger_leveling_job
-    StructureLevelUp.set(wait: idle_game_structure.structure.structure_formulas.for_category('duration').first.calculate(idle_game_structure.level)).perform_later idle_game_structure
+    StructureLevelUp.set(wait: calculate_leveling_duration).perform_later idle_game_structure
   end
 
   def check_resources?

@@ -2,7 +2,7 @@
 
 class StructuresFormatter
   def format_structures_for_idle_game(idle_game)
-    IdleGameStructure.for_idle_game(idle_game).each_with_object({}) do |idle_game_structure, hash|
+    IdleGameStructure.for_idle_game(idle_game).order(:id).each_with_object({}) do |idle_game_structure, hash|
       hash[idle_game_structure.structure.name] = format_structure(idle_game_structure)
     end
   end
@@ -16,11 +16,16 @@ class StructuresFormatter
       description: idle_game_structure.structure.description,
       level: idle_game_structure.level,
       visible: false,
+      leveling_in: leveling_in(idle_game_structure),
       requires: format_requirement_for_structure(idle_game_structure.structure),
       levelUp: format_level_up_for_structure(idle_game_structure),
       production: format_production_for_structure(idle_game_structure),
       storage: format_storage_for_structure(idle_game_structure)
     }
+  end
+
+  def leveling_in(idle_game_structure)
+    idle_game_structure.leveling_at.present? ? (idle_game_structure.leveling_at - Time.now).floor : nil
   end
 
   def format_requirement_for_structure(structure)

@@ -89,7 +89,7 @@ RSpec.describe 'Idle controller', type: :request do
           expect(response.body).to include('status')
 
           expect(JSON.parse(response.body)['data']['time_since_last_sync']).to eq(5)
-          expect(JSON.parse(response.body)['data']['resources'][resource.key]).not_to be_nil 
+          expect(JSON.parse(response.body)['data']['resources'][resource.key]).not_to be_nil
           expect(JSON.parse(response.body)['data']['structures'][structure.key]).not_to be_nil
         end
       end

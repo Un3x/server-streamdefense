@@ -9,57 +9,6 @@ User.create(
   role: 'ADMIN'
 )
 
-
-# Structures
-
-hotel_de_ville = Structure.create(
-  name: 'Hotel de ville',
-  description: 'Ceci est un hotel de ville'
-)
-
-ferme = Structure.create(
-  name: 'Ferme',
-  description: 'Ceci est une ferme'
-)
-
-scierie = Structure.create(
-  name: 'Scierie',
-  description: 'Ceci est un scierie'
-)
-
-camp_militaire = Structure.create(
-  name: 'Camp militaire',
-  description: 'Ceci est un camp militaire'
-)
-
-# Structures requirements
-
-StructureRequirement.create(
-  structure: camp_militaire,
-  required_structure: scierie,
-  required_level: 2
-)
-
-StructureRequirement.create(
-  structure: camp_militaire,
-  required_structure: ferme,
-  required_level: 2
-)
-
-# Ressources
-
-bois = Resource.create(
-  name: 'Bois'
-)
-
-nourriture = Resource.create(
-  name: 'Nourriture'
-)
-
-fer = Resource.create(
-  name: 'Fer'
-)
-
 # Players
 
 reallord = User.create(
@@ -92,294 +41,264 @@ unex = Channel.create(
   twitch_id: '000000000000'
 )
 
-# Games
+# Ressources
 
-game1 = IdleGame.create(
-  channel: unex,
-  user: reallord
+wood = Resource.create(
+  key: 'wood',
+  name: 'Bois'
 )
 
-game2 = IdleGame.create(
-  channel: unex,
-  user: lavomancien
+food = Resource.create(
+  key: 'food',
+  name: 'Nourriture'
 )
 
-game3 = IdleGame.create(
-  channel: unex,
-  user: orbital
+iron = Resource.create(
+  key: 'iron',
+  name: 'Fer'
 )
 
-# Games Ressources
+# Structures
 
-IdleGameResource.create(
-  idle_game: game1,
-  resource: bois,
-  quantity: 100
+city_hall = Structure.create(
+  key: 'city-hall',
+  name: 'Hotel de ville',
+  description: "C'est ici que tout commence, c'est le bourg principal"
 )
 
-IdleGameResource.create(
-  idle_game: game1,
-  resource: nourriture,
-  quantity: 1000
+farm = Structure.create(
+  key: 'farm',
+  name: 'Ferme',
+  description: "En fait, j'étais dans un paturage, j'ai tué 76 chèvres"
 )
 
-IdleGameResource.create(
-  idle_game: game1,
-  resource: fer,
-  quantity: 2000
+woodcamp = Structure.create(
+  key: 'woodcamp',
+  name: 'Camp de bucherons',
+  description: "Ca coupe sec !"
 )
 
-IdleGameResource.create(
-  idle_game: game2,
-  resource: bois,
-  quantity: 3000
+iron_mine = Structure.create(
+  key: 'iron-mine',
+  name: 'Mine de fer',
+  description: 'Tiens bon ta pioche, et tiens bon ta lanterne, ISSEO'
 )
 
-IdleGameResource.create(
-  idle_game: game2,
-  resource: nourriture,
-  quantity: 69
+# Structures requirements
+
+StructureRequirement.create(
+  structure: farm,
+  required_structure: city_hall,
+  required_level: 1
 )
 
-IdleGameResource.create(
-  idle_game: game2,
-  resource: fer,
-  quantity: 70
+StructureRequirement.create(
+  structure: woodcamp,
+  required_structure: city_hall,
+  required_level: 1
 )
 
-IdleGameResource.create(
-  idle_game: game3,
-  resource: bois,
-  quantity: 0
-)
-
-IdleGameResource.create(
-  idle_game: game3,
-  resource: nourriture,
-  quantity: 0
-)
-
-IdleGameResource.create(
-  idle_game: game3,
-  resource: fer,
-  quantity: 0
-)
-
-# Games Structures
-
-IdleGameStructure.create(
-  idle_game: game1,
-  structure: hotel_de_ville,
-  level: 3
-)
-
-IdleGameStructure.create(
-  idle_game: game1,
-  structure: ferme,
-  level: 2
-)
-
-IdleGameStructure.create(
-  idle_game: game1,
-  structure: scierie,
-  level: 2
-)
-
-IdleGameStructure.create(
-  idle_game: game1,
-  structure: camp_militaire,
-  level: 1
-)
-
-IdleGameStructure.create(
-  idle_game: game2,
-  structure: hotel_de_ville,
-  level: 2
-)
-
-IdleGameStructure.create(
-  idle_game: game2,
-  structure: ferme,
-  level: 1
-)
-
-IdleGameStructure.create(
-  idle_game: game2,
-  structure: scierie,
-  level: 2
-)
-
-IdleGameStructure.create(
-  idle_game: game2,
-  structure: camp_militaire,
-  level: 0
-)
-
-IdleGameStructure.create(
-  idle_game: game3,
-  structure: hotel_de_ville,
-  level: 1
-)
-
-IdleGameStructure.create(
-  idle_game: game3,
-  structure: ferme,
-  level: 0
-)
-
-IdleGameStructure.create(
-  idle_game: game3,
-  structure: scierie,
-  level: 0
-)
-
-IdleGameStructure.create(
-  idle_game: game3,
-  structure: camp_militaire,
-  level: 0
+StructureRequirement.create(
+  structure: iron_mine,
+  required_structure: city_hall,
+  required_level: 1
 )
 
 # Structures Formulas
 
-Linear.create(
-  structure: hotel_de_ville,
-  resource: bois,
-  category: 'production',
-  arguments: { slope: 1, intercept: 0 }
+Exponential.create(
+  structure: city_hall,
+  category: 'duration',
+  base: 2,
+  multiplier: 1,
+  default: 10
 )
 
-Linear.create(
-  structure: hotel_de_ville,
-  resource: nourriture,
-  category: 'production',
-  arguments: { slope: 2, intercept: 0 }
-)
-
-Linear.create(
-  structure: hotel_de_ville,
-  resource: fer,
-  category: 'production',
-  arguments: { slope: 3, intercept: 0 }
-)
+[wood, food, iron].each do |resource|
+  Linear.create(
+    structure: city_hall,
+    category: 'storage',
+    resource: resource,
+    slope: 1,
+    intercept: 50
+  )
+  Linear.create(
+    structure: city_hall,
+    category: 'production',
+    resource: resource,
+    slope: 1,
+    intercept: 1
+  )
+  Exponential.create(
+    structure: city_hall,
+    category: 'cost',
+    resource: resource,
+    base: 2,
+    multiplier: 50,
+    default: 0
+  )
+end
 
 Exponential.create(
-  structure: hotel_de_ville,
-  resource: nourriture,
-  category: 'cost',
-  arguments: { base: 2, multiplier: 1, default: 0 }
+  structure: farm,
+  category: 'duration',
+  base: 2,
+  multiplier: 5,
+  default: 5
 )
 
-Exponential.create(
-  structure: hotel_de_ville,
-  resource: bois,
-  category: 'cost',
-  arguments: { base: 2, multiplier: 1, default: 0 }
+LinearPercentage.create(
+  structure: farm,
+  category: 'production',
+  resource: food,
+  slope: 1,
+  intercept: 0,
+  multiplier: 0.2,
+  treshold: 10
 )
 
-Exponential.create(
-  structure: hotel_de_ville,
-  resource: bois,
+Linear.create(
+  structure: farm,
   category: 'storage',
-  arguments: { base: 2, multiplier: 1, default: 100 }
+  resource: food,
+  slope: 1,
+  intercept: 10
 )
 
 Exponential.create(
-  structure: hotel_de_ville,
-  resource: nourriture,
+  structure: farm,
+  category: 'cost',
+  resource: food,
+  base: 2,
+  multiplier: 1,
+  default: 5
+)
+
+Exponential.create(
+  structure: farm,
+  category: 'cost',
+  resource: wood,
+  base: 2,
+  multiplier: 1,
+  default: 10
+)
+
+Exponential.create(
+  structure: farm,
+  category: 'cost',
+  resource: iron,
+  base: 2,
+  multiplier: 1,
+  default: 5
+)
+
+Exponential.create(
+  structure: woodcamp,
+  category: 'duration',
+  base: 2,
+  multiplier: 5,
+  default: 5
+)
+
+LinearPercentage.create(
+  structure: woodcamp,
+  category: 'production',
+  resource: wood,
+  slope: 1,
+  intercept: 0,
+  multiplier: 0.2,
+  treshold: 10
+)
+
+Linear.create(
+  structure: woodcamp,
   category: 'storage',
-  arguments: { base: 2, multiplier: 1, default: 100 }
+  resource: food,
+  slope: 1,
+  intercept: 10
 )
 
 Exponential.create(
-  structure: hotel_de_ville,
-  resource: fer,
+  structure: woodcamp,
+  category: 'cost',
+  resource: food,
+  base: 2,
+  multiplier: 1,
+  default: 5
+)
+
+Exponential.create(
+  structure: woodcamp,
+  category: 'cost',
+  resource: wood,
+  base: 2,
+  multiplier: 1,
+  default: 5
+)
+
+Exponential.create(
+  structure: woodcamp,
+  category: 'cost',
+  resource: iron,
+  base: 2,
+  multiplier: 1,
+  default: 10
+)
+
+
+Exponential.create(
+  structure: iron_mine,
+  category: 'duration',
+  base: 2,
+  multiplier: 5,
+  default: 5
+)
+
+LinearPercentage.create(
+  structure: iron_mine,
+  category: 'production',
+  resource: wood,
+  slope: 1,
+  intercept: 0,
+  multiplier: 0.2,
+  treshold: 10
+)
+
+Linear.create(
+  structure: iron_mine,
   category: 'storage',
-  arguments: { base: 2, multiplier: 1, default: 100 }
+  resource: food,
+  slope: 1,
+  intercept: 10
 )
 
 Exponential.create(
-  structure: hotel_de_ville,
-  category: 'duration',
-  arguments: { base: 3, multiplier: 1, default: 5 }
-)
-
-Linear.create(
-  structure: ferme,
-  resource: nourriture,
-  category: 'production',
-  arguments: { slope: 2, intercept: 0 }
-)
-
-Exponential.create(
-  structure: ferme,
-  resource: nourriture,
+  structure: iron_mine,
   category: 'cost',
-  arguments: { base: 2, multiplier: 1, default: 0 }
+  resource: food,
+  base: 2,
+  multiplier: 1,
+  default: 10
 )
 
 Exponential.create(
-  structure: ferme,
-  resource: bois,
+  structure: iron_mine,
   category: 'cost',
-  arguments: { base: 2, multiplier: 1, default: 0 }
+  resource: wood,
+  base: 2,
+  multiplier: 1,
+  default: 5
 )
 
 Exponential.create(
-  structure: ferme,
-  category: 'duration',
-  arguments: { base: 3, multiplier: 1, default: 5 }
-)
-
-Linear.create(
-  structure: scierie,
-  resource: bois,
-  category: 'production',
-  arguments: { slope: 2, intercept: 0 }
-)
-
-Exponential.create(
-  structure: scierie,
-  resource: nourriture,
+  structure: iron_mine,
   category: 'cost',
-  arguments: { base: 2, multiplier: 1, default: 0 }
+  resource: iron,
+  base: 2,
+  multiplier: 1,
+  default: 5
 )
 
-Exponential.create(
-  structure: scierie,
-  resource: bois,
-  category: 'cost',
-  arguments: { base: 2, multiplier: 1, default: 0 }
-)
-
-Exponential.create(
-  structure: scierie,
-  category: 'duration',
-  arguments: { base: 3, multiplier: 1, default: 5 }
-)
-
-Linear.create(
-  structure: camp_militaire,
-  resource: bois,
-  category: 'production',
-  arguments: { slope: 2, intercept: 0 }
-)
-
-Exponential.create(
-  structure: camp_militaire,
-  resource: nourriture,
-  category: 'cost',
-  arguments: { base: 2, multiplier: 1, default: 0 }
-)
-
-Exponential.create(
-  structure: camp_militaire,
-  resource: bois,
-  category: 'cost',
-  arguments: { base: 2, multiplier: 1, default: 0 }
-)
-
-Exponential.create(
-  structure: camp_militaire,
-  category: 'duration',
-  arguments: { base: 3, multiplier: 1, default: 5 }
-)
+IdleGameFactory.new(reallord, unex).perform
+IdleGameFactory.new(lavomancien, unex).perform
+IdleGameFactory.new(orbital, unex).perform

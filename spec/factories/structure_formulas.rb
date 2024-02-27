@@ -15,7 +15,7 @@ FactoryBot.define do
       category { 'cost' }
       resource { association(:resource) }
     end
-    
+
     trait :with_duration do
       category { 'duration' }
     end
@@ -40,7 +40,7 @@ FactoryBot.define do
       category { 'cost' }
       resource { association(:resource) }
     end
-    
+
     trait :with_duration do
       category { 'duration' }
     end
@@ -65,7 +65,7 @@ FactoryBot.define do
       category { 'cost' }
       resource { association(:resource) }
     end
-    
+
     trait :with_duration do
       category { 'duration' }
     end

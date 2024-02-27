@@ -31,7 +31,7 @@ class StructuresFormatter
   def format_requirement_for_structure(structure)
     result = []
     structure.structure_requirements.each do |requirement|
-      result << { name: requirement.required_structure.name, level: requirement.required_level }
+      result << { key: requirement.required_structure.key, level: requirement.required_level }
     end
     result
   end

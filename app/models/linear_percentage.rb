@@ -6,7 +6,7 @@ class LinearPercentage < StructureFormula
   validates :treshold, presence: true, numericality: { only_integer: true }
   validates :intercept, presence: true, numericality: { only_integer: true }
   validates :slope, presence: true, numericality: { only_integer: true }
-  validates :multiplier, presence: true, numericality: { only_integer: true }
+  validates :multiplier, presence: true, numericality: { only_float: true }
 
   def calculate(level)
     result = 0

@@ -110,8 +110,8 @@ Exponential.create(
   structure: city_hall,
   category: 'duration',
   base: 2,
-  multiplier: 1,
-  default: 10
+  multiplier: 10,
+  default: 0
 )
 
 [wood, food, iron].each do |resource|
@@ -119,7 +119,7 @@ Exponential.create(
     structure: city_hall,
     category: 'storage',
     resource: resource,
-    slope: 1,
+    slope: 50,
     intercept: 50
   )
   Linear.create(
@@ -161,8 +161,8 @@ Linear.create(
   structure: farm,
   category: 'storage',
   resource: food,
-  slope: 1,
-  intercept: 10
+  slope: 10,
+  intercept: 0
 )
 
 Exponential.create(
@@ -170,8 +170,8 @@ Exponential.create(
   category: 'cost',
   resource: food,
   base: 2,
-  multiplier: 1,
-  default: 5
+  multiplier: 3,
+  default: 27
 )
 
 Exponential.create(
@@ -179,8 +179,8 @@ Exponential.create(
   category: 'cost',
   resource: wood,
   base: 2,
-  multiplier: 1,
-  default: 10
+  multiplier: 8,
+  default: 27
 )
 
 Exponential.create(
@@ -188,8 +188,8 @@ Exponential.create(
   category: 'cost',
   resource: iron,
   base: 2,
-  multiplier: 1,
-  default: 5
+  multiplier: 3,
+  default: 27
 )
 
 Exponential.create(
@@ -213,9 +213,9 @@ LinearPercentage.create(
 Linear.create(
   structure: woodcamp,
   category: 'storage',
-  resource: food,
-  slope: 1,
-  intercept: 10
+  resource: wood,
+  slope: 10,
+  intercept: 0
 )
 
 Exponential.create(
@@ -223,8 +223,8 @@ Exponential.create(
   category: 'cost',
   resource: food,
   base: 2,
-  multiplier: 1,
-  default: 5
+  multiplier: 3,
+  default: 27
 )
 
 Exponential.create(
@@ -232,8 +232,8 @@ Exponential.create(
   category: 'cost',
   resource: wood,
   base: 2,
-  multiplier: 1,
-  default: 5
+  multiplier: 3,
+  default: 27
 )
 
 Exponential.create(
@@ -241,8 +241,8 @@ Exponential.create(
   category: 'cost',
   resource: iron,
   base: 2,
-  multiplier: 1,
-  default: 10
+  multiplier: 8,
+  default: 27
 )
 
 
@@ -257,7 +257,7 @@ Exponential.create(
 LinearPercentage.create(
   structure: iron_mine,
   category: 'production',
-  resource: wood,
+  resource: iron,
   slope: 1,
   intercept: 0,
   multiplier: 0.2,
@@ -267,9 +267,9 @@ LinearPercentage.create(
 Linear.create(
   structure: iron_mine,
   category: 'storage',
-  resource: food,
-  slope: 1,
-  intercept: 10
+  resource: iron,
+  slope: 10,
+  intercept: 0
 )
 
 Exponential.create(
@@ -277,8 +277,8 @@ Exponential.create(
   category: 'cost',
   resource: food,
   base: 2,
-  multiplier: 1,
-  default: 10
+  multiplier: 8,
+  default: 27
 )
 
 Exponential.create(
@@ -286,8 +286,8 @@ Exponential.create(
   category: 'cost',
   resource: wood,
   base: 2,
-  multiplier: 1,
-  default: 5
+  multiplier: 3,
+  default: 27
 )
 
 Exponential.create(
@@ -295,8 +295,8 @@ Exponential.create(
   category: 'cost',
   resource: iron,
   base: 2,
-  multiplier: 1,
-  default: 5
+  multiplier: 3,
+  default: 27
 )
 
 IdleGameFactory.new(reallord, unex).perform

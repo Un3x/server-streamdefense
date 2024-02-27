@@ -47,7 +47,7 @@ class IdleGameStructureLevelUp
   end
 
   def trigger_leveling_job
-    StructureLevelUp.set(wait: calculate_leveling_duration).perform_later idle_game_structure
+    StructureLevelUp.set(wait: calculate_leveling_duration - 2).perform_later idle_game_structure
   end
 
   def check_resources?

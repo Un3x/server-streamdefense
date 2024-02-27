@@ -45,19 +45,19 @@ class StructuresFormatter
 
   def format_costs_for_structure(idle_game_structure)
     idle_game_structure.structure.structure_formulas.for_category('cost').each_with_object({}) do |formula, hash|
-      hash[formula.resource.name] = formula.calculate(idle_game_structure.level)
+      hash[formula.resource.key] = formula.calculate(idle_game_structure.level)
     end
   end
 
   def format_production_for_structure(idle_game_structure)
     idle_game_structure.structure.structure_formulas.for_category('production').each_with_object({}) do |formula, hash|
-      hash[formula.resource.name] = formula.calculate(idle_game_structure.level)
+      hash[formula.resource.key] = formula.calculate(idle_game_structure.level)
     end
   end
 
   def format_storage_for_structure(idle_game_structure)
     idle_game_structure.structure.structure_formulas.for_category('storage').each_with_object({}) do |formula, hash|
-      hash[formula.resource.name] = formula.calculate(idle_game_structure.level)
+      hash[formula.resource.key] = formula.calculate(idle_game_structure.level)
     end
   end
 end

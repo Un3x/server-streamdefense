@@ -15,13 +15,20 @@ class StructuresFormatter
       name: idle_game_structure.structure.name,
       description: idle_game_structure.structure.description,
       level: idle_game_structure.level,
-      visible: false,
+      visible: determine_if_structure_is_visible(idle_game_structure),
       leveling_in: leveling_in(idle_game_structure),
       requires: format_requirement_for_structure(idle_game_structure.structure),
       levelUp: format_level_up_for_structure(idle_game_structure),
       production: format_production_for_structure(idle_game_structure),
       storage: format_storage_for_structure(idle_game_structure)
     }
+  end
+
+  def determine_if_structure_is_visible(idle_game_structure)
+    idle_game_structure.structure.structure_requirements.each do |requirement|
+      return false unless idle_game_structure.idle_game.idle_game_structures.find_by(structure: requirement.required_structure).level >= requirement.required_level
+    end
+    true
   end
 
   def leveling_in(idle_game_structure)

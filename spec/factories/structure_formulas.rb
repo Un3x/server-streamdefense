@@ -22,6 +22,7 @@ FactoryBot.define do
 
     trait :with_storage do
       category { 'storage' }
+      intercept { 100 }
     end
   end
 
@@ -47,8 +48,10 @@ FactoryBot.define do
 
     trait :with_storage do
       category { 'storage' }
+      intercept { 100 }
     end
   end
+
   factory :linear_percentage_formula, class: 'LinearPercentage' do
     structure { association(:structure) }
     treshold { 10 }
@@ -72,6 +75,7 @@ FactoryBot.define do
 
     trait :with_storage do
       category { 'storage' }
+      intercept { 100 }
     end
   end
 end

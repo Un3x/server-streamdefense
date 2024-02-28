@@ -82,6 +82,7 @@ RSpec.describe 'Idle controller', type: :request do
 
         it 'returns the game state' do
           Timecop.freeze(Time.now + 5.seconds)
+
           subject
 
           expect(response).to have_http_status(:success)
@@ -89,8 +90,11 @@ RSpec.describe 'Idle controller', type: :request do
           expect(response.body).to include('status')
 
           expect(JSON.parse(response.body)['data']['time_since_last_sync']).to eq(5)
-          expect(JSON.parse(response.body)['data']['resources'][resource.key]).not_to be_nil
-          expect(JSON.parse(response.body)['data']['structures'][structure.key]).not_to be_nil
+          expect(JSON.parse(response.body)['data']['resources'][resource.key]['rate']).to eq(structure_production.calculate(0))
+          expect(JSON.parse(response.body)['data']['resources'][resource.key]['amount']).to eq(structure_production.calculate(0) * 5)
+          expect(JSON.parse(response.body)['data']['resources'][resource.key]['storage']).to eq(structure_storage.calculate(0))
+          expect(JSON.parse(response.body)['data']['structures'][structure.key]['levelUp']['duration']).to eq(structure_duration.calculate(0))
+          expect(JSON.parse(response.body)['data']['structures'][structure.key]['levelUp']['costs'][resource.key]).to eq(structure_cost.calculate(0))
         end
       end
     end

@@ -11,7 +11,11 @@ Rails.application.routes.draw do
     resources :idle_game_structures
     resources :structures
     resources :idle_game_resources
-    resources :resources
+    resources :resources do
+      collection do
+        post :import
+      end
+    end
     resources :idle_games, only: %i[index show]
     resources :channels, only: %i[index show]
     resources :users, only: %i[index show]

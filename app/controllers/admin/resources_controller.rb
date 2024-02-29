@@ -12,6 +12,15 @@ module Admin
     # GET /admin/resources/1 or /admin/resources/1.json
     def show; end
 
+    def import
+      return redirect to request.referer, notice: 'No file selected' if params[:file].nil?
+      return redirect to request.referer, notice: 'Invalid file type' unless params[:file].content_type == 'text/csv'
+
+      ImportService.new.import_resources(params[:file])
+
+      redirect_to request.referer, notice: 'Resources imported successfully'
+    end
+
     # GET /admin/resources/new
     def new
       @resource = Resource.new

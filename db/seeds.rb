@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-return unless %w[development].include?(Rails.env)
-
 # Admin
 User.create(
   email: 'admin@random.com',
   password: 'leRandomPourLesHommes',
   role: 'ADMIN'
 )
+
+return unless %w[development].include?(Rails.env)
 
 # Players
 

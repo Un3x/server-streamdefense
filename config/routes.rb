@@ -9,7 +9,11 @@ Rails.application.routes.draw do
     resources :structure_formulas
     resources :structure_requirements
     resources :idle_game_structures
-    resources :structures
+    resources :structures do
+      collection do
+        post :import
+      end
+    end
     resources :idle_game_resources
     resources :resources do
       collection do

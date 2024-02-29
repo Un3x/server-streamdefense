@@ -3,6 +3,7 @@
 module Admin
   class ResourcesController < AdminUsersController
     before_action :set_resource, only: %i[show edit update destroy]
+    before_action :check_import_file, only: :import
 
     # GET /admin/resources or /admin/resources.json
     def index
@@ -13,9 +14,6 @@ module Admin
     def show; end
 
     def import
-      return redirect to request.referer, notice: 'No file selected' if params[:file].nil?
-      return redirect to request.referer, notice: 'Invalid file type' unless params[:file].content_type == 'text/csv'
-
       ImportService.new.import_resources(params[:file])
 
       redirect_to request.referer, notice: 'Resources imported successfully'
@@ -77,6 +75,12 @@ module Admin
     # Only allow a list of trusted parameters through.
     def resource_params
       params.require(:resource).permit(:name, :key)
+    end
+
+    def check_import_file
+      return redirect_to request.referer, notice: 'No file selected' if params[:file].nil?
+
+      redirect_to request.referer, notice: 'Invalid file type' unless params[:file].content_type == 'text/csv'
     end
   end
 end

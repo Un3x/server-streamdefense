@@ -3,6 +3,7 @@
 module Admin
   class StructureFormulasController < AdminUsersController
     before_action :set_structure_formula, only: %i[show edit update destroy]
+    before_action :check_import_file, only: :import
 
     # GET /admin/structure_formulas or /admin/structure_formulas.json
     def index
@@ -11,6 +12,12 @@ module Admin
 
     # GET /admin/structure_formulas/1 or /admin/structure_formulas/1.json
     def show; end
+
+    def import
+      ImportService.new.import_resource_formulas(params[:file])
+
+      redirect_to request.referer, notice: 'Resources imported successfully'
+    end
 
     # GET /admin/structure_formulas/new
     def new
@@ -84,6 +91,12 @@ module Admin
       params[:structure_formula][:formula].constantize.stored_attributes[:arguments].each do |argument|
         params[:structure_formula][argument] = params[:structure_formula][argument].to_i
       end
+    end
+
+    def check_import_file
+      return redirect_to request.referer, notice: 'No file selected' if params[:file].nil?
+
+      redirect_to request.referer, notice: 'Invalid file type' unless params[:file].content_type == 'text/csv'
     end
   end
 end

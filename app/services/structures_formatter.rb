@@ -45,7 +45,7 @@ class StructuresFormatter
 
   def format_level_up_for_structure(idle_game_structure)
     {
-      duration: idle_game_structure.structure.structure_formulas.for_category('duration').first.calculate(idle_game_structure.level),
+      duration: idle_game_structure.structure.structure_formulas.for_category('duration').first&.calculate(idle_game_structure.level),
       costs: format_costs_for_structure(idle_game_structure)
     }
   end

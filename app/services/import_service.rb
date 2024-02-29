@@ -8,10 +8,16 @@ class ImportService
     opened_file = File.open(file.path)
     options = { headers: true, header_converters: :symbol, col_sep: ',' }
     CSV.foreach(opened_file, **options) do |row|
-      Resource.find_or_create_by(
+      resource = Resource.find_or_create_by(
         key: row[:key],
         name: row[:name]
       )
+
+      IdleGame.all.each do |idle_game|
+        IdleGameResource.find_or_create_by(resource:, idle_game:) do |resource_game|
+          resource_game.quantity = 0
+        end
+      end
     end
   end
 
@@ -19,11 +25,17 @@ class ImportService
     opened_file = File.open(file.path)
     options = { headers: true, header_converters: :symbol, col_sep: ',' }
     CSV.foreach(opened_file, **options) do |row|
-      Structure.find_or_create_by(
+      structure = Structure.find_or_create_by(
         key: row[:key],
         name: row[:name],
         description: row[:description]
       )
+
+      IdleGame.all.each do |idle_game|
+        IdleGameStructure.find_or_create_by(structure:, idle_game:) do |resource_game|
+          resource_game.level = 0
+        end
+      end
     end
   end
 

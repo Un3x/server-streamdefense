@@ -7,7 +7,11 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :structure_formulas
-    resources :structure_requirements
+    resources :structure_requirements do
+      collection do
+        post :import
+      end
+    end
     resources :idle_game_structures
     resources :structures do
       collection do

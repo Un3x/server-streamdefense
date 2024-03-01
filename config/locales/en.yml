@@ -105,6 +105,7 @@ en:
       structure_requirements:
         required_structure: Required Structure 
         required_level: Required Level
+        restriction: Restriction
         action: Action
     idle_game_structures:
       index:
@@ -133,6 +134,7 @@ en:
       index:
         structure: Structure
         required_structure: Required Structure
+        restriction: Restriction
         level: Level
         action: Action
       show:
@@ -142,4 +144,5 @@ en:
         structure: <strong class="font-medium mb-1">Structure :</strong> %{structure}
         required_structure: <strong class="font-medium mb-1">Required Structure :</strong> %{required_structure}
         required_level: <strong class="font-medium mb-1">Required Level :</strong> %{required_level}
+        restriction: <strong class="font-medium mb-1">Restriction :</strong> %{restriction}
 

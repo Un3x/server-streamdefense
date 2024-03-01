@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_26_211101) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_05_102241) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -172,6 +172,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_26_211101) do
     t.integer "required_level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "restriction", default: "above", null: false
     t.index ["required_structure_id"], name: "index_structure_requirements_on_required_structure_id"
     t.index ["structure_id"], name: "index_structure_requirements_on_structure_id"
   end

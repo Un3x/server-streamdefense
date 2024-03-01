@@ -46,7 +46,8 @@ class ImportService
     StructureRequirement.find_or_create_by(
       structure: Structure.find_by(key: row[:structure]),
       required_structure: Structure.find_by(key: row[:required_structure]),
-      required_level: row[:level]
+      required_level: row[:level],
+      restriction: row[:restriction] || 'above'
     )
   end
 

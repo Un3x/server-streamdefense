@@ -22,7 +22,7 @@
             <%= idle_game_structure.level %>
           </td>
           <td class="border border-slate-700 p-4 text-slate-400">
-            <% if idle_game_structure.leveling_job_id.present? %>
+            <% if idle_game_structure.leveling?.present? %>
               OUI
             <% else %>
               NON

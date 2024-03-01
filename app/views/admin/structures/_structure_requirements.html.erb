@@ -6,7 +6,7 @@
   <table class="border-collapse w-full border border-slate-500 bg-slate-800 text-sm shadow-sm">
     <thead>
       <tr>
-        <% %w[required_structure required_level action].each do |column| %>
+        <% %w[required_structure required_level restriction action].each do |column| %>
           <th class="w-1/2 border border-slate-600 font-semibold p-4 text-slate-200 text-left">
             <%= t(".#{column}") %>
           </th>
@@ -21,6 +21,9 @@
         </td>
         <td class="border border-slate-700 p-4 text-slate-400">
           <%= structure_requirement.required_level%>
+        </td>
+        <td class="border border-slate-700 p-4 text-slate-400">
+          <%= structure_requirement.restriction %>
         </td>
         <td class="border border-slate-700 p-4 text-slate-400 flex">
           <%= link_to "Show", admin_structure_requirement_path(structure_requirement), class: "rounded-lg py-1 px-2 inline-block font-medium" %>

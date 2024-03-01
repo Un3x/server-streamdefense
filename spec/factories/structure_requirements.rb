@@ -5,5 +5,6 @@ FactoryBot.define do
     structure { build(:structure) }
     required_structure { build(:structure) }
     required_level { 1 }
+    restriction { 'above' }
   end
 end

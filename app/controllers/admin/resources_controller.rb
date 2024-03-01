@@ -15,7 +15,7 @@ module Admin
     def show; end
 
     def import
-      ImportService.new.import_resources(params[:file])
+      ImportService.new.import(params[:file], 'resource')
 
       redirect_to request.referer, notice: 'Resources imported successfully'
     end

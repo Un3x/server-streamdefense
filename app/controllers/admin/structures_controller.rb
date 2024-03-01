@@ -2,8 +2,9 @@
 
 module Admin
   class StructuresController < AdminUsersController
+    include ImportManagement
+
     before_action :set_structure, only: %i[show edit update destroy]
-    before_action :check_import_file, only: :import
 
     # GET /admin/structures or /admin/structures.json
     def index
@@ -75,12 +76,6 @@ module Admin
     # Only allow a list of trusted parameters through.
     def structure_params
       params.require(:structure).permit(:key, :name, :description)
-    end
-
-    def check_import_file
-      return redirect_to request.referer, notice: 'No file selected' if params[:file].nil?
-
-      redirect_to request.referer, notice: 'Invalid file type' unless params[:file].content_type == 'text/csv'
     end
   end
 end

@@ -16,7 +16,7 @@ RSpec.describe 'Idle controller', type: :request do
   let!(:resource) { create(:resource, key: 'food') }
 
   let!(:structure_production) { create(:linear_formula, :with_production, structure:, resource:) }
-  let!(:structure_storage) { create(:linear_formula, :with_storage, structure:, resource:) }
+  let!(:structure_storage) { create(:linear_formula, :with_storage, structure:, resource:, intercept: 100) }
   let!(:structure_duration) { create(:linear_formula, :with_duration, structure:) }
   let!(:structure_cost) { create(:linear_formula, :with_cost, structure:, resource:) }
 
@@ -95,6 +95,7 @@ RSpec.describe 'Idle controller', type: :request do
           expect(JSON.parse(response.body)['data']['resources'][resource.key]['storage']).to eq(structure_storage.calculate(0))
           expect(JSON.parse(response.body)['data']['structures'][structure.key]['levelUp']['duration']).to eq(structure_duration.calculate(0))
           expect(JSON.parse(response.body)['data']['structures'][structure.key]['levelUp']['costs'][resource.key]).to eq(structure_cost.calculate(0))
+          expect(JSON.parse(response.body)['data']['structures'][structure.key]['visible']).to be(true)
         end
       end
     end

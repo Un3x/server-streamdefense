@@ -9,6 +9,14 @@ class IdleGameStructure < ApplicationRecord
 
   scope :for_idle_game, ->(idle_game) { where(idle_game:) }
 
+  def next_level_unlocks
+    StructureRequirement.for_required_structure(structure).for_restriction('above').for_required_level(level + 1).map(&:structure).map(&:key)
+  end
+
+  def next_level_locks
+    StructureRequirement.for_required_structure(structure).for_restriction('below').for_required_level(level + 1).map(&:structure).map(&:key)
+  end
+
   def visible
     structure.structure_requirements.each do |requirement|
       return false unless requirement.meets_requirements(self)

@@ -12,6 +12,7 @@ class StructuresFormatter
   def format_structure(idle_game_structure)
     {
       id: idle_game_structure.id,
+      key: idle_game_structure.structure.key,
       name: idle_game_structure.structure.name,
       description: idle_game_structure.structure.description,
       level: idle_game_structure.level,

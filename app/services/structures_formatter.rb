@@ -16,6 +16,7 @@ class StructuresFormatter
       name: idle_game_structure.structure.name,
       icon_url: idle_game_structure.structure.icon_url,
       description: description(idle_game_structure),
+      image_url: image_url(idle_game_structure),
       level: idle_game_structure.level,
       visible: idle_game_structure.visible,
       leveling_in: leveling_in(idle_game_structure),
@@ -23,6 +24,10 @@ class StructuresFormatter
       production: format_production_for_structure(idle_game_structure),
       storage: format_storage_for_structure(idle_game_structure)
     }
+  end
+
+  def image_url(idle_game_structure)
+    idle_game_structure.structure.structure_level_detail(idle_game_structure.level)&.image_url
   end
 
   def description(idle_game_structure)

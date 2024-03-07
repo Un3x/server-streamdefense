@@ -75,7 +75,7 @@ module Admin
 
     # Only allow a list of trusted parameters through.
     def structure_level_detail_params
-      params.require(:structure_level_detail).permit(:structure_id, :level, :description)
+      params.require(:structure_level_detail).permit(:structure_id, :level, :description, :image)
     end
   end
 end

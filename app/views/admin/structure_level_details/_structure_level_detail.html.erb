@@ -11,4 +11,9 @@
   <p class="my-5">
     <%= t('.description', description: structure_level_detail.description).html_safe %>
   </p>
+  <% if structure_level_detail.image.attached? %>
+    <p class="my-5">
+      <img class="h-12" src="<%= url_for(structure_level_detail.image) %>"/>
+    </p>
+  <% end %>
 </div>

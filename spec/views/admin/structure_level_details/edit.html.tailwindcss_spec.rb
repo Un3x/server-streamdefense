@@ -4,10 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'admin/structure_level_details/edit', type: :view do
   let(:structure_level_detail) do
-    StructureLevelDetail.create!(
-      structure: nil,
-      level: 1
-    )
+    create(:structure_level_detail)
   end
 
   before(:each) do
@@ -18,9 +15,11 @@ RSpec.describe 'admin/structure_level_details/edit', type: :view do
     render
 
     assert_select 'form[action=?][method=?]', admin_structure_level_detail_path(structure_level_detail), 'post' do
-      assert_select 'input[name=?]', 'admin_structure_level_detail[structure_id]'
+      assert_select 'select[name=?]', 'structure_level_detail[structure_id]'
 
-      assert_select 'input[name=?]', 'admin_structure_level_detail[level]'
+      assert_select 'input[name=?]', 'structure_level_detail[level]'
+
+      assert_select 'input[name=?]', 'structure_level_detail[description]'
     end
   end
 end

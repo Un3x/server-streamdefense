@@ -15,6 +15,7 @@ gem 'solid_queue'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
 gem 'turbo-rails'
+gem 'aws-sdk-s3', require: false
 gem 'tzinfo-data', platforms: %i[windows jruby]
 
 group :development, :test do

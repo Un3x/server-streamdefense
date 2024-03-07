@@ -146,3 +146,9 @@ en:
         required_level: <strong class="font-medium mb-1">Required Level :</strong> %{required_level}
         restriction: <strong class="font-medium mb-1">Restriction :</strong> %{restriction}
 
+    structure_level_details:
+      structure_level_detail:
+        structure: <strong class="font-medium mb-1">Structure :</strong> %{structure}
+        level: <strong class="font-medium mb-1">Level :</strong> %{level}
+        description: <strong class="font-medium mb-1">Description :</strong> %{description}
+

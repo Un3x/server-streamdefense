@@ -1,0 +1,8 @@
+<div class="mx-auto md:w-2/3 w-full">
+  <h1 class="font-bold text-4xl">Editing structure level detail</h1>
+
+  <%= render partial: "admin/structure_level_details/form", locals: { structure_level_detail: @structure_level_detail } %>
+
+  <%= link_to "Show this structure level_detail", admin_structure_level_detail_path(@structure_level_detail), class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <%= link_to "Back to structure level_detail", admin_structure_level_details_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+</div>

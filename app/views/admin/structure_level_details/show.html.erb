@@ -1,0 +1,23 @@
+<div class="mx-auto w-full">
+  <h1 class="font-bold text-4xl">
+    <%= t('.title') %>
+  </h1>
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <div class="grid grid-cols-2 gap-4">
+    <%= render partial: 'admin/structure_level_details/structure_level_detail', locals: { structure_level_detail: @structure_level_detail } %>
+    <div class="mx-auto w-full flex flex-row-reverse gap-4">
+      <div>
+        <%= link_to "Edit this structure_level_detail", edit_admin_structure_level_detail_path(@structure_level_detail), class: "mt-2 rounded-lg py-3 px-5 bg-orange-300 inline-block font-medium" %>
+      </div>
+      <div>
+        <%= button_to "Destroy this structure_level_detail", admin_structure_level_detail_path(@structure_level_detail), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-red-300 font-medium" %>
+      </div>
+      <div>
+        <%= link_to "Back to structure_level_details", admin_structure_level_details_path, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      </div>
+    </div>
+  </div>
+</div>

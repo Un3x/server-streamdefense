@@ -3,6 +3,7 @@
 class Structure < ApplicationRecord
   include Rails.application.routes.url_helpers
 
+  has_many :structure_level_details
   has_many :structure_requirements
   has_many :structure_formulas
   has_one_attached :icon

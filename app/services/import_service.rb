@@ -42,6 +42,17 @@ class ImportService
     end
   end
 
+  def import_structure_level_detail(row)
+    structure_level_detail = StructureLevelDetail.find_or_initialize_by(
+      structure: Structure.find_by(key: row[:structure]),
+      level: row[:level]
+    )
+
+    structure_level_detail.description = row[:description]
+
+    structure_level_detail.save!
+  end
+
   def import_structure_requirement(row)
     StructureRequirement.find_or_create_by(
       structure: Structure.find_by(key: row[:structure]),

@@ -14,6 +14,7 @@ class StructuresFormatter
       id: idle_game_structure.id,
       key: idle_game_structure.structure.key,
       name: idle_game_structure.structure.name,
+      icon_url: idle_game_structure.structure.icon_url,
       description: idle_game_structure.structure.description,
       level: idle_game_structure.level,
       visible: idle_game_structure.visible,

@@ -6,7 +6,8 @@ class ResourcesFormatter
       hash[idle_game_resource.resource.key] = {
         amount: idle_game_resource.quantity,
         rate: idle_game_resource.rate,
-        storage: idle_game_resource.storage
+        storage: idle_game_resource.storage,
+        icon_url: idle_game_resource.resource.icon_url
       }
     end
   end

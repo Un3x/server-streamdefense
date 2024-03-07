@@ -5,4 +5,9 @@
   <p class="my-5">
     <%= t('.name', name: resource.name).html_safe %>
   </p>
+  <% if resource.icon.attached? %>
+    <p class="my-5">
+      <img class="h-12" src="<%= url_for(resource.icon) %>"/>
+    </p>
+  <% end %>
 </div>

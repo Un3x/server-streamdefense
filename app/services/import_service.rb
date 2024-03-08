@@ -16,9 +16,12 @@ class ImportService
 
   def import_resource(row)
     resource = Resource.find_or_create_by(
-      key: row[:key],
-      name: row[:name]
+      key: row[:key]
     )
+
+    resource.update!(name: row[:name])
+
+    resource.save!
 
     IdleGame.all.each do |idle_game|
       IdleGameResource.find_or_create_by(resource:, idle_game:) do |resource_game|
@@ -29,11 +32,10 @@ class ImportService
 
   def import_structure(row)
     structure = Structure.find_or_create_by(
-      key: row[:key],
-      name: row[:name]
+      key: row[:key]
     )
 
-    structure.update!(description: row[:description])
+    structure.update!(name: row[:name], description: row[:description])
 
     IdleGame.all.each do |idle_game|
       IdleGameStructure.find_or_create_by(structure:, idle_game:) do |resource_game|
@@ -54,12 +56,15 @@ class ImportService
   end
 
   def import_structure_requirement(row)
-    StructureRequirement.find_or_create_by(
+    structure_requirement = StructureRequirement.find_or_create_by(
       structure: Structure.find_by(key: row[:structure]),
       required_structure: Structure.find_by(key: row[:required_structure]),
-      required_level: row[:level],
       restriction: row[:restriction] || 'above'
     )
+
+    structure_requirement.update!(required_level: row[:level])
+
+    structure_requirement.save!
   end
 
   def import_structure_formula(row)

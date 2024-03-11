@@ -12,6 +12,8 @@ class IdleGameResource < ApplicationRecord
   def rate
     result = 0
     idle_game.idle_game_structures.each do |idle_game_structure|
+      next unless idle_game_structure.visible
+
       formula = idle_game_structure.structure.structure_formulas.for_resource(resource).for_category('production').first
       result += formula.calculate(idle_game_structure.level) if formula.present?
     end
@@ -21,6 +23,8 @@ class IdleGameResource < ApplicationRecord
   def storage
     result = 0
     idle_game.idle_game_structures.each do |idle_game_structure|
+      next unless idle_game_structure.visible
+
       formula = idle_game_structure.structure.structure_formulas.for_resource(resource).for_category('storage').first
       result += formula.calculate(idle_game_structure.level) if formula.present?
     end

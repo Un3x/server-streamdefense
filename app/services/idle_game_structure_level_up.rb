@@ -36,7 +36,6 @@ class IdleGameStructureLevelUp
 
     IdleSynchronizor.new(idle_game_structure.idle_game).perform
     refund_for_level(idle_game_structure.level - 1)
-    destroy_related_structures
 
     idle_game_structure.update!(level: idle_game_structure.level - 1, leveling_job_id: nil, leveling_at: nil)
   end

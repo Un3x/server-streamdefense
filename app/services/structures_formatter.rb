@@ -51,25 +51,27 @@ class StructuresFormatter
       duration: idle_game_structure.structure.structure_formulas.for_category('duration').first&.calculate(idle_game_structure.level),
       costs: format_costs_for_structure(idle_game_structure),
       unlocks: idle_game_structure.next_level_unlocks,
-      locks: idle_game_structure.next_level_locks
+      locks: idle_game_structure.next_level_locks,
+      production: format_production_for_structure(idle_game_structure, 1),
+      storage: format_storage_for_structure(idle_game_structure, 1)
     }
   end
 
-  def format_costs_for_structure(idle_game_structure)
+  def format_costs_for_structure(idle_game_structure, level_adjustment = 0)
     idle_game_structure.structure.structure_formulas.for_category('cost').each_with_object({}) do |formula, hash|
-      hash[formula.resource.key] = formula.calculate(idle_game_structure.level)
+      hash[formula.resource.key] = formula.calculate(idle_game_structure.level + level_adjustment)
     end
   end
 
-  def format_production_for_structure(idle_game_structure)
+  def format_production_for_structure(idle_game_structure, level_adjustment = 0)
     idle_game_structure.structure.structure_formulas.for_category('production').each_with_object({}) do |formula, hash|
-      hash[formula.resource.key] = formula.calculate(idle_game_structure.level)
+      hash[formula.resource.key] = formula.calculate(idle_game_structure.level + level_adjustment)
     end
   end
 
-  def format_storage_for_structure(idle_game_structure)
+  def format_storage_for_structure(idle_game_structure, level_adjustment = 0)
     idle_game_structure.structure.structure_formulas.for_category('storage').each_with_object({}) do |formula, hash|
-      hash[formula.resource.key] = formula.calculate(idle_game_structure.level)
+      hash[formula.resource.key] = formula.calculate(idle_game_structure.level + level_adjustment)
     end
   end
 end

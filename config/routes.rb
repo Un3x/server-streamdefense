@@ -3,6 +3,7 @@
 Rails.application.routes.draw do
   get 'idle-game/state', to: 'idle_game#state', as: 'idle_game_state'
   get 'idle-game-structure/level-up', to: 'idle_game_structure#level_up', as: 'idle_game_structure_level_up'
+  get 'idle-game-structure/level-down', to: 'idle_game_structure#level_down', as: 'idle_game_structure_level_down'
   get 'idle-game-structure/cancel', to: 'idle_game_structure#cancel', as: 'idle_game_structure_cancel'
 
   namespace :admin do

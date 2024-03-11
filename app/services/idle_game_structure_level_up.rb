@@ -21,8 +21,8 @@ class IdleGameStructureLevelUp
   def cancel
     return unless idle_game_structure.leveling_job_id.present?
 
-    cancel_leveling_job
-    refund_for_level_down
+    cancel_leveling_job(idle_game_structure)
+    refund_for_level(idle_game_structure.level)
     idle_game_structure.update!(leveling_job_id: nil, leveling_at: nil)
   end
 
@@ -31,15 +31,34 @@ class IdleGameStructureLevelUp
     idle_game_structure.update!(level: idle_game_structure.level + 1, leveling_job_id: nil, leveling_at: nil)
   end
 
+  def level_down
+    return unless idle_game_structure.level >= 1
+
+    IdleSynchronizor.new(idle_game_structure.idle_game).perform
+    refund_for_level(idle_game_structure.level - 1)
+    destroy_related_structures
+
+    idle_game_structure.update!(level: idle_game_structure.level - 1, leveling_job_id: nil, leveling_at: nil)
+  end
+
   private
 
-  def cancel_leveling_job
-    job = retrieve_active_leveling_job
+  def destroy_related_structures
+    StructureRequirement.for_required_structure(idle_game_structure.structure).for_restriction('above').for_required_level(idle_game_structure.level).each do |requirement|
+      destroyed_structure = IdleGameStructure.find_by(idle_game: idle_game_structure.idle_game, structure: requirement.structure)
+
+      destroyed_structure.update!(level: 0)
+      cancel_leveling_job(destroyed_structure) if destroyed_structure.leveling_job_id.present?
+    end
+  end
+
+  def cancel_leveling_job(leveling_structure)
+    job = retrieve_active_leveling_job(leveling_structure)
     job.delete
   end
 
-  def retrieve_active_leveling_job
-    SolidQueue::Job.find_by(active_job_id: idle_game_structure.leveling_job_id)
+  def retrieve_active_leveling_job(leveling_structure)
+    SolidQueue::Job.find_by(active_job_id: leveling_structure.leveling_job_id)
   end
 
   def calculate_leveling_duration
@@ -70,9 +89,9 @@ class IdleGameStructureLevelUp
     end
   end
 
-  def refund_for_level_down
+  def refund_for_level(level)
     costs.each do |formula|
-      price = formula.calculate(idle_game_structure.level)
+      price = formula.calculate(level)
       resource = idle_game_structure.idle_game.idle_game_resources.find_by(resource: formula.resource)
 
       resource.update!(quantity: [resource.quantity + price, resource.storage].min)

@@ -28,6 +28,18 @@ class IdleGameStructureController < ApplicationController
     }
   end
 
+  def level_down
+    last_sync = @idle_game_structure.idle_game.last_sync
+
+    IdleSynchronizor.new(@idle_game_structure.idle_game).perform
+    IdleGameStructureLevelUp.new(@idle_game_structure).level_down
+
+    render json: {
+      status: 200,
+      data: IdleGameFormatter.new(@idle_game_structure.idle_game, last_sync).format_idle_game
+    }
+  end
+
   private
 
   def validate_params

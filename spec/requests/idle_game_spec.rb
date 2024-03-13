@@ -93,8 +93,8 @@ RSpec.describe 'Idle controller', type: :request do
           expect(JSON.parse(response.body)['data']['resources'][resource.key]['rate']).to eq(structure_production.calculate(0))
           expect(JSON.parse(response.body)['data']['resources'][resource.key]['amount']).to eq(structure_production.calculate(0) * 5)
           expect(JSON.parse(response.body)['data']['resources'][resource.key]['storage']).to eq(structure_storage.calculate(0))
-          expect(JSON.parse(response.body)['data']['structures'][structure.key]['levelUp']['duration']).to eq(structure_duration.calculate(0))
-          expect(JSON.parse(response.body)['data']['structures'][structure.key]['levelUp']['costs'][resource.key]).to eq(structure_cost.calculate(0))
+          expect(JSON.parse(response.body)['data']['structures'][structure.key]['level_up']['duration']).to eq(structure_duration.calculate(0))
+          expect(JSON.parse(response.body)['data']['structures'][structure.key]['level_up']['costs'][resource.key]).to eq(structure_cost.calculate(0))
           expect(JSON.parse(response.body)['data']['structures'][structure.key]['visible']).to be(true)
         end
       end

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class IdleGameStructure < ApplicationRecord
+  delegate :key, :name, :icon_url, to: :structure
+
   belongs_to :structure
   belongs_to :idle_game
 
@@ -15,6 +17,23 @@ class IdleGameStructure < ApplicationRecord
 
   def leveling_in
     leveling_at.present? ? (leveling_at - Time.now).floor : nil
+  end
+
+  def format
+    {
+      id:,
+      key:,
+      name:,
+      icon_url:,
+      description:,
+      image_url:,
+      level:,
+      visible:,
+      leveling_in:,
+      level_up:,
+      production:,
+      storage:
+    }
   end
 
   def recalculate

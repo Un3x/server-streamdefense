@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class IdleGameResource < ApplicationRecord
+  delegate :key, :name, :icon_url, to: :resource
   belongs_to :idle_game
   belongs_to :resource
 
@@ -8,6 +9,16 @@ class IdleGameResource < ApplicationRecord
   validates :resource, presence: true
 
   scope :for_idle_game, ->(idle_game) { where(idle_game:) }
+
+  def format
+    {
+      name:,
+      amount: quantity,
+      rate:,
+      storage:,
+      icon_url:
+    }
+  end
 
   def recalculate
     update!(

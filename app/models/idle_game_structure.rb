@@ -9,16 +9,12 @@ class IdleGameStructure < ApplicationRecord
 
   scope :for_idle_game, ->(idle_game) { where(idle_game:) }
 
-  def next_level_unlocks
-    StructureRequirement.for_required_structure(structure).for_restriction('above').for_required_level(level + 1).map(&:structure).map(&:key)
-  end
-
-  def next_level_locks
-    StructureRequirement.for_required_structure(structure).for_restriction('below').for_required_level(level + 1).map(&:structure).map(&:key)
-  end
-
   def leveling?
     leveling_at.present?
+  end
+
+  def leveling_in
+    leveling_at.present? ? (leveling_at - Time.now).floor : nil
   end
 
   def recalculate
@@ -27,7 +23,8 @@ class IdleGameStructure < ApplicationRecord
       description: recalculate_description,
       image_url: recalculate_image_url,
       production: recalculate_category('production'),
-      storage: recalculate_category('storage')
+      storage: recalculate_category('storage'),
+      level_up: recalculate_level_up
     )
   end
 
@@ -48,9 +45,28 @@ class IdleGameStructure < ApplicationRecord
     true
   end
 
-  def recalculate_category(category)
+  def recalculate_category(category, level_offset = 0)
     structure.structure_formulas.for_category(category).each_with_object({}) do |formula, hash|
-      hash[formula.resource.key] = formula.calculate(level)
+      hash[formula.resource.key] = formula.calculate(level + level_offset)
     end
+  end
+
+  def recalculate_next_level_unlocks
+    StructureRequirement.for_required_structure(structure).for_restriction('above').for_required_level(level + 1).map(&:structure).map(&:key)
+  end
+
+  def recalculate_next_level_locks
+    StructureRequirement.for_required_structure(structure).for_restriction('below').for_required_level(level + 1).map(&:structure).map(&:key)
+  end
+
+  def recalculate_level_up
+    {
+      duration: structure.structure_formulas.for_category('duration').first&.calculate(level),
+      costs: recalculate_category('cost'),
+      unlocks: recalculate_next_level_unlocks,
+      locks: recalculate_next_level_locks,
+      production: recalculate_category('production', 1),
+      storage: recalculate_category('storage', 1)
+    }
   end
 end

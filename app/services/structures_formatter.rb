@@ -2,7 +2,7 @@
 
 class StructuresFormatter
   def format_structures_for_idle_game(idle_game)
-    IdleGameStructure.for_idle_game(idle_game).order(:id).each_with_object({}) do |idle_game_structure, hash|
+    idle_game.idle_game_structures.order(:id).each_with_object({}) do |idle_game_structure, hash|
       hash[idle_game_structure.structure.key] = format_structure(idle_game_structure)
     end
   end

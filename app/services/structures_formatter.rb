@@ -21,7 +21,7 @@ class StructuresFormatter
       visible: idle_game_structure.visible,
       leveling_in: leveling_in(idle_game_structure),
       levelUp: format_level_up_for_structure(idle_game_structure),
-      production: format_production_for_structure(idle_game_structure),
+      production: idle_game_structure.production,
       storage: format_storage_for_structure(idle_game_structure)
     }
   end

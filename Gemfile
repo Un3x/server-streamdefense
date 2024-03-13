@@ -19,6 +19,7 @@ gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[windows jruby]
 
 group :development, :test do
+  gem 'bullet', require: true
   gem 'factory_bot_rails', '~> 6.4'
   gem 'ffaker'
   gem 'guard'
@@ -35,10 +36,10 @@ end
 group :development do
   gem 'web-console'
 
+  gem 'rack-mini-profiler', require: false
   gem 'rubocop-checkstyle_formatter', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
-  gem 'rack-mini-profiler', require: false
 end
 
 group :test do

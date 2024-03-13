@@ -5,7 +5,6 @@ class IdleGameController < ApplicationController
   before_action :identity_channel
   before_action :identify_user
   before_action :fetch_idle_game
-  before_action :init_idle_game_configuration
 
   def state
     last_sync = @idle_game.last_sync
@@ -39,9 +38,5 @@ class IdleGameController < ApplicationController
     @idle_game = IdleGame
                  .joins(:channel, :user, :idle_game_resources, :idle_game_structures)
                  .find_by(user: @user, channel: @channel)
-  end
-
-  def init_idle_game_configuration
-    IdleGameConfiguration.instance.idle_game = @idle_game
   end
 end

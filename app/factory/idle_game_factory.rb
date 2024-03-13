@@ -12,6 +12,8 @@ class IdleGameFactory
     @idle_game = IdleGame.create!(user:, channel:, last_sync: Time.now)
     create_idle_game_resources
     create_idle_game_structures
+    @idle_game.idle_game_structures.each(&:recalculate)
+
     @idle_game
   end
 

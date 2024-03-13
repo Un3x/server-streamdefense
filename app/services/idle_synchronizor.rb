@@ -9,12 +9,12 @@ class IdleSynchronizor
 
   def perform
     update_sync_date
-    update_resources if time_elapsed.present?
+    produce_resources if time_elapsed.present?
   end
 
   private
 
-  def update_resources
+  def produce_resources
     idle_game.idle_game_resources.each do |idle_game_resource|
       idle_game_resource.update!(quantity: [idle_game_resource.quantity + (idle_game_resource.rate * time_elapsed), idle_game_resource.storage].min)
     end

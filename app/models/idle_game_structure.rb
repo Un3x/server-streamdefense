@@ -17,14 +17,20 @@ class IdleGameStructure < ApplicationRecord
     StructureRequirement.for_required_structure(structure).for_restriction('below').for_required_level(level + 1).map(&:structure).map(&:key)
   end
 
-  def visible
+  def leveling?
+    leveling_at.present?
+  end
+
+  def recalculate
+    update!(visible: recalculate_visibility)
+  end
+
+  private
+
+  def recalculate_visibility
     IdleGameConfiguration.instance.structure(structure.key).structure_requirements.each do |requirement|
       return false unless requirement.meets_requirements(self)
     end
     true
-  end
-
-  def leveling?
-    leveling_at.present?
   end
 end

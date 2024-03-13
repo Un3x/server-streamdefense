@@ -3,8 +3,6 @@
 class IdleGameConfiguration
   include Singleton
 
-  attr_accessor :idle_game
-
   def resources
     @resources || load_resources
   end

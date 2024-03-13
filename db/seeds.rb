@@ -7,7 +7,7 @@ User.create(
   role: 'ADMIN'
 )
 
-return unless %w[development].include?(Rails.env)
+return 
 
 # Players
 

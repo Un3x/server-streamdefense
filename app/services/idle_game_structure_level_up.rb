@@ -29,7 +29,8 @@ class IdleGameStructureLevelUp
   def level_up
     IdleSynchronizor.new(idle_game_structure.idle_game).perform
     idle_game_structure.update!(level: idle_game_structure.level + 1, leveling_job_id: nil, leveling_at: nil)
-    IdleGameCalculator.new(idle_game_structure.idle_game).recalculate
+
+    IdleGameRecalculator.new(idle_game_structure.idle_game).recalculate
   end
 
   # rubocop:disable Metrics/AbcSize
@@ -40,7 +41,7 @@ class IdleGameStructureLevelUp
     refund_for_level(idle_game_structure.level - 1)
 
     idle_game_structure.update!(level: idle_game_structure.level - 1, leveling_job_id: nil, leveling_at: nil)
-    IdleGameCalculator.new(idle_game_structure.idle_game).recalculate
+    IdleGameRecalculator.new(idle_game_structure.idle_game).recalculate
   end
   # rubocop:enable Metrics/AbcSize
 

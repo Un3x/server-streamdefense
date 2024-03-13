@@ -22,10 +22,22 @@ class IdleGameStructure < ApplicationRecord
   end
 
   def recalculate
-    update!(visible: recalculate_visibility)
+    update!(
+      visible: recalculate_visibility,
+      description: recalculate_description,
+      image_url: recalculate_image_url
+    )
   end
 
   private
+
+  def recalculate_description
+    structure.structure_level_detail(level)&.description.presence || structure.description
+  end
+
+  def recalculate_image_url
+    structure.structure_level_detail(level)&.image_url
+  end
 
   def recalculate_visibility
     IdleGameConfiguration.instance.structure(structure.key).structure_requirements.each do |requirement|

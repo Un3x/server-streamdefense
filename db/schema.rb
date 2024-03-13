@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_13_154911) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_13_161236) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -69,6 +69,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_13_154911) do
     t.string "leveling_job_id"
     t.datetime "leveling_at", precision: nil
     t.boolean "visible", default: false, null: false
+    t.string "image_url"
+    t.text "description"
     t.index ["idle_game_id"], name: "index_idle_game_structures_on_idle_game_id"
     t.index ["structure_id"], name: "index_idle_game_structures_on_structure_id"
   end

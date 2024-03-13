@@ -8,7 +8,7 @@ class IdleGameRecalculator
   end
 
   def recalculate
-    idle_game.idle_game_structures.each(&:recalculate)
-    idle_game.idle_game_resources.each(&:recalculate)
+    idle_game.idle_game_structures.reload.each(&:recalculate)
+    idle_game.idle_game_resources.reload.each(&:recalculate)
   end
 end

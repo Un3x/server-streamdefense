@@ -42,15 +42,6 @@ class IdleGameStructureLevelUp
 
   private
 
-  def destroy_related_structures
-    StructureRequirement.for_required_structure(idle_game_structure.structure).for_restriction('above').for_required_level(idle_game_structure.level).each do |requirement|
-      destroyed_structure = IdleGameStructure.find_by(idle_game: idle_game_structure.idle_game, structure: requirement.structure)
-
-      destroyed_structure.update!(level: 0)
-      cancel_leveling_job(destroyed_structure) if destroyed_structure.leveling_job_id.present?
-    end
-  end
-
   def cancel_leveling_job(leveling_structure)
     job = retrieve_active_leveling_job(leveling_structure)
     job.delete

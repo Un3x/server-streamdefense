@@ -9,7 +9,14 @@ class IdleGameResource < ApplicationRecord
 
   scope :for_idle_game, ->(idle_game) { where(idle_game:) }
 
-  def rate
+  def recalculate
+    update!(
+      rate: recalculate_rate,
+      storage: recalculate_storage
+    )
+  end
+
+  def recalculate_rate
     result = 0
     idle_game.idle_game_structures.each do |idle_game_structure|
       next unless idle_game_structure.visible
@@ -20,7 +27,7 @@ class IdleGameResource < ApplicationRecord
     result
   end
 
-  def storage
+  def recalculate_storage
     result = 0
     idle_game.idle_game_structures.each do |idle_game_structure|
       next unless idle_game_structure.visible

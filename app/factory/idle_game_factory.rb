@@ -13,6 +13,7 @@ class IdleGameFactory
     create_idle_game_resources
     create_idle_game_structures
     @idle_game.idle_game_structures.each(&:recalculate)
+    IdleGameRecalculator.new(idle_game).recalculate
 
     @idle_game
   end

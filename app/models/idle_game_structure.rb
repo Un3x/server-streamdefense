@@ -26,7 +26,8 @@ class IdleGameStructure < ApplicationRecord
       visible: recalculate_visibility,
       description: recalculate_description,
       image_url: recalculate_image_url,
-      production: recalculate_production
+      production: recalculate_category('production'),
+      storage: recalculate_category('storage')
     )
   end
 
@@ -47,8 +48,8 @@ class IdleGameStructure < ApplicationRecord
     true
   end
 
-  def recalculate_production
-    structure.structure_formulas.for_category('production').each_with_object({}) do |formula, hash|
+  def recalculate_category(category)
+    structure.structure_formulas.for_category(category).each_with_object({}) do |formula, hash|
       hash[formula.resource.key] = formula.calculate(level)
     end
   end

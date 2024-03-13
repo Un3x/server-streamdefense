@@ -18,7 +18,7 @@ class IdleGameStructure < ApplicationRecord
   end
 
   def visible
-    structure.structure_requirements.each do |requirement|
+    IdleGameConfiguration.instance.structure(structure.key).structure_requirements.each do |requirement|
       return false unless requirement.meets_requirements(self)
     end
     true

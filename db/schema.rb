@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_13_170048) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_14_132334) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -56,6 +56,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_13_170048) do
     t.datetime "updated_at", null: false
     t.integer "rate", default: 0, null: false
     t.integer "storage", default: 0, null: false
+    t.string "key"
+    t.string "name"
+    t.string "icon_url"
     t.index ["idle_game_id"], name: "index_idle_game_resources_on_idle_game_id"
     t.index ["resource_id"], name: "index_idle_game_resources_on_resource_id"
   end

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class IdleGameResource < ApplicationRecord
-  delegate :key, :name, :icon_url, to: :resource
   belongs_to :idle_game
   belongs_to :resource
 
@@ -23,7 +22,10 @@ class IdleGameResource < ApplicationRecord
   def recalculate
     update!(
       rate: recalculate_rate,
-      storage: recalculate_storage
+      storage: recalculate_storage,
+      key: resource.key,
+      name: resource.name,
+      icon_url: resource.icon_url
     )
   end
 

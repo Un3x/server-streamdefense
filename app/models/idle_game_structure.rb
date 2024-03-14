@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class IdleGameStructure < ApplicationRecord
-  delegate :key, :name, :icon_url, to: :structure
-
   belongs_to :structure
   belongs_to :idle_game
 
@@ -43,7 +41,10 @@ class IdleGameStructure < ApplicationRecord
       image_url: recalculate_image_url,
       production: recalculate_category('production'),
       storage: recalculate_category('storage'),
-      level_up: recalculate_level_up
+      level_up: recalculate_level_up,
+      key: structure.key,
+      name: structure.name,
+      icon_url: structure.icon_url
     )
   end
 

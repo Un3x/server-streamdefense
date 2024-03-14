@@ -4,7 +4,7 @@ class IdleGameController < ApplicationController
   before_action :validate_params
   before_action :identity_channel
   before_action :identify_user
-  before_action :fetch_idle_game
+  before_action :idle_game
 
   def state
     last_sync = @idle_game.last_sync
@@ -32,11 +32,8 @@ class IdleGameController < ApplicationController
     @user = User.create!(twitch_id: params[:viewer_id], nickname: params[:viewer_display_name], role: 'USER') if @user.nil?
   end
 
-  def fetch_idle_game
-    IdleGameFactory.new(@user, @channel).perform if IdleGame.find_by(user: @user, channel: @channel).nil?
-
-    @idle_game = IdleGame
-                 .joins(:channel, :user, :idle_game_resources, :idle_game_structures)
-                 .find_by(user: @user, channel: @channel)
+  def idle_game
+    @idle_game = IdleGame.find_by(user: @user, channel: @channel)
+    @idle_game ||= IdleGameFactory.new(@user, @channel).perform
   end
 end

@@ -17,7 +17,7 @@ class IdleGameStructureLevelUp
 
     idle_game_structure.update!(leveling_job_id: job.job_id, leveling_at: Time.now + calculate_leveling_duration)
 
-    IdleGameRecalculator.new(idle_game_structure.idle_game).recalculate
+    IdleGameRecalculator.new(idle_game_structure.idle_game).recalculate_visibility
   end
 
   def cancel
@@ -26,6 +26,8 @@ class IdleGameStructureLevelUp
     cancel_leveling_job(idle_game_structure)
     refund_for_level(idle_game_structure.level)
     idle_game_structure.update!(leveling_job_id: nil, leveling_at: nil)
+
+    IdleGameRecalculator.new(idle_game_structure.idle_game).recalculate_visibility
   end
 
   def level_up

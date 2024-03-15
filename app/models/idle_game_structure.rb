@@ -48,6 +48,13 @@ class IdleGameStructure < ApplicationRecord
     )
   end
 
+  def recalculate_visibility
+    IdleGameConfiguration.instance.structure(structure.key).structure_requirements.each do |requirement|
+      return false unless requirement.meets_requirements(self)
+    end
+    true
+  end
+
   private
 
   def recalculate_description
@@ -56,13 +63,6 @@ class IdleGameStructure < ApplicationRecord
 
   def recalculate_image_url
     structure.structure_level_detail(level)&.image_url
-  end
-
-  def recalculate_visibility
-    IdleGameConfiguration.instance.structure(structure.key).structure_requirements.each do |requirement|
-      return false unless requirement.meets_requirements(self)
-    end
-    true
   end
 
   def recalculate_category(category, level_offset = 0)

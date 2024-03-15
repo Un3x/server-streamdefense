@@ -85,6 +85,7 @@ en:
       resource:
         title: Detail
         name: <strong class="font-medium mb-1">Name :</strong> %{name}
+        season: <strong class="font-medium mb-1">Season :</strong> %{season}
     idle_game_resources:
       index:
         idle_game: Idle Game
@@ -102,6 +103,7 @@ en:
         title: Detail
         name: <strong class="font-medium mb-1">Name :</strong> %{name}
         description: <strong class="font-medium mb-1">Description :</strong> %{description}
+        season: <strong class="font-medium mb-1">Season :</strong> %{season}
       structure_requirements:
         required_structure: Required Structure 
         required_level: Required Level
@@ -145,6 +147,12 @@ en:
         required_structure: <strong class="font-medium mb-1">Required Structure :</strong> %{required_structure}
         required_level: <strong class="font-medium mb-1">Required Level :</strong> %{required_level}
         restriction: <strong class="font-medium mb-1">Restriction :</strong> %{restriction}
+
+    seasons:
+      season:
+        name: <strong class="font-medium mb-1">Name :</strong> %{name}
+        speed: <strong class="font-medium mb-1">Speed :</strong> %{speed}
+        active: <strong class="font-medium mb-1">Active :</strong> %{active}
 
     structure_level_details:
       structure_level_detail:

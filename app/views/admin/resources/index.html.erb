@@ -16,7 +16,7 @@
     <table class="border-collapse w-full border border-slate-500 bg-slate-800 text-sm shadow-sm">
       <thead>
         <tr>
-          <% %w[name action].each do |column| %>
+          <% %w[name season action].each do |column| %>
             <th class="w-1/2 border border-slate-600 font-semibold p-4 text-slate-200 text-left">
               <%= t(".#{column}") %>
             </th>
@@ -28,6 +28,9 @@
         <tr>
             <td class="border border-slate-700 p-4 text-slate-400">
               <%= resource.name %>
+            </td>
+            <td class="border border-slate-700 p-4 text-slate-400">
+              <%= resource.season&.name %>
             </td>
             <td class="border border-slate-700 p-4 text-slate-400 flex">
               <%= link_to "Show", admin_resource_path(resource), class: "rounded-lg py-1 px-2 inline-block font-medium" %>

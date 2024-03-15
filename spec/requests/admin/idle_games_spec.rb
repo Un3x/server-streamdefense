@@ -21,12 +21,14 @@ RSpec.describe '/idle_games', type: :request do
   let(:valid_attributes) do
     {
       user_id: user.id,
-      channel_id: channel.id
+      channel_id: channel.id,
+      season_id: season.id
     }
   end
 
   let!(:user) { create(:user, role: 'ADMIN') }
   let!(:channel) { create(:channel) }
+  let!(:season) { create(:season, active: true) }
 
   before do
     sign_in user

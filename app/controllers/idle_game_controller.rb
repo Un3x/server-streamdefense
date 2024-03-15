@@ -33,7 +33,7 @@ class IdleGameController < ApplicationController
   end
 
   def idle_game
-    @idle_game = IdleGame.find_by(user: @user, channel: @channel)
+    @idle_game = IdleGame.find_by(user: @user, channel: @channel, season: Season.find_by(active: true))
     @idle_game ||= IdleGameFactory.new(@user, @channel).perform
   end
 end

@@ -9,6 +9,8 @@ RSpec.describe 'Import method for resources and structures', type: :request do
     sign_in user
   end
 
+  let!(:season) { create(:season, active: true) }
+
   before :each do
     @resources_file = fixture_file_upload('resources.csv', 'text/csv')
     @structures_file = fixture_file_upload('structures.csv', 'text/csv')

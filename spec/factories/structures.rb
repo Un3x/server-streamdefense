@@ -7,5 +7,6 @@ FactoryBot.define do
     key { generate(:structure_key) }
     name { key.humanize }
     description { 'MyString' }
+    season { association(:season) }
   end
 end

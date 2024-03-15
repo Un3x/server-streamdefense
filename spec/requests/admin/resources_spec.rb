@@ -21,7 +21,8 @@ RSpec.describe '/resources', type: :request do
   let(:valid_attributes) do
     {
       key: 'my-string',
-      name: 'MyString'
+      name: 'MyString',
+      season_id: season.id
     }
   end
 
@@ -32,6 +33,7 @@ RSpec.describe '/resources', type: :request do
   end
 
   let!(:user) { create(:user, role: 'ADMIN') }
+  let!(:season) { create(:season, active: true) }
 
   before do
     sign_in user

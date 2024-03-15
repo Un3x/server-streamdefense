@@ -8,6 +8,9 @@
   <p class="my-5">
     <%= t('.description', description: structure.description).html_safe %>
   </p>
+  <p class="my-5">
+    <%= t('.season', season: structure.season&.name).html_safe %>
+  </p>
   <% if structure.icon.attached? %>
     <p class="my-5">
       <img class="h-12" src="<%= url_for(structure.icon) %>"/>

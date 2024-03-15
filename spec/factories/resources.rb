@@ -6,5 +6,6 @@ FactoryBot.define do
   factory :resource, class: 'Resource' do
     key { generate(:resource_key) }
     name { key.humanize }
+    season { association(:season) }
   end
 end

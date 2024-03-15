@@ -14,26 +14,27 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe '/structures', type: :request do
+RSpec.describe '/seasons', type: :request do
   # This should return the minimal set of attributes required to create a valid
-  # Structure. As you add validations to Structure, be sure to
+  # Season. As you add validations to Season, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
     {
-      key: 'my-string',
       name: 'MyString',
-      season_id: season.id
+      speed: 1,
+      active: false
     }
   end
 
   let(:invalid_attributes) do
     {
-      name: nil
+      name: nil,
+      speed: nil,
+      active: false
     }
   end
 
   let!(:user) { create(:user, role: 'ADMIN') }
-  let!(:season) { create(:season, active: true) }
 
   before do
     sign_in user
@@ -41,58 +42,58 @@ RSpec.describe '/structures', type: :request do
 
   describe 'GET /index' do
     it 'renders a successful response' do
-      Structure.create! valid_attributes
-      get admin_structures_url
+      Season.create! valid_attributes
+      get admin_seasons_url
       expect(response).to be_successful
     end
   end
 
   describe 'GET /show' do
     it 'renders a successful response' do
-      structure = Structure.create! valid_attributes
-      get admin_structure_url(structure)
+      season = Season.create! valid_attributes
+      get admin_season_url(season)
       expect(response).to be_successful
     end
   end
 
   describe 'GET /new' do
     it 'renders a successful response' do
-      get new_admin_structure_url
+      get new_admin_season_url
       expect(response).to be_successful
     end
   end
 
   describe 'GET /edit' do
     it 'renders a successful response' do
-      structure = Structure.create! valid_attributes
-      get edit_admin_structure_url(structure)
+      season = Season.create! valid_attributes
+      get edit_admin_season_url(season)
       expect(response).to be_successful
     end
   end
 
   describe 'POST /create' do
     context 'with valid parameters' do
-      it 'creates a new Structure' do
+      it 'creates a new Season' do
         expect do
-          post admin_structures_url, params: { structure: valid_attributes }
-        end.to change(Structure, :count).by(1)
+          post admin_seasons_url, params: { season: valid_attributes }
+        end.to change(Season, :count).by(1)
       end
 
-      it 'redirects to the created structure' do
-        post admin_structures_url, params: { structure: valid_attributes }
-        expect(response).to redirect_to(admin_structure_url(Structure.last))
+      it 'redirects to the created season' do
+        post admin_seasons_url, params: { season: valid_attributes }
+        expect(response).to redirect_to(admin_season_url(Season.last))
       end
     end
 
     context 'with invalid parameters' do
-      it 'does not create a new Structure' do
+      it 'does not create a new Season' do
         expect do
-          post admin_structures_url, params: { structure: invalid_attributes }
-        end.to change(Structure, :count).by(0)
+          post admin_seasons_url, params: { season: invalid_attributes }
+        end.to change(Season, :count).by(0)
       end
 
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
-        post admin_structures_url, params: { structure: invalid_attributes }
+        post admin_seasons_url, params: { season: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
@@ -102,46 +103,47 @@ RSpec.describe '/structures', type: :request do
     context 'with valid parameters' do
       let(:new_attributes) do
         {
-          name: 'NewName'
+          name: 'MyString 2'
         }
       end
 
-      it 'updates the requested structure' do
-        structure = Structure.create! valid_attributes
-        patch admin_structure_url(structure), params: { structure: new_attributes }
-        structure.reload
-        expect(structure.name).to eq('NewName')
+      it 'updates the requested season' do
+        season = Season.create! valid_attributes
+        patch admin_season_url(season), params: { season: new_attributes }
+        season.reload
+
+        expect(season.name).to eq('MyString 2')
       end
 
-      it 'redirects to the structure' do
-        structure = Structure.create! valid_attributes
-        patch admin_structure_url(structure), params: { structure: new_attributes }
-        structure.reload
-        expect(response).to redirect_to(admin_structure_url(structure))
+      it 'redirects to the season' do
+        season = Season.create! valid_attributes
+        patch admin_season_url(season), params: { season: new_attributes }
+        season.reload
+        expect(response).to redirect_to(admin_season_url(season))
       end
     end
 
     context 'with invalid parameters' do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-        structure = Structure.create! valid_attributes
-        patch admin_structure_url(structure), params: { structure: invalid_attributes }
+        season = Season.create! valid_attributes
+        patch admin_season_url(season), params: { season: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
 
   describe 'DELETE /destroy' do
-    it 'destroys the requested structure' do
-      structure = Structure.create! valid_attributes
+    it 'destroys the requested season' do
+      season = Season.create! valid_attributes
       expect do
-        delete admin_structure_url(structure)
-      end.to change(Structure, :count).by(-1)
+        delete admin_season_url(season)
+      end.to change(Season, :count).by(-1)
     end
 
-    it 'redirects to the structures list' do
-      structure = Structure.create! valid_attributes
-      delete admin_structure_url(structure)
-      expect(response).to redirect_to(admin_structures_url)
+    it 'redirects to the seasons list' do
+      season = Season.create! valid_attributes
+      delete admin_season_url(season)
+      expect(response).to redirect_to(admin_seasons_url)
     end
   end
 end

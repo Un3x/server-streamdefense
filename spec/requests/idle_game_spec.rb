@@ -12,8 +12,9 @@ RSpec.describe 'Idle controller', type: :request do
   after do
     Timecop.return
   end
-  let!(:structure) { create(:structure, key: 'struct') }
-  let!(:resource) { create(:resource, key: 'food') }
+  let!(:season) { create(:season, active: true) }
+  let!(:structure) { create(:structure, key: 'struct', season:) }
+  let!(:resource) { create(:resource, key: 'food', season:) }
 
   let!(:structure_production) { create(:linear_formula, :with_production, structure:, resource:) }
   let!(:structure_storage) { create(:linear_formula, :with_storage, structure:, resource:, intercept: 100) }

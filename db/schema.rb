@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_14_132817) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_15_151648) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -90,7 +90,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_132817) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "last_sync", precision: nil
+    t.bigint "season_id"
     t.index ["channel_id"], name: "index_idle_games_on_channel_id"
+    t.index ["season_id"], name: "index_idle_games_on_season_id"
     t.index ["user_id"], name: "index_idle_games_on_user_id"
   end
 
@@ -99,7 +101,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_132817) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "key", null: false
-    t.index ["key"], name: "index_resources_on_key", unique: true
+    t.bigint "season_id"
+    t.index ["season_id"], name: "index_resources_on_season_id"
+  end
+
+  create_table "seasons", force: :cascade do |t|
+    t.string "name"
+    t.integer "speed"
+    t.boolean "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "solid_queue_blocked_executions", force: :cascade do |t|
@@ -234,7 +245,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_132817) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "key", null: false
-    t.index ["key"], name: "index_structures_on_key", unique: true
+    t.bigint "season_id"
+    t.index ["season_id"], name: "index_structures_on_season_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -253,7 +265,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_132817) do
   add_foreign_key "idle_game_structures", "idle_games"
   add_foreign_key "idle_game_structures", "structures"
   add_foreign_key "idle_games", "channels"
+  add_foreign_key "idle_games", "seasons"
   add_foreign_key "idle_games", "users"
+  add_foreign_key "resources", "seasons"
   add_foreign_key "solid_queue_blocked_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_claimed_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_failed_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
@@ -264,4 +278,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_132817) do
   add_foreign_key "structure_level_details", "structures"
   add_foreign_key "structure_requirements", "structures"
   add_foreign_key "structure_requirements", "structures", column: "required_structure_id"
+  add_foreign_key "structures", "seasons"
 end

@@ -3,8 +3,12 @@
 class Resource < ApplicationRecord
   include Rails.application.routes.url_helpers
 
+  belongs_to :season
+
   validates :name, presence: true
-  validates :key, presence: true, uniqueness: { case_sensitive: false }
+  validates :season, presence: true
+  validates :key, presence: true
+
   has_one_attached :icon
 
   def icon_url

@@ -1,0 +1,23 @@
+<div class="mx-auto w-full">
+  <h1 class="font-bold text-4xl">
+    <%= t('.title') %>
+  </h1>
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <div class="grid grid-cols-2 gap-4">
+    <%= render partial: 'admin/seasons/season', locals: { season: @season } %>
+    <div class="mx-auto w-full flex flex-row-reverse gap-4">
+      <div>
+        <%= link_to "Edit this season", edit_admin_season_path(@season), class: "mt-2 rounded-lg py-3 px-5 bg-orange-300 inline-block font-medium" %>
+      </div>
+      <div>
+        <%= button_to "Destroy this season", admin_season_path(@season), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-red-300 font-medium" %>
+      </div>
+      <div>
+        <%= link_to "Back to seasons", admin_seasons_path, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      </div>
+    </div>
+  </div>
+</div>

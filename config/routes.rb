@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'idle-game-structure/cancel', to: 'idle_game_structure#cancel', as: 'idle_game_structure_cancel'
 
   namespace :admin do
+    resources :seasons
     resources :structure_level_details do
       collection do
         post :import

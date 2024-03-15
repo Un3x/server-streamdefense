@@ -3,13 +3,16 @@
 class Structure < ApplicationRecord
   include Rails.application.routes.url_helpers
 
+  belongs_to :season
+
   has_many :structure_level_details
   has_many :structure_requirements
   has_many :structure_formulas
   has_one_attached :icon
 
   validates :name, presence: true
-  validates :key, presence: true, uniqueness: { case_sensitive: false }
+  validates :season, presence: true
+  validates :key, presence: true
 
   def structure_level_detail(level)
     structure_level_details.where('level <= ?', level).order(level: :desc).first

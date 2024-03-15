@@ -4,19 +4,22 @@ class ImportService
   require 'csv'
   require 'json'
 
-  def import(file, model)
+  def import(file, model, season = nil)
+    season ||= Season.find_by(active: true)
+
     opened_file = File.open(file.path)
     options = { headers: true, header_converters: :symbol, col_sep: ',' }
     CSV.foreach(opened_file, **options) do |row|
-      send "import_#{model}", row
+      send "import_#{model}", row, season
     end
   end
 
   private
 
-  def import_resource(row)
+  def import_resource(row, season)
     resource = Resource.find_or_create_by(
-      key: row[:key]
+      key: row[:key],
+      season:
     )
 
     resource.update!(name: row[:name])
@@ -30,9 +33,10 @@ class ImportService
     end
   end
 
-  def import_structure(row)
+  def import_structure(row, season)
     structure = Structure.find_or_create_by(
-      key: row[:key]
+      key: row[:key],
+      season:
     )
 
     structure.update!(name: row[:name], description: row[:description])
@@ -44,9 +48,9 @@ class ImportService
     end
   end
 
-  def import_structure_level_detail(row)
+  def import_structure_level_detail(row, season)
     structure_level_detail = StructureLevelDetail.find_or_initialize_by(
-      structure: Structure.find_by(key: row[:structure]),
+      structure: Structure.find_by(key: row[:structure], season:),
       level: row[:level]
     )
 
@@ -55,10 +59,10 @@ class ImportService
     structure_level_detail.save!
   end
 
-  def import_structure_requirement(row)
+  def import_structure_requirement(row, season)
     structure_requirement = StructureRequirement.find_or_create_by(
-      structure: Structure.find_by(key: row[:structure]),
-      required_structure: Structure.find_by(key: row[:required_structure]),
+      structure: Structure.find_by(key: row[:structure], season:),
+      required_structure: Structure.find_by(key: row[:required_structure], season:),
       restriction: row[:restriction] || 'above'
     )
 
@@ -67,10 +71,10 @@ class ImportService
     structure_requirement.save!
   end
 
-  def import_structure_formula(row)
+  def import_structure_formula(row, season)
     structure_formula = StructureFormula.find_or_initialize_by(
-      structure: Structure.find_by(key: row[:structure]),
-      resource: Resource.find_by(key: row[:resource]) || nil,
+      structure: Structure.find_by(key: row[:structure], season:),
+      resource: Resource.find_by(key: row[:resource], season:) || nil,
       category: row[:category],
       formula: row[:formula]
     )

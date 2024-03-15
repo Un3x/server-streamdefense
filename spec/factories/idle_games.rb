@@ -5,5 +5,6 @@ FactoryBot.define do
     channel { association(:channel) }
     user { association(:user) }
     last_sync { Time.now }
+    season { association(:season) }
   end
 end

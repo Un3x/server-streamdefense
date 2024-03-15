@@ -4,19 +4,15 @@
   <% end %>
 
   <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Structures</h1>
-    <%= link_to "New structure", new_admin_structure_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <h1 class="font-bold text-4xl">Seasons</h1>
+    <%= link_to "New season", new_admin_season_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
-  <div>
-    <%= render "import" %>
-  </div>
-
-  <div id="structures" class="min-w-full pt-4">
+  <div id="seasons" class="min-w-full pt-4">
     <table class="border-collapse w-full border border-slate-500 bg-slate-800 text-sm shadow-sm">
       <thead>
         <tr>
-          <% %w[name description season action].each do |column| %>
+          <% %w[name speed active action].each do |column| %>
             <th class="w-1/2 border border-slate-600 font-semibold p-4 text-slate-200 text-left">
               <%= t(".#{column}") %>
             </th>
@@ -24,20 +20,20 @@
         </tr>
       </thead>
       <tbody>
-      <% @structures.each do |structure| %>
+      <% @seasons.each do |season| %>
         <tr>
             <td class="border border-slate-700 p-4 text-slate-400">
-              <%= structure.name %>
+              <%= season.name %>
             </td>
             <td class="border border-slate-700 p-4 text-slate-400">
-              <%= structure.description %>
+              <%= season.speed %>
             </td>
             <td class="border border-slate-700 p-4 text-slate-400">
-              <%= structure.season&.name %>
+              <%= season.active %>
             </td>
             <td class="border border-slate-700 p-4 text-slate-400 flex">
-              <%= link_to "Show", admin_structure_path(structure), class: "rounded-lg py-1 px-2 inline-block font-medium" %>
-              <%= link_to "Edit", edit_admin_structure_path(structure), class: "rounded-lg py-1 ml-2 px-2 inline-block font-medium" %>
+              <%= link_to "Show", admin_season_path(season), class: "rounded-lg py-1 px-2 inline-block font-medium" %>
+              <%= link_to "Edit", edit_admin_season_path(season), class: "rounded-lg py-1 ml-2 px-2 inline-block font-medium" %>
             </td>
         </tr>
       <% end %>

@@ -75,7 +75,7 @@ module Admin
 
     # Only allow a list of trusted parameters through.
     def resource_params
-      params.require(:resource).permit(:name, :key, :icon)
+      params.require(:resource).permit(:name, :key, :icon, :season_id)
     end
   end
 end

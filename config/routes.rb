@@ -34,7 +34,11 @@ Rails.application.routes.draw do
         post :import
       end
     end
-    resources :idle_games, only: %i[index show]
+    resources :idle_games, only: %i[index show destroy] do
+      collection do
+        delete :destroy_all
+      end
+    end
     resources :channels, only: %i[index show]
     resources :users, only: %i[index show]
     get '/', to: 'home#index', as: :root

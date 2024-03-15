@@ -12,6 +12,9 @@
       <div>
         <%= link_to "Back to idle_games", admin_idle_games_path, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
       </div>
+      <div>
+        <%= button_to "Destroy this structure", admin_idle_game_path(@idle_game), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-red-300 font-medium" %>
+      </div>
     </div>
     <%= render partial: 'admin/idle_games/resources', locals: { idle_game_resources: @idle_game.idle_game_resources } %>
     <%= render partial: 'admin/idle_games/structures', locals: { idle_game_structures: @idle_game.idle_game_structures } %>

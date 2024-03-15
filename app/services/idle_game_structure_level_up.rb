@@ -16,6 +16,8 @@ class IdleGameStructureLevelUp
     job = trigger_leveling_job
 
     idle_game_structure.update!(leveling_job_id: job.job_id, leveling_at: Time.now + calculate_leveling_duration)
+
+    IdleGameRecalculator.new(idle_game_structure.idle_game).recalculate
   end
 
   def cancel

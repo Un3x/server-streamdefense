@@ -85,7 +85,7 @@ class ImportService
       slope: row[:slope]&.to_i,
       intercept: row[:intercept]&.to_i,
       base: row[:base]&.to_i,
-      multiplier: row[:multiplier]&.to_i,
+      multiplier: row[:multiplier]&.to_f,
       default: row[:default]&.to_i,
       treshold: row[:treshold]&.to_i
     }

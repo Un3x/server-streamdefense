@@ -7,7 +7,7 @@ class Exponential < StructureFormula
   validates :multiplier, presence: true, numericality: { only_float: true }
   validates :default, presence: true, numericality: { only_integer: true }
 
-  def calculate(level)
+  def evaluate(level)
     ((arguments['base']**level) * arguments['multiplier']) + arguments['default']
   end
 end

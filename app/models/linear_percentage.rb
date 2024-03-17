@@ -8,14 +8,10 @@ class LinearPercentage < StructureFormula
   validates :slope, presence: true, numericality: { only_integer: true }
   validates :multiplier, presence: true, numericality: { only_float: true }
 
-  def calculate(level)
-    result = if level <= treshold
-               intercept + (slope * level)
-             else
-               after_treshold(level)
-             end
+  def evaluate(level)
+    return intercept + (slope * level) if level <= treshold
 
-    result.round
+    after_treshold(level)
   end
 
   def after_treshold(level)

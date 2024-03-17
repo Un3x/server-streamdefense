@@ -27,6 +27,7 @@ module Admin
       respond_to do |format|
         if @season.save
           handle_active
+          handle_old_season_copy
           format.html { redirect_to admin_season_url(@season), notice: 'Season was successfully created.' }
           format.json { render :show, status: :created, location: @season }
         else
@@ -61,6 +62,14 @@ module Admin
     end
 
     private
+
+    def handle_old_season_copy
+      return if params[:season][:old_season_id].blank?
+
+      old_season = Season.find(params[:season][:old_season_id])
+
+      CopySeasonConfiguration.new(@season, old_season).perform
+    end
 
     def handle_active
       return unless @season.active

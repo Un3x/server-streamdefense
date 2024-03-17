@@ -7,6 +7,7 @@ default: &default
       threads: 5
       processes: 1
       polling_interval: 1
+      silence_polling: true
 
 development:
  <<: *default

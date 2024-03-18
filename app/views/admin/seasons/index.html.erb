@@ -1,19 +1,15 @@
-<div class="w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-  <% end %>
-
+<div>
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Seasons</h1>
-    <%= link_to "New season", new_admin_season_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <%= link_to "New season", new_admin_season_path, class: "rounded-lg py-3 px-5 bg-blue-900 text-white block font-medium" %>
   </div>
 
   <div id="seasons" class="min-w-full pt-4">
-    <table class="border-collapse w-full border border-slate-500 bg-slate-800 text-sm shadow-sm">
+    <table class="border-collapse w-full text-sm shadow-sm">
       <thead>
         <tr>
           <% %w[name speed active action].each do |column| %>
-            <th class="w-1/2 border border-slate-600 font-semibold p-4 text-slate-200 text-left">
+            <th>
               <%= t(".#{column}") %>
             </th>
           <% end %>
@@ -22,19 +18,19 @@
       <tbody>
       <% @seasons.each do |season| %>
         <tr>
-            <td class="border border-slate-700 p-4 text-slate-400">
-              <%= season.name %>
-            </td>
-            <td class="border border-slate-700 p-4 text-slate-400">
-              <%= season.speed %>
-            </td>
-            <td class="border border-slate-700 p-4 text-slate-400">
-              <%= season.active %>
-            </td>
-            <td class="border border-slate-700 p-4 text-slate-400 flex">
-              <%= link_to "Show", admin_season_path(season), class: "rounded-lg py-1 px-2 inline-block font-medium" %>
-              <%= link_to "Edit", edit_admin_season_path(season), class: "rounded-lg py-1 ml-2 px-2 inline-block font-medium" %>
-            </td>
+          <td>
+            <%= season.name %>
+          </td>
+          <td>
+            <%= season.speed %>
+          </td>
+          <td>
+            <%= season.active %>
+          </td>
+          <td>
+            <%= link_to "Show", admin_season_path(season), class: "rounded-lg py-1 px-2 inline-block font-medium" %>
+            <%= link_to "Edit", edit_admin_season_path(season), class: "rounded-lg py-1 ml-2 px-2 inline-block font-medium" %>
+          </td>
         </tr>
       <% end %>
       </tbody>

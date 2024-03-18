@@ -1,19 +1,21 @@
-<div class="w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-  <% end %>
+<div>
 
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Idle games</h1>
-    <%= button_to "Destroy all games", destroy_all_admin_idle_games_path, data: {turbo_method: :delete, turbo_confirm: 'Are you sure?' }, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-red-300 font-medium" %>
+    <%= button_to "Destroy all games", 
+      destroy_all_admin_idle_games_path, 
+      data: {turbo_method: :delete, turbo_confirm: 'Are you sure?' }, 
+      method: :delete, 
+      class: "bg-red-900 font-medium" 
+    %>
   </div>
 
   <div id="idle_games" class="min-w-full pt-4">
-    <table class="border-collapse w-full border border-slate-500 bg-slate-800 text-sm shadow-sm">
+    <table class="border-collapse w-full text-sm shadow-sm">
       <thead>
         <tr>
           <% %w[channel user last_sync season action].each do |column| %>
-            <th class="w-1/2 border border-slate-600 font-semibold p-4 text-slate-200 text-left">
+            <th>
               <%= t(".#{column}") %>
             </th>
           <% end %>
@@ -22,19 +24,19 @@
       <tbody>
       <% @idle_games.each do |idle_game| %>
         <tr>
-            <td class="border border-slate-700 p-4 text-slate-400">
+            <td>
               <%= idle_game.channel.twitch_id %>
             </td>
-            <td class="border border-slate-700 p-4 text-slate-400">
+            <td>
               <%= idle_game.user.nickname %>
             </td>
-            <td class="border border-slate-700 p-4 text-slate-400">
+            <td>
               <%= idle_game.last_sync %>
             </td>
-            <td class="border border-slate-700 p-4 text-slate-400">
+            <td>
               <%= idle_game.season&.name %>
             </td>
-            <td class="border border-slate-700 p-4 text-slate-400 flex">
+            <td>
               <%= link_to "Show", admin_idle_game_path(idle_game), class: "rounded-lg py-1 px-2 inline-block font-medium" %>
             </td>
         </tr>

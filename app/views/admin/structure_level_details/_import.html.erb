@@ -1,4 +1,9 @@
-<%= form_tag import_admin_structure_level_details_path, method: :post, multipart: true do %>
-  <%= file_field_tag :file, accept: ".csv" %>
-  <%= submit_tag '⚙️ Import' %>
-<% end %>
+<details class="py-5">
+  <summary role="button" class="secondary">Import des structure level details</summary>
+  <p>
+    <%= form_tag import_admin_structure_level_details_path, method: :post, multipart: true do %>
+      <%= file_field_tag :file, accept: ".csv" %>
+      <%= submit_tag '⚙️ Import' %>
+    <% end %>
+  </p>
+</details>

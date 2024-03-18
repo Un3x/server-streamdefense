@@ -1,9 +1,9 @@
-<div id="structure_formulas" class="min-w-full pt-4">
-  <div class="flex justify-between items-center">
-    <h2 class="font-bold text-4xl">Structure Formulas</h1>
-    <%= link_to "New structure formula", new_admin_structure_formula_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+<div id="structure_formulas">
+  <div class="grid">
+    <h2>Structure Formulas</h1>
+    <%= link_to "New structure formula", new_admin_structure_formula_path, class: %w[text-right] %>
   </div>
-  <table class="border-collapse w-full text-sm shadow-sm">
+  <table>
     <thead>
       <tr>
         <% %w[category resource formula arguments action].each do |column| %>
@@ -29,8 +29,8 @@
           <%= structure_formula.arguments.to_s %>
         </td>
         <td>
-          <%= link_to "Show", admin_structure_formula_path(structure_formula), class: "rounded-lg py-1 px-2 inline-block font-medium" %>
-          <%= link_to "Edit", edit_admin_structure_formula_path(structure_formula), class: "rounded-lg py-1 ml-2 px-2 inline-block font-medium" %>
+          <%= link_to "Show", admin_structure_formula_path(structure_formula) %>
+          <%= link_to "Edit", edit_admin_structure_formula_path(structure_formula) %>
         </td>
       </tr>
     <% end %>

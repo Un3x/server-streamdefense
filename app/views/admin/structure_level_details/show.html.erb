@@ -1,18 +1,14 @@
-<h1 class="font-bold text-4xl">
-  <%= t('.title') %>
-</h1>
-
-<div class="grid grid-cols-2 gap-4">
-  <%= render partial: 'admin/structure_level_details/structure_level_detail', locals: { structure_level_detail: @structure_level_detail } %>
-  <div class="mx-auto w-full flex flex-row-reverse gap-8">
-    <div>
-      <%= button_to "Edit this level detail", edit_admin_structure_level_detail_path(@structure_level_detail), method: :get, class: "secondary" %>
-    </div>
-    <div>
-      <%= button_to "Destroy this level detail", admin_structure_level_detail_path(@structure_level_detail), method: :delete, class: "rounded-lg py-3 px-5 bg-red-900 font-medium" %>
-    </div>
-    <div>
-      <%= button_to "Back to level details", admin_structure_level_details_path, method: :get %>
-    </div>
+<div class="grid">
+  <h1>
+    <%= t('.title') %>
+  </h1>
+  <div role="group">
+    <%= button_to "Edit this level detail", edit_admin_structure_level_detail_path(@structure_level_detail), method: :get, class: %w[secondary] %>
+    <%= button_to "Destroy this level detail", admin_structure_level_detail_path(@structure_level_detail), method: :delete %>
+    <%= button_to "Back to level details", admin_structure_level_details_path, method: :get, class: %w[contrast] %>
   </div>
 </div>
+
+<section class="container-fluid">
+  <%= render partial: 'admin/structure_level_details/structure_level_detail', locals: { structure_level_detail: @structure_level_detail } %>
+</section>

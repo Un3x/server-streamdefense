@@ -1,18 +1,14 @@
-<h1 class="font-bold text-4xl">
-  <%= t('.title') %>
-</h1>
-
-<div class="grid grid-cols-2 gap-4">
-  <%= render partial: 'admin/structure_requirements/structure_requirement', locals: { structure_requirement: @structure_requirement } %>
-  <div class="mx-auto w-full flex flex-row-reverse gap-8">
-    <div>
-      <%= button_to "Edit this requirement", edit_admin_structure_requirement_path(@structure_requirement), method: :get, class: "secondary" %>
-    </div>
-    <div>
-      <%= button_to "Destroy this requirement", admin_structure_requirement_path(@structure_requirement), method: :delete, class: "rounded-lg py-3 px-5 bg-red-900 font-medium" %>
-    </div>
-    <div>
-      <%= button_to "Back to requirements", admin_structure_requirements_path, method: :get%>
-    </div>
+<div class="grid">
+  <h1>
+    <%= t('.title') %>
+  </h1>
+  <div role="group">
+    <%= button_to "Edit this requirement", edit_admin_structure_requirement_path(@structure_requirement), method: :get, class: %w[secondary] %>
+    <%= button_to "Destroy this requirement", admin_structure_requirement_path(@structure_requirement), method: :delete %>
+    <%= button_to "Back to requirements", admin_structure_requirements_path, method: :get, class: %w[contrast] %>
   </div>
 </div>
+
+<section class="container-fluid">
+  <%= render partial: 'admin/structure_requirements/structure_requirement', locals: { structure_requirement: @structure_requirement } %>
+</section>

@@ -1,18 +1,14 @@
-<h1 class="font-bold text-4xl">
-  <%= t('.title') %>
-</h1>
-
-<div class="grid grid-cols-2 gap-4">
-  <%= render partial: 'admin/resources/resource', locals: { resource: @resource } %>
-  <div class="mx-auto w-full flex flex-row-reverse gap-8">
-    <div>
-      <%= button_to "Edit this resource", edit_admin_resource_path(@resource), method: :get,class: "secondary" %>
-    </div>
-    <div>
-      <%= button_to "Destroy this resource", admin_resource_path(@resource), method: :delete, class: "rounded-lg py-3 px-5 bg-red-900 font-medium" %>
-    </div>
-    <div>
-      <%= button_to "Back to resources", admin_resources_path, method: :get %>
-    </div>
+<div class="grid">
+  <h1>
+    <%= t('.title') %>
+  </h1>
+  <div role="group">
+    <%= button_to "Edit this resource", edit_admin_resource_path(@resource), method: :get, class: %w[secondary] %>
+    <%= button_to "Destroy this resource", admin_resource_path(@resource), method: :delete %>
+    <%= button_to "Back to resources", admin_resources_path, method: :get, class: %w[contrast] %>
   </div>
 </div>
+
+<section class="container-fluid">
+  <%= render partial: 'admin/resources/resource', locals: { resource: @resource } %>
+</section>

@@ -1,17 +1,19 @@
-<h1 class="font-bold text-4xl">
-  <%= t('.title') %>
-</h1>
-
-<div class="grid grid-cols-2 gap-4">
-  <%= render partial: 'admin/idle_games/idle_game', locals: { idle_game: @idle_game } %>
-  <div class="mx-auto w-full flex flex-row-reverse gap-8">
-    <div>
-      <%= button_to "Back to idle_games", admin_idle_games_path, method: :get %>
-    </div>
-    <div>
-      <%= button_to "Destroy this structure", admin_idle_game_path(@idle_game), method: :delete, class: "rounded-lg py-3 px-5 bg-red-900 font-medium" %>
-    </div>
+<div class="grid">
+  <h1>
+    <%= t('.title') %>
+  </h1>
+  <div role="group">
+    <%= button_to "Destroy this structure", admin_idle_game_path(@idle_game), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?' }, method: :delete %>
+    <%= button_to "Back to idle_games", admin_idle_games_path, method: :get, class: %w[contrast] %>
   </div>
+</div>
+
+<section class="container-fluid">
+  <%= render partial: 'admin/idle_games/idle_game', locals: { idle_game: @idle_game } %>
+</section>
+
+<section class="grid">
   <%= render partial: 'admin/idle_games/resources', locals: { idle_game_resources: @idle_game.idle_game_resources } %>
   <%= render partial: 'admin/idle_games/structures', locals: { idle_game_structures: @idle_game.idle_game_structures } %>
-</div>
+</section>
+

@@ -1,42 +1,42 @@
-<nav class="first-nav px-3">
+<nav class="first-nav">
   <ul>
-    <li class="py-1">
-      <%= link_to 'STREAM-DEFENSE', admin_root_path, class: %w[text-white text-2xl font-bold] %>
+    <li>
+      <strong><%= link_to 'STREAM-DEFENSE', admin_root_path, class: %w[contrast] %></strong>
     </li>
-    <li class="py-1">
-      <%= link_to 'Utilisateurs', admin_users_path %> 
+    <li>
+      <%= link_to 'Utilisateurs', admin_users_path, class: %w[contrast] %> 
     </li>
-    <li class="py-1">
-      <%= link_to 'Chaînes', admin_channels_path %> 
+    <li>
+      <%= link_to 'Chaînes', admin_channels_path, class: %w[contrast] %> 
     </li>
-    <li class="py-1">
-      <%= link_to 'Saisons', admin_seasons_path %> 
+    <li>
+      <%= link_to 'Saisons', admin_seasons_path, class: %w[contrast] %> 
     </li>
-    <li class="py-1">
-      <%= link_to 'Games', admin_idle_games_path %> 
+    <li>
+      <%= link_to 'Games', admin_idle_games_path, class: %w[contrast] %> 
     </li>
   </ul>
   <ul>
-    <li class="py-1">
+    <li>
       <%= button_to "Logout", destroy_user_session_path, method: :delete %>
     </li>
   </ul>
 </nav>
-<nav class="second-nav px-3">
-  <ul class="px-3">
-    <li class="py-3">
+<nav>
+  <ul>
+    <li>
       <%= link_to 'Resources', admin_resources_path %> 
     </li>
-    <li class="py-3">
+    <li>
       <%= link_to 'Structures', admin_structures_path %> 
     </li>
-    <li class="py-3">
+    <li>
       <%= link_to 'StructureRequirements', admin_structure_requirements_path %> 
     </li>
-    <li class="py-3">
+    <li>
       <%= link_to 'StructureFormulas', admin_structure_formulas_path %> 
     </li>
-    <li class="py-3">
+    <li>
       <%= link_to 'StructureLevelDetails', admin_structure_level_details_path %> 
     </li>
   </ul>

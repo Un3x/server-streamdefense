@@ -1,40 +1,42 @@
 <div>
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Resources</h1>
-    <%= link_to "New resource", new_admin_resource_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
-  </div>
-
-  <div>
-    <%= render "import" %>
-  </div>
-
-  <div id="resources" class="min-w-full pt-4">
-    <table class="border-collapse w-full text-sm shadow-sm">
-      <thead>
-        <tr>
-          <% %w[name season action].each do |column| %>
-            <th>
-              <%= t(".#{column}") %>
-            </th>
-          <% end %>
-        </tr>
-      </thead>
-      <tbody>
-      <% @resources.each do |resource| %>
-        <tr>
-            <td>
-              <%= resource.name %>
-            </td>
-            <td>
-              <%= resource.season&.name %>
-            </td>
-            <td>
-              <%= link_to "Show", admin_resource_path(resource), class: "rounded-lg py-1 px-2 inline-block font-medium" %>
-              <%= link_to "Edit", edit_admin_resource_path(resource), class: "rounded-lg py-1 ml-2 px-2 inline-block font-medium" %>
-            </td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
-  </div>
+  <h1>Resources</h1>
 </div>
+
+<section>
+  <%= render "import" %>
+</section>
+
+<section id="resources">
+  <table>
+    <thead>
+      <tr>
+        <% %w[name season action].each do |column| %>
+          <th>
+            <%= t(".#{column}") %>
+          </th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <%= link_to "New resource", new_admin_resource_path %>
+        </td>
+      </tr>
+    <% @resources.each do |resource| %>
+      <tr>
+          <td>
+            <%= resource.name %>
+          </td>
+          <td>
+            <%= resource.season&.name %>
+          </td>
+          <td>
+            <%= link_to "Show", admin_resource_path(resource) %>
+            <%= link_to "Edit", edit_admin_resource_path(resource) %>
+          </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</section>

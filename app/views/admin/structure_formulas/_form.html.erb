@@ -1,6 +1,6 @@
-<%= form_with(model: [:admin, structure_formula.becomes(StructureFormula)], class: "contents") do |form| %>
+<%= form_with(model: [:admin, structure_formula.becomes(StructureFormula)]) do |form| %>
   <% if structure_formula.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+    <div id="error_explanation">
       <h2><%= pluralize(structure_formula.errors.count, "error") %> prohibited this structure_formula from being saved:</h2>
 
       <ul>
@@ -11,24 +11,24 @@
     </div>
   <% end %>
 
-  <div class="my-5">
+  <div>
     <%= form.label :structure_id %>
-    <%= form.select :structure_id, Structure.all.pluck(:name, :id), { include_blank: "Select a structure" }, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.select :structure_id, Structure.all.pluck(:name, :id), { include_blank: "Select a structure" } %>
   </div>
 
-  <div class="my-5">
+  <div>
     <%= form.label :resource_id %>
-    <%= form.select :resource_id, Resource.all.pluck(:name, :id) , { include_blank: "select a resource" }, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.select :resource_id, Resource.all.pluck(:name, :id) , { include_blank: "select a resource" } %>
   </div>
 
-  <div class="my-5">
+  <div>
     <%= form.label :category %>
-    <%= form.select :category, %w[production cost storage duration] , { include_blank: "select a category" }, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.select :category, %w[production cost storage duration] , { include_blank: "select a category" } %>
   </div>
 
-  <div class="my-5">
+  <div>
     <%= form.label :formula %>
-    <%= form.select :formula, %w[Linear Exponential LinearPercentage] , { include_blank: "select a category" }, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.select :formula, %w[Linear Exponential LinearPercentage] , { include_blank: "select a category" } %>
   </div>
 
   <p>
@@ -44,32 +44,32 @@
     </code>
   </p>
 
-  <div class="my-5">
+  <div>
     <%= form.label :intercept %>
-    <%= form.number_field :intercept, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.number_field :intercept %>
   </div>
-  <div class="my-5">
+  <div>
     <%= form.label :slope %>
-    <%= form.number_field :slope, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.number_field :slope %>
   </div>
-  <div class="my-5">
+  <div>
     <%= form.label :base %>
-    <%= form.number_field :base, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.number_field :base %>
   </div>
-  <div class="my-5">
+  <div>
     <%= form.label :multiplier %>
-    <%= form.number_field :multiplier, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.number_field :multiplier %>
   </div>
-  <div class="my-5">
+  <div>
     <%= form.label :default %>
-    <%= form.number_field :default, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.number_field :default %>
   </div>
-  <div class="my-5">
+  <div>
     <%= form.label :treshold %>
-    <%= form.number_field :treshold, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.number_field :treshold %>
   </div>
 
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  <div>
+    <%= form.submit %>
   </div>
 <% end %>

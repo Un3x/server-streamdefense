@@ -1,7 +1,9 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">New structure formula</h1>
-
-  <%= render partial: "admin/structure_formulas/form", locals: { structure_formula: @structure_formula } %>
-
-  <%= link_to "Back to structure formulas", admin_structure_formulas_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+<div class="grid">
+  <h1>New structure_formula</h1>
+  <%= button_to "Back to structure_formulas", admin_structure_formulas_path, method: :get, class: "contrast" %>
 </div>
+
+<div class="container-fluid">
+  <%= render partial: "admin/structure_formulas/form", locals: { structure_formula: @structure_formula } %>
+</div>
+

@@ -1,8 +1,10 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">Editing season</h1>
-
+<div class="grid">
+  <h1>Editing season</h1>
+  <div role="group">
+    <%= button_to "Show this season", admin_season_path(@season), method: :get, class: %w[secondary] %>
+    <%= button_to "Back to seasons", admin_seasons_path, method: :get, class: %w[contrast] %>
+  </div>
+</div>
+<div class="container-fluid">
   <%= render partial: "admin/seasons/form", locals: { season: @season } %>
-
-  <%= link_to "Show this season", admin_season_path(@season), class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  <%= link_to "Back to seasons", admin_seasons_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
 </div>

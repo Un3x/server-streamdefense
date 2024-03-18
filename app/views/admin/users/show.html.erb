@@ -1,13 +1,18 @@
-<h1 class="font-bold text-4xl">
-  <%= t('.title') %>
-</h1>
-
-<div class="grid grid-cols-2 gap-4">
-  <%= render partial: 'admin/users/user', locals: { user: @user } %>
-  <div class="mx-auto w-full flex flex-row-reverse gap-8">
-    <div>
-      <%= button_to "Back to users", admin_users_path, method: :get %>
-    </div>
+<div class="grid">
+  <h1>
+    <%= t('.title') %>
+  </h1>
+  <div>
+    <%= button_to "Back to users", admin_users_path, method: :get %>
   </div>
-  <%= render partial: 'admin/users/idle_games', locals: { idle_games: @user.idle_games } %>
 </div>
+
+<section class="container-fluid">
+  <div>
+    <%= render partial: 'admin/users/user', locals: { user: @user } %>
+  </div>
+</section>
+
+<section>
+  <%= render partial: 'admin/users/idle_games', locals: { idle_games: @user.idle_games } %>
+</section>

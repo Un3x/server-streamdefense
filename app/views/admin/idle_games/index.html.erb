@@ -1,47 +1,43 @@
-<div>
+<div class="grid">
+  <h1>Idle games</h1>
+  <%= button_to "Destroy all games", 
+    destroy_all_admin_idle_games_path, 
+    data: {turbo_method: :delete, turbo_confirm: 'Are you sure?' }, 
+    method: :delete
+   %>
+</div>
 
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Idle games</h1>
-    <%= button_to "Destroy all games", 
-      destroy_all_admin_idle_games_path, 
-      data: {turbo_method: :delete, turbo_confirm: 'Are you sure?' }, 
-      method: :delete, 
-      class: "bg-red-900 font-medium" 
-    %>
-  </div>
-
-  <div id="idle_games" class="min-w-full pt-4">
-    <table class="border-collapse w-full text-sm shadow-sm">
-      <thead>
-        <tr>
-          <% %w[channel user last_sync season action].each do |column| %>
-            <th>
-              <%= t(".#{column}") %>
-            </th>
-          <% end %>
-        </tr>
-      </thead>
-      <tbody>
-      <% @idle_games.each do |idle_game| %>
-        <tr>
-            <td>
-              <%= idle_game.channel.twitch_id %>
-            </td>
-            <td>
-              <%= idle_game.user.nickname %>
-            </td>
-            <td>
-              <%= idle_game.last_sync %>
-            </td>
-            <td>
-              <%= idle_game.season&.name %>
-            </td>
-            <td>
-              <%= link_to "Show", admin_idle_game_path(idle_game), class: "rounded-lg py-1 px-2 inline-block font-medium" %>
-            </td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
-  </div>
+<div id="idle_games">
+  <table>
+    <thead>
+      <tr>
+        <% %w[channel user last_sync season action].each do |column| %>
+          <th>
+            <%= t(".#{column}") %>
+          </th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+    <% @idle_games.each do |idle_game| %>
+      <tr>
+          <td>
+            <%= idle_game.channel.twitch_id %>
+          </td>
+          <td>
+            <%= idle_game.user.nickname %>
+          </td>
+          <td>
+            <%= idle_game.last_sync %>
+          </td>
+          <td>
+            <%= idle_game.season&.name %>
+          </td>
+          <td>
+            <%= link_to "Show", admin_idle_game_path(idle_game) %>
+          </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
 </div>

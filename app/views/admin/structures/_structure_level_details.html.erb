@@ -1,9 +1,9 @@
-<div id="structure_level_details" class="min-w-full pt-4">
-  <div class="flex justify-between items-center">
-    <h2 class="font-bold text-4xl">Structure level detail</h1>
-    <%= link_to "New structure level detail", new_admin_structure_level_detail_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+<div id="structure_level_details">
+  <div class="grid">
+    <h2>Structure level detail</h1>
+    <%= link_to "New structure level detail", new_admin_structure_level_detail_path, class: %w[text-right] %>
   </div>
-  <table class="border-collapse w-full text-sm shadow-sm">
+  <table>
     <thead>
       <tr>
         <% %w[level description action].each do |column| %>
@@ -23,8 +23,8 @@
           <%= structure_level_detail.description %>
         </td>
         <td>
-          <%= link_to "Show", admin_structure_level_detail_path(structure_level_detail), class: "rounded-lg py-1 px-2 inline-block font-medium" %>
-          <%= link_to "Edit", edit_admin_structure_level_detail_path(structure_level_detail), class: "rounded-lg py-1 ml-2 px-2 inline-block font-medium" %>
+          <%= link_to "Show", admin_structure_level_detail_path(structure_level_detail) %>
+          <%= link_to "Edit", edit_admin_structure_level_detail_path(structure_level_detail) %>
         </td>
       </tr>
     <% end %>

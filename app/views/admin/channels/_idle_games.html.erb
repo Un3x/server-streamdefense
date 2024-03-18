@@ -1,8 +1,8 @@
-<div id="idle_games" class="min-w-full pt-4">
-  <h2 class="font-bold text-2xl">
+<div id="idle_games">
+  <h2>
     <%= t('.title') %>
   </h2>
-  <table class="border-collapse w-full text-sm shadow-sm">
+  <table>
     <thead>
       <tr>
         <% %w[user action].each do |column| %>
@@ -19,7 +19,7 @@
             <%= idle_game.user.nickname %>
           </td>
           <td>
-            <%= link_to "Show", admin_idle_game_path(idle_game), class: "rounded-lg py-1 px-2 inline-block font-medium" %>
+            <%= link_to "Show", admin_idle_game_path(idle_game) %>
           </td>
       </tr>
     <% end %>

@@ -1,11 +1,10 @@
 <div>
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Seasons</h1>
-    <%= link_to "New season", new_admin_season_path, class: "rounded-lg py-3 px-5 bg-blue-900 text-white block font-medium" %>
+  <div class="grid">
+    <h1>Seasons</h1>
   </div>
 
-  <div id="seasons" class="min-w-full pt-4">
-    <table class="border-collapse w-full text-sm shadow-sm">
+  <div id="seasons">
+    <table>
       <thead>
         <tr>
           <% %w[name speed active action].each do |column| %>
@@ -16,6 +15,11 @@
         </tr>
       </thead>
       <tbody>
+      <tr>
+        <td>
+          <%= link_to "New season", new_admin_season_path %>
+        </td>
+      </tr>
       <% @seasons.each do |season| %>
         <tr>
           <td>
@@ -28,8 +32,8 @@
             <%= season.active %>
           </td>
           <td>
-            <%= link_to "Show", admin_season_path(season), class: "rounded-lg py-1 px-2 inline-block font-medium" %>
-            <%= link_to "Edit", edit_admin_season_path(season), class: "rounded-lg py-1 ml-2 px-2 inline-block font-medium" %>
+            <%= link_to "Show", admin_season_path(season) %>
+            <%= link_to "Edit", edit_admin_season_path(season) %>
           </td>
         </tr>
       <% end %>

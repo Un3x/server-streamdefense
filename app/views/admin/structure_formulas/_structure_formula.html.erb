@@ -1,17 +1,17 @@
 <div id="<%= dom_id structure_formula %>">
-  <p class="my-5">
+  <p>
     <%= t('.structure', structure: structure_formula.structure.name).html_safe %>
   </p>
-  <p class="my-5">
+  <p>
     <%= t('.resource', resource: structure_formula.resource.name).html_safe  if structure_formula.resource.present? %>
   </p>
-  <p class="my-5">
+  <p>
     <%= t('.category', category: structure_formula.category).html_safe %>
   </p>
-  <p class="my-5">
+  <p>
     <%= t('.formula', formula: structure_formula.formula).html_safe %>
   </p>
-  <p class="my-5">
+  <p>
     <%= t('.arguments', arguments: structure_formula.arguments).html_safe %>
   </p>
 </div>

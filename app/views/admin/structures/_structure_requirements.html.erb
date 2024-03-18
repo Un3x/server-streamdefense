@@ -1,9 +1,9 @@
-<div id="structure_requirements" class="min-w-full pt-4">
-  <div class="flex justify-between items-center">
-    <h2 class="font-bold text-4xl">Structure requirements</h1>
-    <%= link_to "New structure requirement", new_admin_structure_requirement_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+<div id="structure_requirements">
+  <div class="grid">
+    <h2>Structure requirements</h1>
+    <%= link_to "New structure requirement", new_admin_structure_requirement_path, class: %w[text-right] %>
   </div>
-  <table class="border-collapse w-full shadow-sm">
+  <table>
     <thead>
       <tr>
         <% %w[required_structure required_level restriction action].each do |column| %>
@@ -26,8 +26,8 @@
           <%= structure_requirement.restriction %>
         </td>
         <td>
-          <%= link_to "Show", admin_structure_requirement_path(structure_requirement), class: "rounded-lg py-1 px-2 inline-block font-medium" %>
-          <%= link_to "Edit", edit_admin_structure_requirement_path(structure_requirement), class: "rounded-lg py-1 ml-2 px-2 inline-block font-medium" %>
+          <%= link_to "Show", admin_structure_requirement_path(structure_requirement) %>
+          <%= link_to "Edit", edit_admin_structure_requirement_path(structure_requirement) %>
         </td>
       </tr>
     <% end %>

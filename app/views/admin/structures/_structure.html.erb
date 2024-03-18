@@ -1,16 +1,16 @@
 <div id="<%= dom_id structure %>">
-  <p class="my-5">
+  <p>
     <%= t('.name', name: structure.name).html_safe %>
   </p>
-  <p class="my-5">
+  <p>
     <%= t('.description', description: structure.description).html_safe %>
   </p>
-  <p class="my-5">
+  <p>
     <%= t('.season', season: structure.season&.name).html_safe %>
   </p>
   <% if structure.icon.attached? %>
-    <p class="my-5">
-      <img class="h-12" src="<%= url_for(structure.icon) %>"/>
+    <p>
+      <img src="<%= url_for(structure.icon) %>"/>
     </p>
   <% end %>
 </div>

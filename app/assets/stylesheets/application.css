@@ -15,17 +15,34 @@
  */
 
 body {
-  margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
 }
 
-.first-nav {
-  background-color: #042f2e;
+main {
+  margin: 0 1rem 0 1rem;
 }
 
-.second-nav {
-  background-color: #082f49;
+nav {
+  padding: 0 1rem 0 1rem;
+}
+
+footer {
+  padding: 0 1rem 0 1rem;
+  color: #999;
+  font-size: 0.8rem;
+}
+
+.text-right {
+  text-align: end;
+}
+
+.header {
+  padding: 0;
+}
+
+.first-nav {
+  border-bottom: 2px solid #042f2e;
 }
 
 .alert-danger {

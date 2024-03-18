@@ -1,16 +1,16 @@
 <div id="<%= dom_id structure_level_detail %>">
-  <p class="my-5">
+  <p>
     <%= t('.structure', structure: structure_level_detail.structure.name).html_safe %>
   </p>
-  <p class="my-5">
+  <p>
     <%= t('.level', level: structure_level_detail.level).html_safe %>
   </p>
-  <p class="my-5">
+  <p>
     <%= t('.description', description: structure_level_detail.description).html_safe %>
   </p>
   <% if structure_level_detail.image.attached? %>
-    <p class="my-5">
-      <img class="h-12" src="<%= url_for(structure_level_detail.image) %>"/>
+    <p>
+      <img>"/>
     </p>
   <% end %>
 </div>

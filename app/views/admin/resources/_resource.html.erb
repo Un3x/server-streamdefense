@@ -1,13 +1,13 @@
 <div id="<%= dom_id resource %>">
-  <p class="my-5">
+  <p>
     <%= t('.name', name: resource.name).html_safe %>
   </p>
-  <p class="my-5">
+  <p>
     <%= t('.season', season: resource.season&.name).html_safe %>
   </p>
   <% if resource.icon.attached? %>
-    <p class="my-5">
-      <img class="h-12" src="<%= url_for(resource.icon) %>"/>
+    <p>
+      <img src="<%= url_for(resource.icon) %>"/>
     </p>
   <% end %>
 </div>

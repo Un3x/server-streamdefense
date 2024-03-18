@@ -1,13 +1,15 @@
-<h1 class="font-bold text-4xl">
-  <%= t('.title') %>
-</h1>
-
-<div class="grid grid-cols-2 gap-4">
-  <%= render partial: 'admin/channels/channel', locals: { channel: @channel } %>
-  <div class="mx-auto w-full flex flex-row-reverse gap-8">
+<div class="grid">
+  <h1>
+    <%= t('.title') %>
+  </h1>
     <div>
       <%= button_to "Back to channels", admin_channels_path, method: :get %>
     </div>
-  </div>
-  <%= render partial: 'admin/channels/idle_games', locals: { idle_games: @channel.idle_games } %>
 </div>
+
+<section class="container-fluid">
+  <%= render partial: 'admin/channels/channel', locals: { channel: @channel } %>
+</section>
+<section>
+  <%= render partial: 'admin/channels/idle_games', locals: { idle_games: @channel.idle_games } %>
+</section>

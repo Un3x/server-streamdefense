@@ -20,6 +20,10 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+.first-nav {
+  background-color: #042f2e;
+}
+
 .second-nav {
   background-color: #082f49;
 }

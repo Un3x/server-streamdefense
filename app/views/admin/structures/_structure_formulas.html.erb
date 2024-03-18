@@ -1,14 +1,13 @@
-
 <div id="structure_formulas" class="min-w-full pt-4">
   <div class="flex justify-between items-center">
     <h2 class="font-bold text-4xl">Structure Formulas</h1>
     <%= link_to "New structure formula", new_admin_structure_formula_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
-  <table class="border-collapse w-full border border-slate-500 bg-slate-800 text-sm shadow-sm">
+  <table class="border-collapse w-full text-sm shadow-sm">
     <thead>
       <tr>
-        <% %w[category resource formula arguments simulation action].each do |column| %>
-          <th class="w-1/2 border border-slate-600 font-semibold p-4 text-slate-200 text-left">
+        <% %w[category resource formula arguments action].each do |column| %>
+          <th>
             <%= t(".#{column}") %>
           </th>
         <% end %>
@@ -17,36 +16,19 @@
     <tbody>
     <% structure_formulas.each do |structure_formula| %>
       <tr>
-        <td class="border border-slate-700 p-4 text-slate-400">
+        <td>
           <%= structure_formula.category %>
         </td>
-        <td class="border border-slate-700 p-4 text-slate-400">
+        <td>
           <%= structure_formula.resource.name if structure_formula.resource.present? %>
         </td>
-        <td class="border border-slate-700 p-4 text-slate-400">
+        <td>
           <%= structure_formula.formula %>
         </td>
-        <td class="border border-slate-700 p-4 text-slate-400">
+        <td>
           <%= structure_formula.arguments.to_s %>
         </td>
-        <td class="border border-slate-700 p-4 text-slate-400">
-          <%= structure_formula.calculate(0) %>
-          -
-          <%= structure_formula.calculate(5) %>
-          -
-          <%= structure_formula.calculate(10) %>
-          -
-          <%= structure_formula.calculate(11) %>
-          -
-          <%= structure_formula.calculate(12) %>
-          -
-          <%= structure_formula.calculate(13) %>
-          -
-          <%= structure_formula.calculate(14) %>
-          -
-          <%= structure_formula.calculate(15) %>
-        </td>
-        <td class="border border-slate-700 p-4 text-slate-400 flex h-full">
+        <td>
           <%= link_to "Show", admin_structure_formula_path(structure_formula), class: "rounded-lg py-1 px-2 inline-block font-medium" %>
           <%= link_to "Edit", edit_admin_structure_formula_path(structure_formula), class: "rounded-lg py-1 ml-2 px-2 inline-block font-medium" %>
         </td>

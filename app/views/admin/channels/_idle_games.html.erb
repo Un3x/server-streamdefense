@@ -2,11 +2,11 @@
   <h2 class="font-bold text-2xl">
     <%= t('.title') %>
   </h2>
-  <table class="border-collapse w-full border border-slate-500 bg-slate-800 text-sm shadow-sm">
+  <table class="border-collapse w-full text-sm shadow-sm">
     <thead>
       <tr>
         <% %w[user action].each do |column| %>
-          <th class="w-1/2 border border-slate-600 font-semibold p-4 text-slate-200 text-left">
+          <th>
             <%= t(".#{column}") %>
           </th>
         <% end %>
@@ -15,10 +15,10 @@
     <tbody>
     <% idle_games.each do |idle_game| %>
       <tr>
-          <td class="border border-slate-700 p-4 text-slate-400">
+          <td>
             <%= idle_game.user.nickname %>
           </td>
-          <td class="border border-slate-700 p-4 text-slate-400 flex">
+          <td>
             <%= link_to "Show", admin_idle_game_path(idle_game), class: "rounded-lg py-1 px-2 inline-block font-medium" %>
           </td>
       </tr>

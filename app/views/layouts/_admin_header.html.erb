@@ -1,31 +1,43 @@
-<header>
-  <nav class="bg-slate-800">
-    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-      <div class="relative flex h-32 items-center justify-between">
-        <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-          <div class="flex flex-shrink-0 items-center">
-            <%= link_to 'STREAM-DEFENSE', admin_root_path, class: %w[ml-3 text-white text-2xl font-bold] %>
-          </div>
-          <div class="hidden sm:ml-6 sm:block flex flex-column space-y-4">
-            <div class="flex space-x-4">
-              <%= link_to 'Utilisateurs', admin_users_path, class: %w[bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium] %> 
-              <%= link_to 'Chaînes', admin_channels_path, class: %w[bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium] %> 
-              <%= link_to 'Saisons', admin_seasons_path, class: %w[bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium] %> 
-              <%= link_to 'Games', admin_idle_games_path, class: %w[bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium] %> 
-            </div>
-            <div class="flex space-x-4">
-              <%= link_to 'Resources', admin_resources_path, class: %w[bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium] %> 
-              <%= link_to 'Structures', admin_structures_path, class: %w[bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium] %> 
-              <%= link_to 'StructureRequirements', admin_structure_requirements_path, class: %w[bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium] %> 
-              <%= link_to 'StructureFormulas', admin_structure_formulas_path, class: %w[bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium] %> 
-              <%= link_to 'StructureLevelDetails', admin_structure_level_details_path, class: %w[bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium] %> 
-            </div>
-          </div>
-        </div>
-        <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-          <%= button_to "Logout", destroy_user_session_path, method: :delete, class: %w[relative rounded-full bg-[#1F2336] p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800] %>
-        </div>
-      </div>
-    </div>
-  </nav>
-</header>
+<nav>
+  <ul class="px-3">
+    <li class="py-1">
+      <%= link_to 'STREAM-DEFENSE', admin_root_path, class: %w[text-white text-2xl font-bold] %>
+    </li>
+    <li class="py-1">
+      <%= link_to 'Utilisateurs', admin_users_path %> 
+    </li>
+    <li class="py-1">
+      <%= link_to 'Chaînes', admin_channels_path %> 
+    </li>
+    <li class="py-1">
+      <%= link_to 'Saisons', admin_seasons_path %> 
+    </li>
+    <li class="py-1">
+      <%= link_to 'Games', admin_idle_games_path %> 
+    </li>
+  </ul>
+  <ul>
+    <li class="py-1">
+      <%= button_to "Logout", destroy_user_session_path, method: :delete, class: %w[relative rounded-full bg-[#1F2336] p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800] %>
+    </li>
+  </ul>
+</nav>
+<nav class="second-nav">
+  <ul class="px-3">
+    <li class="py-3">
+      <%= link_to 'Resources', admin_resources_path %> 
+    </li>
+    <li class="py-3">
+      <%= link_to 'Structures', admin_structures_path %> 
+    </li>
+    <li class="py-3">
+      <%= link_to 'StructureRequirements', admin_structure_requirements_path %> 
+    </li>
+    <li class="py-3">
+      <%= link_to 'StructureFormulas', admin_structure_formulas_path %> 
+    </li>
+    <li class="py-3">
+      <%= link_to 'StructureLevelDetails', admin_structure_level_details_path %> 
+    </li>
+  </ul>
+</nav>

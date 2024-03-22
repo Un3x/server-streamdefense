@@ -1,0 +1,12 @@
+<div class="grid">
+  <h1>
+    <%= t('.title') %>
+  </h1>
+    <div>
+      <%= button_to "Back to trade_requests", admin_trade_requests_path, method: :get %>
+    </div>
+</div>
+
+<section class="container-fluid">
+  <%= render partial: 'admin/trade_requests/trade_request', locals: { trade_request: @trade_request } %>
+</section>

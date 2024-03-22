@@ -160,3 +160,12 @@ en:
         level: <strong class="font-medium mb-1">Level :</strong> %{level}
         description: <strong class="font-medium mb-1">Description :</strong> %{description}
 
+    trade_requests:
+      show:
+        title: Trade request
+      trade_request:
+        resource: <strong class="font-medium mb-1">Resource :</strong> %{resource}
+        quantity: <strong class="font-medium mb-1">Quantity :</strong> %{quantity}
+        active: <strong class="font-medium mb-1">Active :</strong> %{active}
+
+

@@ -42,6 +42,7 @@ Rails.application.routes.draw do
     end
     resources :channels, only: %i[index show]
     resources :users, only: %i[index show]
+    resources :trade_requests, only: %i[index show]
     get '/', to: 'home#index', as: :root
   end
 

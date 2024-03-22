@@ -1,0 +1,35 @@
+<div>
+  <h1>trade_requests</h1>
+</div>
+
+<div id="trade_requests">
+  <table>
+    <thead>
+      <tr>
+        <% %w[resource quantity active action].each do |column| %>
+          <th>
+            <%= t(".#{column}") %>
+          </th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+    <% @trade_requests.each do |trade_request| %>
+      <tr>
+          <td>
+            <%= trade_request.resource.name %>
+          </td>
+          <td>
+            <%= trade_request.quantity %>
+          </td>
+          <td>
+            <%= trade_request.active %>
+          </td>
+          <td>
+            <%= link_to "Show", admin_trade_request_path(trade_request) %>
+          </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

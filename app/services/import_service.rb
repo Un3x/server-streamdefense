@@ -39,7 +39,7 @@ class ImportService
       season:
     )
 
-    structure.update!(name: row[:name], description: row[:description])
+    structure.update!(name: row[:name], description: row[:description], type: row[:type])
 
     IdleGame.all.each do |idle_game|
       IdleGameStructure.find_or_create_by(structure:, idle_game:) do |resource_game|

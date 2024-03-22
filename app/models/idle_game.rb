@@ -11,4 +11,8 @@ class IdleGame < ApplicationRecord
   validates :channel, presence: true
   validates :season, presence: true
   validates :user, presence: true
+
+  def score
+    idle_game_structures.sum(&:level)
+  end
 end

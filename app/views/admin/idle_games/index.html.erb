@@ -11,7 +11,7 @@
   <table>
     <thead>
       <tr>
-        <% %w[channel user last_sync season action].each do |column| %>
+        <% %w[channel user last_sync season score action].each do |column| %>
           <th>
             <%= t(".#{column}") %>
           </th>
@@ -32,6 +32,9 @@
           </td>
           <td>
             <%= idle_game.season&.name %>
+          </td>
+          <td>
+            <%= idle_game.score %>
           </td>
           <td>
             <%= link_to "Show", admin_idle_game_path(idle_game) %>

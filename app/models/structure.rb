@@ -5,9 +5,9 @@ class Structure < ApplicationRecord
 
   belongs_to :season
 
+  has_many :structure_formulas
   has_many :structure_level_details
   has_many :structure_requirements
-  has_many :structure_formulas
   has_one_attached :icon
 
   validates :name, presence: true

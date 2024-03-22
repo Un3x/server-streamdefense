@@ -30,7 +30,8 @@ class IdleGameStructure < ApplicationRecord
       leveling_in:,
       level_up:,
       production:,
-      storage:
+      storage:,
+      type: structure.type
     }
   end
 

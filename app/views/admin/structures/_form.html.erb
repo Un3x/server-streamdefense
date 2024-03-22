@@ -1,4 +1,4 @@
-<%= form_with(model: [:admin, structure]) do |form| %>
+<%= form_with(model: [:admin, structure.becomes(Structure)]) do |form| %>
   <% if structure.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(structure.errors.count, "error") %> prohibited this structure from being saved:</h2>
@@ -24,6 +24,11 @@
   <div>
     <%= form.label :description %>
     <%= form.text_field :description %>
+  </div>
+
+  <div>
+    <%= form.label :type %>
+    <%= form.select :type, %w[Building Technology] , { include_blank: "select a type" } %>
   </div>
 
   <div>

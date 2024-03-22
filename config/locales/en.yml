@@ -100,6 +100,7 @@ en:
         name: <strong class="font-medium mb-1">Name :</strong> %{name}
         description: <strong class="font-medium mb-1">Description :</strong> %{description}
         season: <strong class="font-medium mb-1">Season :</strong> %{season}
+        type: <strong class="font-medium mb-1">Type :</strong> %{type}
       structure_requirements:
         required_structure: Required Structure 
         required_level: Required Level

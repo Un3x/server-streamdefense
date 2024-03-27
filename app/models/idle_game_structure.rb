@@ -31,7 +31,7 @@ class IdleGameStructure < ApplicationRecord
       level_up:,
       production:,
       storage:,
-      type: structure.type
+      type: structure_type
     }
   end
 
@@ -45,7 +45,8 @@ class IdleGameStructure < ApplicationRecord
       level_up: recalculate_level_up,
       key: structure.key,
       name: structure.name,
-      icon_url: structure.icon_url
+      icon_url: structure.icon_url,
+      structure_type: structure.type
     )
   end
 

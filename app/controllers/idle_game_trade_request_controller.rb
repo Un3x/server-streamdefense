@@ -15,14 +15,14 @@ class IdleGameTradeRequestController < ApplicationController
 
     render json: {
       status: 200,
-      data: TradeRequestsFormatter.new(@idle_game).perform
+      data: active_trade_requests
     }
   end
 
   def list
     render json: {
       status: 200,
-      data: TradeRequestsFormatter.new(@idle_game).perform
+      data: active_trade_requests
     }
   end
 
@@ -37,7 +37,7 @@ class IdleGameTradeRequestController < ApplicationController
 
     render json: {
       status: 200,
-      data: TradeRequestsFormatter.new(@idle_game).perform
+      data: active_trade_requests
     }
   end
 
@@ -76,5 +76,9 @@ class IdleGameTradeRequestController < ApplicationController
     idle_game_resource.update!(quantity: idle_game_resource.quantity - trade_request.quantity)
 
     true
+  end
+
+  def active_trade_requests
+    TradeRequest.joins(:idle_game).where(idle_game: { channel: @idle_game.channel, season: Season.find_by(active: true) }, active: true).where.not(idle_game: @idle_game).map(&:format)
   end
 end

@@ -12,7 +12,7 @@ class IdleGameStructureController < ApplicationController
 
     render json: {
       status: 200,
-      data: IdleGameFormatter.new(@idle_game_structure.idle_game, last_sync).format_idle_game
+      data: IdleGameFormatter.new(@idle_game_structure.idle_game, last_sync).perform
     }
   end
 
@@ -24,7 +24,7 @@ class IdleGameStructureController < ApplicationController
 
     render json: {
       status: 200,
-      data: IdleGameFormatter.new(@idle_game_structure.idle_game, last_sync).format_idle_game
+      data: IdleGameFormatter.new(@idle_game_structure.idle_game, last_sync).perform
     }
   end
 
@@ -36,7 +36,7 @@ class IdleGameStructureController < ApplicationController
 
     render json: {
       status: 200,
-      data: IdleGameFormatter.new(@idle_game_structure.idle_game, last_sync).format_idle_game
+      data: IdleGameFormatter.new(@idle_game_structure.idle_game, last_sync).perform
     }
   end
 

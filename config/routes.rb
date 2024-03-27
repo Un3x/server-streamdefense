@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   get 'idle-game-structure/level-up', to: 'idle_game_structure#level_up', as: 'idle_game_structure_level_up'
   get 'idle-game-structure/level-down', to: 'idle_game_structure#level_down', as: 'idle_game_structure_level_down'
   get 'idle-game-structure/cancel', to: 'idle_game_structure#cancel', as: 'idle_game_structure_cancel'
+  get 'idle-game-trade-request/new', to: 'idle_game_trade_request#new', as: 'idle_game_trade_request_new'
+  get 'idle-game-trade-request/list', to: 'idle_game_trade_request#list', as: 'idle_game_trade_request_list'
+  get 'idle-game-trade-request/fullfill', to: 'idle_game_trade_request#fullfill', as: 'idle_game_trade_request_fullfill'
 
   namespace :admin do
     resources :seasons

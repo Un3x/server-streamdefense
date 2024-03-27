@@ -15,7 +15,8 @@ class IdleGameResource < ApplicationRecord
       amount: quantity,
       rate:,
       storage:,
-      icon_url:
+      icon_url:,
+      extra_quantity:
     }
   end
 

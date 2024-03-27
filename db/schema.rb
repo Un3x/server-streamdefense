@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_22_150827) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_27_161835) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,17 +42,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_22_150827) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "trade_requests", force: :cascade do |t|
-    t.bigint "idle_game_id", null: false
-    t.bigint "resource_id", null: false
-    t.integer "quantity"
-    t.boolean "active"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["idle_game_id"], name: "index_trade_requests_on_idle_game_id"
-    t.index ["resource_id"], name: "index_trade_requests_on_resource_id"
-  end
-
   create_table "channels", force: :cascade do |t|
     t.string "twitch_id"
     t.datetime "created_at", null: false
@@ -70,6 +59,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_22_150827) do
     t.string "key"
     t.string "name"
     t.string "icon_url"
+    t.integer "extra_quantity", default: 0
     t.index ["idle_game_id"], name: "index_idle_game_resources_on_idle_game_id"
     t.index ["resource_id"], name: "index_idle_game_resources_on_resource_id"
   end
@@ -262,6 +252,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_22_150827) do
     t.index ["season_id"], name: "index_structures_on_season_id"
   end
 
+  create_table "trade_requests", force: :cascade do |t|
+    t.bigint "idle_game_id", null: false
+    t.bigint "resource_id", null: false
+    t.integer "quantity"
+    t.boolean "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["idle_game_id"], name: "index_trade_requests_on_idle_game_id"
+    t.index ["resource_id"], name: "index_trade_requests_on_resource_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -273,8 +274,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_22_150827) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "trade_requests", "idle_games"
-  add_foreign_key "trade_requests", "resources"
   add_foreign_key "idle_game_resources", "idle_games"
   add_foreign_key "idle_game_resources", "resources"
   add_foreign_key "idle_game_structures", "idle_games"
@@ -294,4 +293,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_22_150827) do
   add_foreign_key "structure_requirements", "structures"
   add_foreign_key "structure_requirements", "structures", column: "required_structure_id"
   add_foreign_key "structures", "seasons"
+  add_foreign_key "trade_requests", "idle_games"
+  add_foreign_key "trade_requests", "resources"
 end

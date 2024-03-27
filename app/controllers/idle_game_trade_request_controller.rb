@@ -33,7 +33,7 @@ class IdleGameTradeRequestController < ApplicationController
 
     trade_request_to_fullfill = TradeRequest.find(params[:trade_request_id])
 
-    trade_request_to_fullfill.update!(active: false) if trade_request_to_fullfill.present? && trade_request_to_fullfill.active? && check_resource(trade_request_to_fullfill)
+    trade_request_to_fullfill.fullfill if trade_request_to_fullfill.present? && trade_request_to_fullfill.active? && check_resource(trade_request_to_fullfill)
 
     render json: {
       status: 200,

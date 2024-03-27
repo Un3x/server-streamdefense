@@ -84,8 +84,18 @@ class IdleGameStructureLevelUp
       price = formula.calculate(idle_game_structure.level)
       resource = idle_game_structure.idle_game.idle_game_resources.find_by(resource: formula.resource)
 
-      resource.update!(quantity: [resource.quantity - price, 0].max)
+      pay_for_resource(resource, price)
     end
+  end
+
+  def pay_for_resource(resource, price)
+    if resource.extra_quantity.positive?
+      remaining_quantity = resource.extra_quantity - price
+      resource.extra_quantity = [remaining_quantity, 0].max
+      resource.quantity += remaining_quantity if remaining_quantity.negative?
+    end
+
+    resource.save!
   end
 
   def refund_for_level(level)

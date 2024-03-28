@@ -68,7 +68,7 @@ class IdleGameStructure < ApplicationRecord
   end
 
   def recalculate_category(category, level_offset = 0)
-    structure.structure_formulas.for_category(category).each_with_object({}) do |formula, hash|
+    IdleGameConfiguration.instance.structure_formulas_for_category(structure.key, category).each_with_object({}) do |formula, hash|
       hash[formula.resource.key] = formula.calculate(level + level_offset)
     end
   end

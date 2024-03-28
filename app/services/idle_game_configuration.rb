@@ -15,6 +15,14 @@ class IdleGameConfiguration
     @structures ||= load_structures
   end
 
+  def structure_requirements_by_required_structure
+    @structure_requirements_by_required_structure ||= load_structure_requirements_by_required_structure
+  end
+
+  def structure_requirements_for_required_structure(structure_id)
+    structure_requirements_by_required_structure[structure_id] || []
+  end
+
   def structure(key)
     structures[key].first
   end
@@ -39,5 +47,12 @@ class IdleGameConfiguration
       .includes(:structure_requirements, :structure_level_details, structure_formulas: :resource)
       .order(:id)
       .group_by(&:key)
+  end
+
+  def load_structure_requirements_by_required_structure
+    StructureRequirement
+      .joins(:structure)
+      .where(structure: { season: })
+      .group_by(&:required_structure_id)
   end
 end

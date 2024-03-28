@@ -74,11 +74,21 @@ class IdleGameStructure < ApplicationRecord
   end
 
   def recalculate_next_level_unlocks
-    StructureRequirement.for_required_structure(structure).for_restriction('above').for_required_level(level + 1).map(&:structure).map(&:key)
+    IdleGameConfiguration
+      .instance
+      .structure_requirements_for_required_structure(structure_id)
+      .select { |requirement| requirement.required_level == level + 1 && requirement.restriction == 'above' }
+      .map(&:structure)
+      .map(&:key)
   end
 
   def recalculate_next_level_locks
-    StructureRequirement.for_required_structure(structure).for_restriction('below').for_required_level(level + 1).map(&:structure).map(&:key)
+    IdleGameConfiguration
+      .instance
+      .structure_requirements_for_required_structure(structure_id)
+      .select { |requirement| requirement.required_level == level + 1 && requirement.restriction == 'below' }
+      .map(&:structure)
+      .map(&:key)
   end
 
   def recalculate_level_up

@@ -30,25 +30,22 @@ class IdleGameResource < ApplicationRecord
     )
   end
 
-  def recalculate_rate
+  def recalculate_category(category)
     result = 0
     idle_game.idle_game_structures.each do |idle_game_structure|
       next unless idle_game_structure.visible
 
-      formula = idle_game_structure.structure.structure_formulas.for_resource(resource).for_category('production').first
+      formula = IdleGameConfiguration.instance.structure_formula_for_category_and_resource(idle_game_structure.key, category, resource)
       result += formula.calculate(idle_game_structure.level) if formula.present?
     end
     result
   end
 
-  def recalculate_storage
-    result = 0
-    idle_game.idle_game_structures.each do |idle_game_structure|
-      next unless idle_game_structure.visible
+  def recalculate_rate
+    recalculate_category('production')
+  end
 
-      formula = idle_game_structure.structure.structure_formulas.for_resource(resource).for_category('storage').first
-      result += formula.calculate(idle_game_structure.level) if formula.present?
-    end
-    result
+  def recalculate_storage
+    recalculate_category('storage')
   end
 end

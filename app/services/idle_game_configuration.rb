@@ -35,6 +35,10 @@ class IdleGameConfiguration
     structure(structure_key).structure_formulas.select { |formula| formula.category == category }
   end
 
+  def structure_formula_for_category_and_resource(structure_key, category, resource_key)
+    structure(structure_key).structure_formulas.find { |formula| formula.category == category && formula.resource == resource_key }
+  end
+
   private
 
   def load_resources

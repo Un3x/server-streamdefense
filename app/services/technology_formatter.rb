@@ -11,7 +11,7 @@ class TechnologyFormatter
 
   def market(idle_game)
     {
-      active: TradeRequest.find_by(idle_game:, active: true).format
+      active: TradeRequest.find_by(idle_game:, active: true)&.format
     }
   end
 end

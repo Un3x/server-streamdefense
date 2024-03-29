@@ -73,7 +73,7 @@ class IdleGameStructureLevelUp
       price = formula.calculate(idle_game_structure.level)
       resource = idle_game_structure.idle_game.idle_game_resources.find_by(resource: formula.resource)
 
-      return false if resource.quantity < price
+      return false if resource.quantity + resource.extra_quantity < price
     end
 
     true

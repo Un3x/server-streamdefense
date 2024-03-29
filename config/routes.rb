@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'idle-game-trade-request/new', to: 'idle_game_trade_request#new', as: 'idle_game_trade_request_new'
   get 'idle-game-trade-request/list', to: 'idle_game_trade_request#list', as: 'idle_game_trade_request_list'
   get 'idle-game-trade-request/fullfill', to: 'idle_game_trade_request#fullfill', as: 'idle_game_trade_request_fullfill'
+  get 'idle-game-trade-request/cancel', to: 'idle_game_trade_request#cancel', as: 'idle_game_trade_request_cancel'
 
   namespace :admin do
     resources :seasons

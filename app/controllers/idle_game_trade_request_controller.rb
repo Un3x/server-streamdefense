@@ -41,6 +41,18 @@ class IdleGameTradeRequestController < ApplicationController
     }
   end
 
+  def cancel
+    render json: { status: 422, message: 'Missing parameters' }, status: :unprocessable_entity if params[:trade_request_id].nil?
+
+    trade_request_to_cancel = TradeRequest.find(params[:trade_request_id])
+    trade_request_to_cancel.update!(active: false) if trade_request_to_cancel.present? && trade_request_to_cancel.active?
+
+    render json: {
+      status: 200,
+      data: active_trade_requests
+    }
+  end
+
   private
 
   def validate_params

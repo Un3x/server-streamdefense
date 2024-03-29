@@ -3,6 +3,13 @@
 class IdleGameConfiguration
   include Singleton
 
+  def reload
+    @season = nil
+    @resources = nil
+    @structures = nil
+    @structure_requirements_by_required_structure = nil
+  end
+
   def season
     @season ||= Season.find_by(active: true)
   end
@@ -42,7 +49,10 @@ class IdleGameConfiguration
   private
 
   def load_resources
-    Resource.where(season:).order(:id).goupd_by(&:key)
+    Resource
+      .where(season:)
+      .order(:id)
+      .group_by(&:key)
   end
 
   def load_structures

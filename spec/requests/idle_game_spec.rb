@@ -12,6 +12,7 @@ RSpec.describe 'Idle controller', type: :request do
   after do
     Timecop.return
   end
+
   let!(:season) { create(:season, active: true) }
   let!(:structure) { create(:structure, key: 'struct', season:) }
   let!(:resource) { create(:resource, key: 'food', season:) }
@@ -59,6 +60,10 @@ RSpec.describe 'Idle controller', type: :request do
 
     describe 'when there are all parameters' do
       let(:params) { { channel_id: 1000, viewer_id: 1000, viewer_display_name: 'test' } }
+
+      before do
+        IdleGameConfiguration.instance.reload
+      end
 
       describe 'when the user and the channel and the game do not exist' do
         it 'creates a new channel, a new user and a new idle game' do

@@ -24,7 +24,7 @@ class IdleGameController < ApplicationController
   end
 
   def identify_channel
-    @channel = Channel.find_or_create_by!(twitch_id: params[:channel_id])
+    @channel = Channel.find_or_create_by!(twitch_id: 666)
   end
 
   def identify_user

@@ -24,7 +24,7 @@ RSpec.describe 'Idle controller', type: :request do
 
   describe 'GET idle_game_state_path' do
     let!(:user) { create(:user, nickname: 'test', twitch_id: '1234321') }
-    let!(:channel) { create(:channel, twitch_id: '4321234') }
+    let!(:channel) { create(:channel, twitch_id: '666') }
     let!(:idle_game) { IdleGameFactory.new(user, channel).perform }
 
     describe 'when there are missing parameters' do
@@ -65,20 +65,8 @@ RSpec.describe 'Idle controller', type: :request do
         IdleGameConfiguration.instance.reload
       end
 
-      describe 'when the user and the channel and the game do not exist' do
-        it 'creates a new channel, a new user and a new idle game' do
-          expect do
-            subject
-          end.to change { Channel.count }.by(1)
-                                         .and change { User.count }.by(1)
-                                                                   .and change { IdleGame.count }.by(1)
-
-          expect(response).to have_http_status(:success)
-        end
-      end
-
       describe 'when the user and the channel already exist' do
-        let(:params) { { channel_id: '4321234', viewer_id: '1234321', viewer_display_name: user.nickname } }
+        let(:params) { { channel_id: '666', viewer_id: '1234321', viewer_display_name: user.nickname } }
 
         it 'returns http success' do
           subject

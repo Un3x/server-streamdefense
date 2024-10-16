@@ -5,7 +5,7 @@
 class IdleGameTradeRequestController < ApplicationController
   before_action :validate_params
   before_action :validate_new_trade_request_params, only: [:new]
-  before_action :identity_channel
+  before_action :identify_channel
   before_action :identify_user
   before_action :idle_game
   before_action :trade_request
@@ -63,7 +63,7 @@ class IdleGameTradeRequestController < ApplicationController
     render json: { status: 422, message: 'Missing parameters' }, status: :unprocessable_entity if params[:resource_key].nil? || params[:quantity].nil?
   end
 
-  def identity_channel
+  def identify_channel
     @channel = Channel.find_by(twitch_id: params[:channel_id])
   end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_30_124717) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_16_141215) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -248,15 +248,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_30_124717) do
     t.index ["structure_id"], name: "index_structure_formulas_on_structure_id"
   end
 
-  create_table "structure_level_details", force: :cascade do |t|
-    t.bigint "structure_id", null: false
-    t.integer "level"
-    t.string "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["structure_id"], name: "index_structure_level_details_on_structure_id"
-  end
-
   create_table "structure_requirements", force: :cascade do |t|
     t.bigint "structure_id", null: false
     t.bigint "required_structure_id", null: false
@@ -318,7 +309,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_30_124717) do
   add_foreign_key "solid_queue_scheduled_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "structure_formulas", "resources"
   add_foreign_key "structure_formulas", "structures"
-  add_foreign_key "structure_level_details", "structures"
   add_foreign_key "structure_requirements", "structures"
   add_foreign_key "structure_requirements", "structures", column: "required_structure_id"
   add_foreign_key "structures", "seasons"

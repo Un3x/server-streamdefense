@@ -152,14 +152,6 @@ en:
         speed: <strong class="font-medium mb-1">Speed :</strong> %{speed}
         active: <strong class="font-medium mb-1">Active :</strong> %{active}
 
-    structure_level_details:
-      show:
-        title: Structure level detail
-      structure_level_detail:
-        structure: <strong class="font-medium mb-1">Structure :</strong> %{structure}
-        level: <strong class="font-medium mb-1">Level :</strong> %{level}
-        description: <strong class="font-medium mb-1">Description :</strong> %{description}
-
     trade_requests:
       show:
         title: Trade request

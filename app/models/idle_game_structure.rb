@@ -38,8 +38,7 @@ class IdleGameStructure < ApplicationRecord
   def recalculate
     update!(
       visible: recalculate_visibility,
-      description: recalculate_description,
-      image_url: recalculate_image_url,
+      description: structure.description,
       production: recalculate_category('production'),
       storage: recalculate_category('storage'),
       level_up: recalculate_level_up,
@@ -58,14 +57,6 @@ class IdleGameStructure < ApplicationRecord
   end
 
   private
-
-  def recalculate_description
-    structure.structure_level_detail(level)&.description.presence || structure.description
-  end
-
-  def recalculate_image_url
-    structure.structure_level_detail(level)&.image_url
-  end
 
   def recalculate_category(category, level_offset = 0)
     IdleGameConfiguration.instance.structure_formulas_for_category(structure.key, category).each_with_object({}) do |formula, hash|

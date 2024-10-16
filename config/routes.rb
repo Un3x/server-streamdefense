@@ -12,11 +12,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :seasons
-    resources :structure_level_details do
-      collection do
-        post :import
-      end
-    end
     resources :structure_formulas do
       collection do
         post :import

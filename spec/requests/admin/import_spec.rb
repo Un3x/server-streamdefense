@@ -16,7 +16,6 @@ RSpec.describe 'Import method for resources and structures', type: :request do
     @structures_file = fixture_file_upload('structures.csv', 'text/csv')
     @structure_requirements_file = fixture_file_upload('structure_requirements.csv', 'text/csv')
     @structure_formulas_file = fixture_file_upload('structure_formulas.csv', 'text/csv')
-    @structure_level_details_file = fixture_file_upload('structure_level_details.csv', 'text/csv')
   end
 
   it 'can upload all files' do
@@ -35,9 +34,5 @@ RSpec.describe 'Import method for resources and structures', type: :request do
     expect do
       post import_admin_structure_formulas_url, params: { file: @structure_formulas_file }, headers: { 'HTTP_REFERER' => admin_structure_formulas_url }
     end.to change(StructureFormula, :count).by(35)
-
-    expect do
-      post import_admin_structure_level_details_url, params: { file: @structure_level_details_file }, headers: { 'HTTP_REFERER' => admin_structure_level_details_url }
-    end.to change(StructureLevelDetail, :count).by(2)
   end
 end

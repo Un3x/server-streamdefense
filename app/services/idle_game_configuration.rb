@@ -58,7 +58,7 @@ class IdleGameConfiguration
   def load_structures
     Structure
       .where(season:)
-      .includes(:structure_requirements, :structure_level_details, structure_formulas: :resource)
+      .includes(:structure_requirements, structure_formulas: :resource)
       .order(:id)
       .group_by(&:key)
   end

@@ -30,7 +30,6 @@ class CopySeasonConfiguration
       new_structure.save!
 
       copy_structure_requirements(new_structure, structure)
-      copy_structure_level_details(new_structure, structure)
       copy_structure_formulas(new_structure, structure)
     end
   end
@@ -40,14 +39,6 @@ class CopySeasonConfiguration
       new_structure_requirement = structure_requirement.dup
       new_structure_requirement.structure = new_structure
       new_structure_requirement.save!
-    end
-  end
-
-  def copy_structure_level_details(new_structure, structure)
-    StructureLevelDetail.where(structure:).each do |structure_level_detail|
-      new_structure_level_detail = structure_level_detail.dup
-      new_structure_level_detail.structure = new_structure
-      new_structure_level_detail.save!
     end
   end
 

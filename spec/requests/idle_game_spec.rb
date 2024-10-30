@@ -23,6 +23,10 @@ RSpec.describe 'Idle controller', type: :request do
   let!(:structure_cost) { create(:linear_formula, :with_cost, structure:, resource:) }
 
   describe 'GET idle_game_state_path' do
+    before do
+      IdleGameConfiguration.instance.reload
+    end
+
     let!(:user) { create(:user, nickname: 'test', twitch_id: '1234321') }
     let!(:channel) { create(:channel, twitch_id: '666') }
     let!(:idle_game) { IdleGameFactory.new(user, channel).perform }

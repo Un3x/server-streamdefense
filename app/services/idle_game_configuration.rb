@@ -41,11 +41,18 @@ class IdleGameConfiguration
   end
 
   def structure(key)
-    Structure.new(structures[key].first)
+    struc = structures[key]
+    return Structure.new(struc.first) if struc
+
+    nil
   end
 
   def resource(key)
-    Resource.new(resources[key].first)
+    res = resources[key]
+
+    return Resource.new(res.first) if res
+
+    nil
   end
 
   private

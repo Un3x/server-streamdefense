@@ -4,7 +4,7 @@ class IdleGameConfiguration
   include Singleton
 
   def initialize
-    @redis = Redis.new(url: ENV['REDIS_URL'], driver: :ruby, ssl_params: { verify_mode: OpenSSL::SSL::VERIFY_NONE })
+    @redis = Redis.new(url: ENV.fetch('REDIS_URL', nil), driver: :ruby, ssl_params: { verify_mode: OpenSSL::SSL::VERIFY_NONE })
   end
 
   def reload

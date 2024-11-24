@@ -9,4 +9,8 @@ class Linear < StructureFormula
   def evaluate(level)
     (slope * level) + intercept
   end
+
+  def to_math
+    "(#{slope} * level) + #{intercept})"
+  end
 end

@@ -18,4 +18,8 @@ class LinearPercentage < StructureFormula
     result = intercept + (slope * treshold)
     result * ((1 + multiplier)**(level - treshold))
   end
+
+  def to_math
+    "(#{intercept} + #{slope} * max(level,#{treshold})) * (#{1 + multiplier})^(level - #{treshold})"
+  end
 end

@@ -24,7 +24,6 @@ RSpec.configure do |config|
 
   config.filter_rails_from_backtrace!
 
-
   %i[controller request].each do |type|
     config.before(:each, type:) do
       Rails.application.reload_routes_unless_loaded

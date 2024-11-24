@@ -23,4 +23,11 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 
   config.filter_rails_from_backtrace!
+
+
+  %i[controller request].each do |type|
+    config.before(:each, type:) do
+      Rails.application.reload_routes_unless_loaded
+    end
+  end
 end

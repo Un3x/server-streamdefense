@@ -33,7 +33,7 @@ class IdleGameTradeRequestController < ApplicationController
 
     trade_request_to_fullfill = TradeRequest.find(params[:trade_request_id])
 
-    trade_request_to_fullfill.fullfill if trade_request_to_fullfill.present? && trade_request_to_fullfill.active? && check_resource(trade_request_to_fullfill)
+    trade_request_to_fullfill.fullfill if trade_request_to_fullfill.present? && trade_request_to_fullfill.active? && check_resource?(trade_request_to_fullfill)
 
     render json: {
       status: 200,
@@ -81,7 +81,7 @@ class IdleGameTradeRequestController < ApplicationController
     @trade_request = TradeRequest.find_by(idle_game: @idle_game, active: true)
   end
 
-  def check_resource(trade_request)
+  def check_resource?(trade_request)
     idle_game_resource = @idle_game.idle_game_resources.find_by(resource: trade_request.resource)
     return false if idle_game_resource.quantity < trade_request.quantity
 

@@ -49,9 +49,9 @@ class IdleGameStructure < ApplicationRecord
     )
   end
 
-  def recalculate_visibility
+  def recalculate_visibility?
     IdleGameConfiguration.instance.structure(structure.key).structure_requirements.each do |requirement|
-      return false unless requirement.meets_requirements(self)
+      return false unless requirement.meets_requirements?(self)
     end
     true
   end

@@ -13,7 +13,7 @@ class StructureRequirement < ApplicationRecord
   scope :for_restriction, ->(restriction) { where(restriction:) }
   scope :for_required_level, ->(required_level) { where(required_level:) }
 
-  def meets_requirements(idle_game_structure)
+  def meets_requirements?(idle_game_structure)
     required_idle_game_structure = IdleGameStructure.find_by(idle_game: idle_game_structure.idle_game, structure: required_structure)
     if restriction == 'above'
       required_idle_game_structure.level >= required_level

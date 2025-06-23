@@ -37,7 +37,7 @@ class IdleGameStructure < ApplicationRecord
 
   def recalculate
     update!(
-      visible: recalculate_visibility,
+      visible: recalculate_visibility?,
       description: structure.description,
       production: recalculate_category('production'),
       storage: recalculate_category('storage'),
